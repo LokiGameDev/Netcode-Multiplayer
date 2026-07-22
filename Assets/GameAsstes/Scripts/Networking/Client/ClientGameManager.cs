@@ -15,14 +15,19 @@ public class ClientGameManager : IDisposable
 {
 
     private JoinAllocation allocation;
+    private NetworkClient networkClient;
 
     public async Task<bool> InitAsync()
     {
         await UnityServices.InitializeAsync();
 
+        networkClient = new NetworkClient(NetworkManager.Singleton);
 
+        AuthState authState = await AuthenticatorWrapper.DoAuthorize(5);
 
-        return true;
+        if(authState == AuthState.Authenticated) return true;
+
+        return false;
     }
 
     public void GoToMenu()
@@ -44,7 +49,7 @@ public class ClientGameManager : IDisposable
 
         UnityTransport unityTransport = NetworkManager.Singleton.GetComponent<UnityTransport>();
 
-        RelayServerData relayServerData = AllocationUtils.ToRelayServerData(allocation, "dlts");
+        RelayServerData relayServerData = AllocationUtils.ToRelayServerData(allocation, "dtls");
         unityTransport.SetRelayServerData(relayServerData);
 
         UserData userData = new UserData
@@ -63,11 +68,11 @@ public class ClientGameManager : IDisposable
 
     public void Disconnect()
     {
-        
+        networkClient?.Disconnect();
     }
 
     public void Dispose()
     {
-        
+        networkClient?.Dispose();
     }
 }

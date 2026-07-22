@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/GameAsstes/Scenes/NetBootstrap.unity
     guid: 844e2bc2d7aabf945836056d36ce67d9
   - enabled: 1
+    path: Assets/GameAsstes/Scenes/Menu.unity
+    guid: f77a4211e4d9db64faf445526ffd4d6f
+  - enabled: 1
     path: Assets/GameAsstes/Scenes/Main.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:

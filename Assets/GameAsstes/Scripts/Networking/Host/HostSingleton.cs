@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class HostSingleton : MonoBehaviour
@@ -17,7 +18,7 @@ public class HostSingleton : MonoBehaviour
         }
     }
 
-    private HostGameManager GameManager;
+    public HostGameManager GameManager;
 
     private void Start()
     {
