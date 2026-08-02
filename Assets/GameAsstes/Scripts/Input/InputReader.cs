@@ -24,8 +24,9 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     public event Action<Vector2> PlayerMovementEvent;
     public event Action PlayerJumpEvent;
+    public event Action PlayerInteractEvent;
     public Vector2 movementValue;
-
+    public Vector2 MouseInput;
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -35,7 +36,7 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     public void OnLook(InputAction.CallbackContext context)
     {
-        
+        MouseInput = context.ReadValue<Vector2>();
     }
 
     public void OnAttack(InputAction.CallbackContext context)
@@ -45,7 +46,8 @@ public class InputReader : ScriptableObject, IPlayerActions
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        
+        if(context.performed)
+            PlayerInteractEvent?.Invoke();
     }
 
     public void OnCrouch(InputAction.CallbackContext context)

@@ -9,11 +9,11 @@ public class BootstrapMenu : MonoBehaviour
 
     [SerializeField] private TMP_InputField playerNameInputField;
     [SerializeField] private GameObject newAccountPanel;
-    [SerializeField] private DisplayMessage displayMessage;
+    [SerializeField] private ShowNotification displayMessage;
     [SerializeField] private Button enterTheGameButton;
 
     [SerializeField] private int minPlayerNameLength = 1;
-    [SerializeField] private int maxPlayerNameLength = 15;
+    [SerializeField] private int maxPlayerNameLength = 10;
 
     private void Start()
     {
@@ -36,6 +36,7 @@ public class BootstrapMenu : MonoBehaviour
         if(playerNameInputField.text.Length < minPlayerNameLength || playerNameInputField.text.Length > maxPlayerNameLength)
         {
             enterTheGameButton.interactable = false;
+            displayMessage.ShowText($"Player should be between {minPlayerNameLength} and {maxPlayerNameLength} length");
         }
         else
         {

@@ -22,8 +22,11 @@ public class HostGameManager : IDisposable
     private Allocation allocation;
     public NetworkServer NetworkServer { get; private set; }
 
-    public async Task StartHostAsync()
+    public async Task StartHostAsync(LobbySettings lobbySettings = null)
     {
+        if(lobbySettings!=null) MaxConnections = lobbySettings.NumberOfPlayers;
+        else MaxConnections = 20;
+        
         try
         {
             allocation = await RelayService.Instance.CreateAllocationAsync(MaxConnections);
@@ -53,16 +56,28 @@ public class HostGameManager : IDisposable
         try
         {
             CreateLobbyOptions lobbyOptions = new CreateLobbyOptions();
-            lobbyOptions.IsPrivate = false;
+
+            string lobbyName = "";
+
+            if(lobbySettings!=null)
+            {
+                lobbyName = lobbySettings.LobbyName;
+                lobbyOptions.IsPrivate = lobbySettings.PublicLobby;
+            }
+            else
+            {
+                lobbyName = PlayerPrefs.GetString("PlayerName", "DefaultHost");
+                lobbyOptions.IsPrivate = false;
+            }
+
             lobbyOptions.Data = new Dictionary<string, DataObject>
             {
                 {
                     "JoinCode", new DataObject(DataObject.VisibilityOptions.Member, value: joinCode)
                 }
             };
-            string playerName = PlayerPrefs.GetString("PlayerName", "DefaultHost");
 
-            Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(playerName+"'s Lobby", MaxConnections, lobbyOptions);
+            Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName+"'s Lobby", MaxConnections, lobbyOptions);
             lobbyId = lobby.Id;
             HostSingleton.Instance.StartCoroutine(HeartBeatLobby(15));
         }

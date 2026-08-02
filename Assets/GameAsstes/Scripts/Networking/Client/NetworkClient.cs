@@ -1,8 +1,9 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class NetworkClient : MonoBehaviour
+public class NetworkClient : IDisposable
 {
     private const string MenuSceneName = "Menu";
     private NetworkManager _networkManager;

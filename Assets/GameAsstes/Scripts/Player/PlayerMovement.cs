@@ -9,6 +9,8 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private Rigidbody playerRigidbody;
     [SerializeField] private GameObject playerModel;
     [SerializeField] private PlayerAnimationManager playerAnimationManager;
+    [SerializeField] private Transform player;
+    [SerializeField] private Transform cameraPivot;
 
     [SerializeField] private float playerSpeed = 20;
     [SerializeField] private float playerJumpForce = 1;
@@ -16,12 +18,23 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float rotationSpeed = 15f;
     [SerializeField] private float fallMultiplier = 2.5F;
 
+    [SerializeField] private float mouseSensitivity = 150f;
+    [SerializeField] private float minPitch = -30f;
+    [SerializeField] private float maxPitch = 10f;
+
+    private float yaw;
+    private float pitch;
+
     private Vector2 previousPlayerInput;
 
     public override void OnNetworkSpawn()
     {
         if(!IsOwner) return;
 
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        yaw = player.eulerAngles.y;
         inputReader.PlayerMovementEvent += HandleMovementInput;
         inputReader.PlayerJumpEvent += HandleJumpInput;
     }
@@ -38,9 +51,30 @@ public class PlayerMovement : NetworkBehaviour
     {
         if(!IsOwner) return; 
 
-        Vector3 playerInput = new Vector3(previousPlayerInput.x, 0, previousPlayerInput.y).normalized;
+        Vector3 forward = cameraPivot.forward;
+        Vector3 right = cameraPivot.right;
 
-        playerRigidbody.linearVelocity = new Vector3(playerInput.x * playerSpeed, playerRigidbody.linearVelocity.y, playerInput.z * playerSpeed);
+        forward.y = 0;
+        right.y = 0;
+
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDirection =
+            forward * previousPlayerInput.y +
+            right * previousPlayerInput.x;
+
+        moveDirection.Normalize();
+
+        //Vector3 playerInput = new Vector3(previousPlayerInput.x, 0, previousPlayerInput.y).normalized;
+        //playerRigidbody.linearVelocity = new Vector3(playerInput.x * playerSpeed, playerRigidbody.linearVelocity.y, playerInput.z * playerSpeed);
+        
+        playerRigidbody.linearVelocity = new Vector3(
+            moveDirection.x * playerSpeed,
+            playerRigidbody.linearVelocity.y,
+            moveDirection.z * playerSpeed
+        );
+
 
         if (playerRigidbody.linearVelocity.y < 0)
         {
@@ -48,7 +82,7 @@ public class PlayerMovement : NetworkBehaviour
                 Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
 
-        Vector3 moveDirection = new Vector3(playerInput.x, 0f, playerInput.z);
+        //Vector3 moveDirection = new Vector3(playerInput.x, 0f, playerInput.z);
 
         if (moveDirection.sqrMagnitude > 0.01f)
         {
@@ -64,6 +98,19 @@ public class PlayerMovement : NetworkBehaviour
         if(currentSpeed < 0.1f) currentSpeed = 0;
         
         playerAnimationManager.PlayerStateChange(PlayerState.Moving, currentSpeed);
+    }
+
+    private void LateUpdate()
+    {
+        if(!IsOwner) return;
+
+        yaw += inputReader.MouseInput.x * mouseSensitivity * Time.deltaTime;
+        pitch -= inputReader.MouseInput.y * mouseSensitivity * Time.deltaTime;
+        pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+
+        cameraPivot.rotation = Quaternion.Euler(pitch, yaw, 0f);
+
+        cameraPivot.position = player.position;
     }
 
     private void PlayerJump()
