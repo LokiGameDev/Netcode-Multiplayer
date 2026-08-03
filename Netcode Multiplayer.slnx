@@ -1,4 +1,8 @@
 ﻿<Solution>
+  <Project Path="ImpossibleRobert.Common.Editor.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="ImpossibleRobert.Common.csproj" />
+  <Project Path="AudioTool.JD.EditorAudioUtils.Editor.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="AudioTool.Editor.csproj" />
 </Solution>

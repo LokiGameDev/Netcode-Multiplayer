@@ -1,5 +1,7 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,20 +17,13 @@ public class BootstrapMenu : MonoBehaviour
     [SerializeField] private int minPlayerNameLength = 1;
     [SerializeField] private int maxPlayerNameLength = 10;
 
+    public UnityEvent OnStartEvent;
+
     private void Start()
     {
         Debug.Log(PlayerPrefs.GetString(PlayerName));
 
-        if(PlayerPrefs.GetString(PlayerName).Length < minPlayerNameLength)
-        {
-            newAccountPanel.SetActive(true);
-            PlayerNameValidation();
-        }
-        else
-        {
-            newAccountPanel.SetActive(false);
-            LoadNetBootstrap();
-        }
+        OnStartEvent?.Invoke();
     }
 
     public void PlayerNameValidation()
@@ -57,8 +52,30 @@ public class BootstrapMenu : MonoBehaviour
         }
     }
 
+    public void StartLoading()
+    {
+        Debug.Log("Loading...");
+        if(PlayerPrefs.GetString(PlayerName).Length <= minPlayerNameLength)
+        {
+            newAccountPanel.SetActive(true);
+            PlayerNameValidation();
+        }
+        else
+        {
+            newAccountPanel.SetActive(false);
+            LoadNetBootstrap();
+        }
+    }
+
     private void LoadNetBootstrap()
     {
+        AudioManager.Instance.PlayMusic(AudioID.Music);
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void PlayLogoSoundEffect()
+    {
+        AudioManager.Instance.Play(AudioID.Logo);
     }
 }

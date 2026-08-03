@@ -9,9 +9,12 @@ public class MenuPlayerDetailFiller : MonoBehaviour
     [SerializeField] private Sprite defaultProfilePhoto;
     [SerializeField] private Sprite playerProfilePhoto;
 
+    [SerializeField] private GameObject loadingPanel;
+
     private void OnEnable()
     {
         playerNameText.text = PlayerPrefs.GetString("PlayerName", "No name");
         profilePhoto.sprite = defaultProfilePhoto;
+        loadingPanel.SetActive(false);
     }
 }
