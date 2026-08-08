@@ -538,6 +538,7 @@ GameObject:
   - component: {fileID: 781526374}
   - component: {fileID: 781526373}
   - component: {fileID: 781526377}
+  - component: {fileID: 781526378}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -663,6 +664,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &781526378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781526372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d17c5e129fe962f4fbf7487a2181879b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LockLandscape
 --- !u!1 &874115031
 GameObject:
   m_ObjectHideFlags: 0

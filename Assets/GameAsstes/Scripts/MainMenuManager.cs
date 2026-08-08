@@ -1,14 +1,21 @@
 using UnityEngine;
-using Unity.Netcode;
-using System.Collections;
-using System;
-using System.Threading.Tasks;
 using TMPro;
+using System;
 
 public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private LobbySettingsManual lobbySettingsManual;
     [SerializeField] private TMP_InputField joinCodeInputField;
+
+    [SerializeField] private GameObject[] enableOnStart;
+    [SerializeField] private GameObject[] disbleOnStart;
+
+    private void OnEnable()
+    {
+        Array.ForEach(enableOnStart, obj => obj.SetActive(true));
+        Array.ForEach(disbleOnStart, obj => obj.SetActive(false));
+    }
+
     public async void StartHost()
     {
         await HostSingleton.Instance.GameManager.StartHostAsync();

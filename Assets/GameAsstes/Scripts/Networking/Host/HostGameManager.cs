@@ -62,7 +62,7 @@ public class HostGameManager : IDisposable
             if(lobbySettings!=null)
             {
                 lobbyName = lobbySettings.LobbyName;
-                lobbyOptions.IsPrivate = lobbySettings.PublicLobby;
+                lobbyOptions.IsPrivate = !lobbySettings.PublicLobby;
             }
             else
             {
@@ -78,6 +78,9 @@ public class HostGameManager : IDisposable
             };
 
             Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName+"'s Lobby", MaxConnections, lobbyOptions);
+
+            Debug.Log($"{lobby.IsPrivate}");
+
             lobbyId = lobby.Id;
             HostSingleton.Instance.StartCoroutine(HeartBeatLobby(15));
         }
@@ -127,6 +130,16 @@ public class HostGameManager : IDisposable
             Debug.LogError(e);
             return;
         }
+    }
+
+    public async void UpdateLobbyOptions(bool state)
+    {
+        UpdateLobbyOptions updateOptions = new UpdateLobbyOptions
+        {
+            IsLocked = state
+        };
+
+        await LobbyService.Instance.UpdateLobbyAsync(lobbyId, updateOptions);
     }
 
     public void Dispose()

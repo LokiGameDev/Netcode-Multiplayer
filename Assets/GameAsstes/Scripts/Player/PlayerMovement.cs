@@ -18,7 +18,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float rotationSpeed = 15f;
     [SerializeField] private float fallMultiplier = 2.5F;
 
-    [SerializeField] private float mouseSensitivity = 150f;
+    [SerializeField] private float lookSensitivity = 50f;
     [SerializeField] private float minPitch = -30f;
     [SerializeField] private float maxPitch = 10f;
 
@@ -104,8 +104,8 @@ public class PlayerMovement : NetworkBehaviour
     {
         if(!IsOwner) return;
 
-        yaw += inputReader.MouseInput.x * mouseSensitivity * Time.deltaTime;
-        pitch -= inputReader.MouseInput.y * mouseSensitivity * Time.deltaTime;
+        yaw += inputReader.MouseInput.x * lookSensitivity * Time.deltaTime;
+        pitch -= inputReader.MouseInput.y * lookSensitivity * Time.deltaTime;
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
 
         cameraPivot.rotation = Quaternion.Euler(pitch, yaw, 0f);

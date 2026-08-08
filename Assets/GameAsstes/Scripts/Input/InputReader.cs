@@ -65,4 +65,9 @@ public class InputReader : ScriptableObject, IPlayerActions
     {
         
     }
+
+    public void SetLook(Vector2 lookInput)
+    {
+        MouseInput = lookInput;
+    }
 }

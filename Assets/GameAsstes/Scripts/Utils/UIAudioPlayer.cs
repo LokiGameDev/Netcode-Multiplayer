@@ -4,7 +4,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Button))]
 public class UIAudioPlayer : MonoBehaviour
 {
-    [SerializeField] private AudioID audioID;
+    [SerializeField] private AudioID audioID = AudioID.ButtonClick;
 
     private Button button;
 
@@ -21,6 +21,6 @@ public class UIAudioPlayer : MonoBehaviour
 
     private void OnButtonClicked()
     {
-        AudioManager.Instance.Play(audioID);
+        AudioManager.Instance?.Play(audioID);
     }
 }
