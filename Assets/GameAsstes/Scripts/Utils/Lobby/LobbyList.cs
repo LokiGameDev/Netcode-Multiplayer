@@ -7,8 +7,11 @@ public class LobbyList : MonoBehaviour
 {
     [SerializeField] private Transform lobbyItemsParent;
     [SerializeField] private LobbyItem lobbyItemPrefab;
+    [SerializeField] private GameObject noLobbyFoundText;
+
     private bool IsRefreshing = false;
     private bool IsJoining = false;
+
     private void OnEnable()
     {
         RefreshList();
@@ -45,11 +48,7 @@ public class LobbyList : MonoBehaviour
 
             QueryResponse lobbies = await LobbyService.Instance.QueryLobbiesAsync(options);
 
-            Debug.Log(lobbies.Results.Count);
-            foreach(Lobby lobby in lobbies.Results)
-            {
-                Debug.Log($"{lobby.Name}:{lobby.Id}");
-            }
+            if(lobbies.Results.Count <= 0) NoLobbyFound();
 
             foreach(Transform child in lobbyItemsParent)
             {
@@ -90,5 +89,10 @@ public class LobbyList : MonoBehaviour
         }
 
         IsJoining = false;
+    }
+
+    private void NoLobbyFound()
+    {
+        noLobbyFoundText.SetActive(true);
     }
 }

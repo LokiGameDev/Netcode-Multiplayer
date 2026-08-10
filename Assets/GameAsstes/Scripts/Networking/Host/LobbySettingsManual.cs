@@ -25,7 +25,8 @@ public class LobbySettingsManual : MonoBehaviour
     public void LoadCurrentSettings()
     {
         lobbyNameInputField.characterLimit = MAXLOBBYNAMELENGTH;
-        lobbyNameInputField.text = lobbySettingsToCreate.LobbyName;
+        lobbyNameInputField.text = PlayerPrefs.GetString("PlayerName");
+        lobbySettingsToCreate.LobbyName = lobbyNameInputField.text;
         numberOfPlayersSlider.minValue = MINNUMBEROFPLAYERS;
         numberOfPlayersSlider.maxValue = MAXNUMBEROFPLAYERS;
         numberOfPlayersSlider.value = lobbySettingsToCreate.NumberOfPlayers;
