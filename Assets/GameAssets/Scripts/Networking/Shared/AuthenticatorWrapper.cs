@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Unity.Services.Authentication;
+using Unity.Services.Core;
+using Unity.Services.Friends;
 using UnityEngine;
 
 public static class AuthenticatorWrapper
@@ -18,6 +20,8 @@ public static class AuthenticatorWrapper
         }
 
         await SignInAnonymouslyAsync(maxRetries);
+
+        await GetFriendsListAsync();
 
         return AuthState;
     }
@@ -42,8 +46,15 @@ public static class AuthenticatorWrapper
             try
             {
                 await AuthenticationService.Instance.SignInAnonymouslyAsync();
+
                 if(AuthenticationService.Instance.IsSignedIn && AuthenticationService.Instance.IsAuthorized)
                 {
+                    if(PlayerPrefs.GetInt("PlayerAuthenticated")==0)
+                    {
+                        await AuthenticationService.Instance.UpdatePlayerNameAsync(PlayerPrefs.GetString("PlayerName", "Default"));
+                        PlayerPrefs.SetInt("PlayerAuthenticated", 1);
+                    }
+
                     AuthState = AuthState.Authenticated;
                     break;
                 }
@@ -64,6 +75,22 @@ public static class AuthenticatorWrapper
             AuthState = AuthState.TimeOut;
         }
 
+        return;
+    }
+
+    private static async Task GetFriendsListAsync()
+    {
+        try
+        {
+            await UnityServices.InitializeAsync();
+
+            await FriendsService.Instance.InitializeAsync();
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e);
+            return;
+        }
         return;
     }
 }

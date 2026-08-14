@@ -34,6 +34,8 @@ public class ShowNotification : MonoBehaviour
 
         displayBox.localScale = Vector3.zero;
 
+        AudioManager.Instance.Play(AudioID.Notification);
+
         while (time < popDuration)
         {
             time += Time.deltaTime;

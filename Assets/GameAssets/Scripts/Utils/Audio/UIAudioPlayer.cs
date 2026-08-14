@@ -1,25 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
 public class UIAudioPlayer : MonoBehaviour
 {
     [SerializeField] private AudioID audioID = AudioID.ButtonClick;
 
-    private Button button;
+    [SerializeField] private Button button;
+    [SerializeField] private Toggle toggle;
 
     private void Awake()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(OnButtonClicked);
+        toggle = GetComponent<Toggle>();
+
+        if(button!=null) button.onClick.AddListener(OnClicked);
+        if(toggle!=null) toggle.onValueChanged.AddListener(OnChanged);
     }
 
     private void OnDestroy()
     {
-        button.onClick.RemoveListener(OnButtonClicked);
+        if(button!=null) button.onClick.RemoveListener(OnClicked);
     }
 
-    private void OnButtonClicked()
+    private void OnChanged(bool state = false)
+    {
+        AudioManager.Instance?.Play(audioID);
+    }
+
+    private void OnClicked()
     {
         AudioManager.Instance?.Play(audioID);
     }

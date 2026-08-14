@@ -5,6 +5,7 @@ public enum AudioID
     
     //UI
     ButtonClick,
+    Notification,
 
     //Music
     Music,

@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Services.Authentication;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class MenuPlayerDetailFiller : MonoBehaviour
 
     private void OnEnable()
     {
-        playerNameText.text = PlayerPrefs.GetString("PlayerName", "No name");
+        playerNameText.text = AuthenticationService.Instance.PlayerName;
         profilePhoto.sprite = defaultProfilePhoto;
         loadingPanel.SetActive(false);
     }

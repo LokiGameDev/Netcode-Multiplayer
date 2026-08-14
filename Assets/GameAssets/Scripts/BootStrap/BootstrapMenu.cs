@@ -47,6 +47,7 @@ public class BootstrapMenu : MonoBehaviour
         if(playerNameInputField.text.Length > minPlayerNameLength && playerNameInputField.text.Length < maxPlayerNameLength)
         {
             PlayerPrefs.SetString(PlayerName, playerNameInputField.text);
+            PlayerPrefs.SetInt("PlayerAuthenticated", 0);
             LoadNetBootstrap();
         }
         else

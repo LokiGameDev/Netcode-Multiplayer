@@ -51,6 +51,8 @@ public class Lever : NetworkBehaviour, IInteractable
     {
         isActivated.OnValueChanged += OnLeverStateChanged;
 
+        promptText.gameObject.SetActive(false);
+
         if(rotateRoutine!=null) StopCoroutine(rotateRoutine);
 
         rotateRoutine = StartCoroutine(RotateRoutine(Quaternion.Euler(isActivated.Value ? leverActivationAngle : leverActivationAngle*-1, 0, 0)));

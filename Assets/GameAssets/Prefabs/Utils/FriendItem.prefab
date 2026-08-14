@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 275560230199358850}
   - component: {fileID: 4861376561829261185}
   m_Layer: 5
-  m_Name: JoinGameButton
+  m_Name: MessageButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -50, y: 0}
-  m_SizeDelta: {x: 200, y: 80}
+  m_SizeDelta: {x: 250, y: 80}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &982229984305664675
 CanvasRenderer:
@@ -122,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8431946523658898776}
-        m_TargetAssemblyTypeName: LobbyItem, Assembly-CSharp
-        m_MethodName: Join
+      - m_Target: {fileID: -2556942403620668408}
+        m_TargetAssemblyTypeName: FriendItem, Assembly-CSharp
+        m_MethodName: Message
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -231,9 +231,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1849426479472630310}
-  - component: {fileID: 8431946523658898776}
+  - component: {fileID: -2556942403620668408}
   m_Layer: 5
-  m_Name: LobbyItem
+  m_Name: FriendItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,12 +257,12 @@ RectTransform:
   - {fileID: 8289443198050261774}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1180, y: 125}
+  m_SizeDelta: {x: -20, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8431946523658898776
+--- !u!114 &-2556942403620668408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,11 +271,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2619198535132550204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306489b9f4d118c49abd25ecc1e396ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 241dee51aebd7be4abd1027dcfabbd0d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LobbyItem
-  lobbyNameText: {fileID: 5939818107692704628}
-  lobbyPlayerCountText: {fileID: 6925431158311335353}
+  m_EditorClassIdentifier: Assembly-CSharp::FriendItem
+  friendNameText: {fileID: 5939818107692704628}
+  friendStatusText: {fileID: 6925431158311335353}
+  friendOnlineStatus: 0
 --- !u!1 &8233525130355505674
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ GameObject:
   - component: {fileID: 8762699137801240163}
   - component: {fileID: 6925431158311335353}
   m_Layer: 5
-  m_Name: LobbyPlayerCount
+  m_Name: FriendOnlineStatus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -341,7 +342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 5/20
+  m_text: Offline
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
   m_sharedMaterial: {fileID: -6269700506862428983, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
@@ -385,7 +386,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -425,7 +426,7 @@ GameObject:
   - component: {fileID: 8788493374046477572}
   - component: {fileID: 5939818107692704628}
   m_Layer: 5
-  m_Name: LobbyName
+  m_Name: FriendName
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -478,7 +479,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Default's Lobby
+  m_text: Friend
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
   m_sharedMaterial: {fileID: -6269700506862428983, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
@@ -615,7 +616,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Join
+  m_text: Message
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
   m_sharedMaterial: {fileID: -6269700506862428983, guid: f8802cdf5316acb45b71a160083153ee, type: 2}

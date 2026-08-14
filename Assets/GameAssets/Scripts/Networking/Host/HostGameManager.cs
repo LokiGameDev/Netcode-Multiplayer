@@ -166,4 +166,9 @@ public class HostGameManager : IDisposable
         NetworkServer.OnClientLeft -= HandleClientLeft;
         NetworkServer?.Dispose();
     }
+
+    public string GetJoinCode()
+    {
+        return joinCode;
+    }
 }

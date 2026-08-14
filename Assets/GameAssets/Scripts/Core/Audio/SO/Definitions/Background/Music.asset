@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf685daac27e5eb4684eee13c511065d, type: 3}
   m_Name: Music
   m_EditorClassIdentifier: Assembly-CSharp::AudioDefinition
-  id: 2
+  id: 3
   clips:
   - {fileID: 8300000, guid: 3e21c2644857b5b47a4fea70eb1387eb, type: 3}
   - {fileID: 8300000, guid: 5e7605c544513cb4fbd607fe3da3d9d3, type: 3}

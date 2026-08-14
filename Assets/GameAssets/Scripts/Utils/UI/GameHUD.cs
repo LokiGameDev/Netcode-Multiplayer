@@ -1,10 +1,14 @@
+using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
-public class GameHUD : MonoBehaviour
+public class GameHUD : NetworkBehaviour
 {
     [SerializeField] private GameObject[] enableOnStart;
     [SerializeField] private GameObject[] disableOnStart;
+
+    [SerializeField] private TMP_Text joinCodeText;
+    [SerializeField] private GameObject joinCodeObject;
 
     private void OnEnable()
     {
@@ -20,5 +24,16 @@ public class GameHUD : MonoBehaviour
             HostSingleton.Instance.GameManager.Dispose();
         }
         ClientSingleton.Instance.GameManager.Disconnect();
+    }
+
+    public void Start()
+    {
+        if(!IsHost)
+        {
+            joinCodeObject.SetActive(false);
+        }
+
+        string joinCode = HostSingleton.Instance.GameManager.GetJoinCode();
+        joinCodeText.text = joinCode;
     }
 }

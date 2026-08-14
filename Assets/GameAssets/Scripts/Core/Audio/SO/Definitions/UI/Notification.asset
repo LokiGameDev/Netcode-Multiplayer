@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf685daac27e5eb4684eee13c511065d, type: 3}
-  m_Name: PlayerInteract
+  m_Name: Notification
   m_EditorClassIdentifier: Assembly-CSharp::AudioDefinition
-  id: 5
-  clips: []
-  Volume: 1
+  id: 2
+  clips:
+  - {fileID: 8300000, guid: 79180f511d89441b9aa23ccae1992fe0, type: 3}
+  Volume: 0.3
   Pitch: 1
   RandomPitch: 0
-  Loop: 1
+  Loop: 0
   SpatialBlend: 0
   Priority: 0
   MixerGroup: {fileID: 0}
   selectionMode: 1
-  currentClipIndex: 0
+  currentClipIndex: 1
