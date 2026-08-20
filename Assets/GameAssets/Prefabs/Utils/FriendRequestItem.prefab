@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 275560230199358850}
   - component: {fileID: 4861376561829261185}
   m_Layer: 5
-  m_Name: MessageButton
+  m_Name: AcceptButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,14 +61,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.169957, g: 0.13817196, b: 0.254717, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300022, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  m_Sprite: {fileID: -5177388603050735206, guid: 71ebafeef3c03457483266a33ab2b270, type: 3}
   m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -122,9 +122,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -2556942403620668408}
-        m_TargetAssemblyTypeName: FriendItem, Assembly-CSharp
-        m_MethodName: Message
+      - m_Target: {fileID: 1334568285295268255}
+        m_TargetAssemblyTypeName: FriendRequestItem, Assembly-CSharp
+        m_MethodName: Accept
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -147,6 +147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIAudioPlayer
   audioID: 1
+  button: {fileID: 0}
+  toggle: {fileID: 0}
 --- !u!1 &1295879348729802901
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +214,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300018, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56f19d8bd4307374f93face12a28836a, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -231,7 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1849426479472630310}
-  - component: {fileID: -2556942403620668408}
+  - component: {fileID: 1334568285295268255}
   m_Layer: 5
   m_Name: FriendRequestItem
   m_TagString: Untagged
@@ -262,7 +264,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &-2556942403620668408
+--- !u!114 &1334568285295268255
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,9 +273,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2619198535132550204}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 241dee51aebd7be4abd1027dcfabbd0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 67333fb3a76d5c74ca3c9e46f4fa7730, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FriendItem
+  m_EditorClassIdentifier: Assembly-CSharp::FriendRequestItem
   friendNameText: {fileID: 5939818107692704628}
   friendStatusText: {fileID: 6925431158311335353}
   friendOnlineStatus: 0
@@ -344,15 +346,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Offline
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
-  m_sharedMaterial: {fileID: -6269700506862428983, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b1fbca7af3db2a24681b1fa1c0e9750f, type: 2}
+  m_sharedMaterial: {fileID: 4174745932723986700, guid: b1fbca7af3db2a24681b1fa1c0e9750f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4283361940
+  m_fontColor: {r: 0.5803922, g: 0.9176471, b: 0.30588236, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -375,7 +377,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -481,15 +483,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Friend
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
-  m_sharedMaterial: {fileID: -6269700506862428983, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b1fbca7af3db2a24681b1fa1c0e9750f, type: 2}
+  m_sharedMaterial: {fileID: 4174745932723986700, guid: b1fbca7af3db2a24681b1fa1c0e9750f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4283361940
+  m_fontColor: {r: 0.5803922, g: 0.9176471, b: 0.30588236, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -512,7 +514,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -616,17 +618,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Message
+  m_text: Accept
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
-  m_sharedMaterial: {fileID: -6269700506862428983, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b1fbca7af3db2a24681b1fa1c0e9750f, type: 2}
+  m_sharedMaterial: {fileID: 4174745932723986700, guid: b1fbca7af3db2a24681b1fa1c0e9750f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4283361940
+  m_fontColor: {r: 0.5803922, g: 0.9176471, b: 0.30588236, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

@@ -81,6 +81,6 @@ public class LobbySettingsManual : MonoBehaviour
 public class LobbySettings
 {
     public string LobbyName = "Default";
-    public int NumberOfPlayers = 10;
+    public int NumberOfPlayers = 6;
     public bool PublicLobby = true;
 }

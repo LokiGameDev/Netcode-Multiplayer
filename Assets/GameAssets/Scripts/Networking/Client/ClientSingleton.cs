@@ -11,7 +11,7 @@ public class ClientSingleton : MonoBehaviour
 
             instance = FindAnyObjectByType<ClientSingleton>();
 
-            if(instance==null) Debug.LogError("Host Singleton is null");
+            if(instance==null) Debug.LogError("Client Singleton is null");
 
             return instance;
         }

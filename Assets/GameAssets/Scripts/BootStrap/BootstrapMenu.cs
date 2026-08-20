@@ -13,6 +13,7 @@ public class BootstrapMenu : MonoBehaviour
     [SerializeField] private GameObject newAccountPanel;
     [SerializeField] private ShowNotification displayMessage;
     [SerializeField] private Button enterTheGameButton;
+    [SerializeField] private GameObject logoLoadingPanel;
     
     [SerializeField] private GameObject connectionLostPanel;
 
@@ -25,6 +26,8 @@ public class BootstrapMenu : MonoBehaviour
     {
         Debug.Log(PlayerPrefs.GetString(PlayerName));
         connectionLostPanel.SetActive(false);
+        logoLoadingPanel.SetActive(true);
+        newAccountPanel.SetActive(PlayerPrefs.GetString(PlayerName).Length < minPlayerNameLength);
 
         OnStartEvent?.Invoke();
     }

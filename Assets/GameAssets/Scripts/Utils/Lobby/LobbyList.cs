@@ -48,7 +48,7 @@ public class LobbyList : MonoBehaviour
 
             QueryResponse lobbies = await LobbyService.Instance.QueryLobbiesAsync(options);
 
-            if(lobbies.Results.Count <= 0) NoLobbyFound();
+            NoLobbyFoundState(lobbies.Results.Count <= 0);
 
             foreach(Transform child in lobbyItemsParent)
             {
@@ -91,8 +91,8 @@ public class LobbyList : MonoBehaviour
         IsJoining = false;
     }
 
-    private void NoLobbyFound()
+    private void NoLobbyFoundState(bool state)
     {
-        noLobbyFoundText.SetActive(true);
+        noLobbyFoundText.SetActive(state);
     }
 }

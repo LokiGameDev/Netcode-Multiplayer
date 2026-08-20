@@ -5,7 +5,12 @@ using UnityEngine;
 public class PlayerInteractor : NetworkBehaviour
 {
     [SerializeField] private InputReader inputReader;
-    [SerializeField] private float radius;
+    [SerializeField] private float interactionRange;
+    [SerializeField] private InteractionUI interactionUI;
+
+    private IInteractable currentInteractable;
+
+    private ITask currentTask;
 
     public override void OnNetworkSpawn()
     {
@@ -23,12 +28,85 @@ public class PlayerInteractor : NetworkBehaviour
 
     private void PlayerInteract()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
-        foreach(var hit in colliders)
+        if(currentInteractable!=null)
         {
-            if(hit.TryGetComponent(out IInteractable component))
+            currentInteractable?.Interact(OwnerClientId);
+        }
+        if(currentTask!=null)
+        {
+            currentTask?.Interact(GetComponent<PlayerTaskManager>());
+        }
+    }
+
+    private void Update()
+    {
+        FindInteractable();
+        FindTask();
+
+        if (currentInteractable != null)
+        {
+            interactionUI.Show(
+                currentInteractable,
+                currentInteractable.GetInteractionPoint()
+            );
+        }
+        else
+        {
+            interactionUI.Hide();
+        }
+
+        if (currentTask != null)
+        {
+            interactionUI.Show(
+                currentTask,
+                currentTask.GetInteractionPoint()
+            );
+        }
+        else
+        {
+            interactionUI.Hide();
+        }
+    }
+
+    private void FindInteractable()
+    {
+        currentInteractable = null;
+
+        Collider[] colliders = Physics.OverlapSphere(
+            transform.position,
+            interactionRange
+        );
+
+        foreach (Collider collider in colliders)
+        {
+            IInteractable interactable =
+                collider.GetComponent<IInteractable>();
+
+            if (interactable != null)
             {
-                component?.Interact(OwnerClientId);
+                currentInteractable = interactable;
+                break;
+            }
+        }
+    }
+
+    private void FindTask()
+    {
+        currentTask = null;
+
+        Collider[] colliders = Physics.OverlapSphere(
+            transform.position,
+            interactionRange
+        );
+
+        foreach (Collider collider in colliders)
+        {
+            ITask task =
+                collider.GetComponent<ITask>();
+
+            if (task != null)
+            {
+                currentTask = task;
                 break;
             }
         }
@@ -36,6 +114,6 @@ public class PlayerInteractor : NetworkBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, interactionRange);
     }
 }

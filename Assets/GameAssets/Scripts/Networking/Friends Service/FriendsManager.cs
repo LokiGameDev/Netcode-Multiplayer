@@ -207,6 +207,11 @@ public class FriendsManager : MonoBehaviour
         displayMessage.ShowText("Not yet implemented");
     }
 
+    public void AcceptFriendRequest()
+    {
+        displayMessage.ShowText("Not yet implemented");
+    }
+
     public async void DeleteAllFriends()
     {
         var friends = friendsList.ToList();

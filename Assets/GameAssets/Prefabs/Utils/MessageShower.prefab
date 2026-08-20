@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1960754518926455997
 RectTransform:
   m_ObjectHideFlags: 0
@@ -50,8 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShowNotification
   text: {fileID: 5780598507921452182}
+  displayBox: {fileID: 7568692232790148777}
   canvasGroup: {fileID: 2944721488149330126}
   fadeDuration: 3
+  popDuration: 0.5
 --- !u!1 &1110308219337414047
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,15 +121,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: No warning
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
-  m_sharedMaterial: {fileID: -6269700506862428983, guid: f8802cdf5316acb45b71a160083153ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b1fbca7af3db2a24681b1fa1c0e9750f, type: 2}
+  m_sharedMaterial: {fileID: 4174745932723986700, guid: b1fbca7af3db2a24681b1fa1c0e9750f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4283361940
+  m_fontColor: {r: 0.5803922, g: 0.9176471, b: 0.30588236, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -207,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7568692232790148777
 RectTransform:
   m_ObjectHideFlags: 0
@@ -256,7 +258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300024, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 56f19d8bd4307374f93face12a28836a, type: 3}
   m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1

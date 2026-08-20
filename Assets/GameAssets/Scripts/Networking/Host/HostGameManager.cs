@@ -15,17 +15,17 @@ using UnityEngine.SceneManagement;
 
 public class HostGameManager : IDisposable
 {
-    [SerializeField] private int MaxConnections = 20;
+    [SerializeField] private int MaxConnections = 8;
     private string joinCode;
     private string lobbyId;
-    private string GameSceneName = "Main";
+    private string GameSceneName = "Game1";
     private Allocation allocation;
     public NetworkServer NetworkServer { get; private set; }
 
     public async Task StartHostAsync(LobbySettings lobbySettings = null)
     {
         if(lobbySettings!=null) MaxConnections = lobbySettings.NumberOfPlayers;
-        else MaxConnections = 20;
+        else MaxConnections = 8;
         
         try
         {

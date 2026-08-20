@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.Services.Authentication;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.UI;
 
 public class MenuPlayerDetailFiller : MonoBehaviour
 {
-    [SerializeField] private TMP_Text playerNameText;
+    [SerializeField] private TMP_Text[] playerNameText;
     [SerializeField] private Image profilePhoto;
     [SerializeField] private Sprite defaultProfilePhoto;
     [SerializeField] private Sprite playerProfilePhoto;
@@ -14,7 +15,8 @@ public class MenuPlayerDetailFiller : MonoBehaviour
 
     private void OnEnable()
     {
-        playerNameText.text = AuthenticationService.Instance.PlayerName;
+        string playerName = AuthenticationService.Instance.PlayerName;
+        Array.ForEach(playerNameText, name => name.text = playerName);
         profilePhoto.sprite = defaultProfilePhoto;
         loadingPanel.SetActive(false);
     }
