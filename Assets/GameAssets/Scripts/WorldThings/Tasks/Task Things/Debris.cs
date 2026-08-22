@@ -2,11 +2,12 @@ using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-public class Light : NetworkBehaviour, ITask
+public class Debris : NetworkBehaviour, ITask
 {
     public int taskId { get; set; }
-    public TaskType taskType => TaskType.RepairLight;
+    public TaskType taskType => TaskType.CleanDebris;
     public string ActionName { get; set; }
+    public bool isCompleted { get; set; } = false;
 
     public NetworkVariable<int> TaskId { get; set; } = new NetworkVariable<int>(
             0,
@@ -15,11 +16,9 @@ public class Light : NetworkBehaviour, ITask
         );
 
     [SerializeField] private string toActivateText = "";
- 
-    [SerializeField] private float lightLitTime = 3;
+
     [SerializeField] private int DebugTaskID = 0;
 
-    private PlayerTaskManager playerTaskManager;
     private Coroutine coroutine;
 
     private void OnEnable()
@@ -30,7 +29,7 @@ public class Light : NetworkBehaviour, ITask
     public void CompleteTask()
     {
         Debug.Log("Completed task");
-        playerTaskManager.TaskComplete(taskId);
+        isCompleted = true;
     }
 
     public string GetActionName()
@@ -38,13 +37,15 @@ public class Light : NetworkBehaviour, ITask
         return ActionName;
     }
 
-    public void Interact(PlayerTaskManager playerTaskManager)
+    public void Interact()
     {
         Debug.Log("Interacted");
-        this.playerTaskManager = playerTaskManager;
+
+        if(isCompleted) return;
+
         if(coroutine!=null) StopCoroutine(coroutine);
         
-        coroutine = StartCoroutine(StartInteracting());
+        UIManager.Instance.InitiateTask(TaskId.Value, taskType);
     }
 
     public void AssignTaskID(int id)
@@ -57,13 +58,5 @@ public class Light : NetworkBehaviour, ITask
     public Transform GetInteractionPoint()
     {
         return gameObject.transform;
-    }
-
-    private IEnumerator StartInteracting()
-    {
-        Debug.Log("Started task");
-        yield return new WaitForSeconds(lightLitTime);
-        CompleteTask();
-        coroutine = null;
     }
 }

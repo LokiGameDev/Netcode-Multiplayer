@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TaskManager : NetworkBehaviour
@@ -9,11 +8,16 @@ public class TaskManager : NetworkBehaviour
 
     private Dictionary<ulong, List<PlayerTask>> assignedTasks = new Dictionary<ulong, List<PlayerTask>>();
 
+    private Dictionary<int, ITask> assignedTasksObjects = new Dictionary<int, ITask>();
+
     private Dictionary<TaskType, List<ITask>> availableTasks = new();
 
     private List<ulong> pendingPlayers = new List<ulong>();
 
     private int currentTaskId = 1;
+
+    private int currentTaskCount = 0;
+    private int completedTaskCount = 0;
 
     private static TaskManager instance;
     public static TaskManager Instance
@@ -32,12 +36,13 @@ public class TaskManager : NetworkBehaviour
 
     public override void OnNetworkSpawn()
     {
+        RegisterTaskObjects();
+        
         if(!IsHost) return;
 
         NetworkManager.Singleton.OnClientConnectedCallback += PlayerConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
 
-        RegisterTaskObjects();
     }
 
     public override void OnNetworkDespawn()
@@ -79,6 +84,12 @@ public class TaskManager : NetworkBehaviour
         }
     }
 
+    public ITask GetTaskObjectLocation(int id)
+    {
+        if(assignedTasksObjects.ContainsKey(id)) return assignedTasksObjects[id];
+        return null;
+    }
+
     public void CompleteTask(ulong playerId, int taskId)
     {
         if (!IsServer)
@@ -98,8 +109,13 @@ public class TaskManager : NetworkBehaviour
 
         task.Completed = true;
 
+        assignedTasksObjects[taskId].CompleteTask();
+
         Debug.Log($"Player {playerId} completed task {taskId}");
 
+        completedTaskCount++;
+
+        UIManager.Instance.FillCompletedTaskCount(completedTaskCount);
         // Notify that player's client
         SendTaskCompletedRpc(
             taskId, playerId,
@@ -183,12 +199,17 @@ public class TaskManager : NetworkBehaviour
 
             worldTask.AssignTaskID(currentTaskId);
             currentTaskId++;
+
+            currentTaskCount++;
+
             // Add task to player's list
             tasks.Add(new PlayerTask
             {
                 TaskId = worldTask.taskId,
                 Type = worldTask.taskType
             });
+
+            assignedTasksObjects[worldTask.taskId] = worldTask;
 
             // Remove it from available pools
             availableTasks[worldTask.taskType].Remove(worldTask);
@@ -204,6 +225,8 @@ public class TaskManager : NetworkBehaviour
             Debug.Log(
                 $"Player {playerId}: {task.Type} (ID {task.TaskId})");
         }   
+
+        UIManager.Instance.FillTheTaskBar(currentTaskCount);
 
         SendTasksToPlayer(playerId);
     }

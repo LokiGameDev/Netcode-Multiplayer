@@ -1461,6 +1461,7 @@ MonoBehaviour:
   inputReader: {fileID: 11400000, guid: 1d6586d989430884ba58ee5504be2001, type: 2}
   interactionRange: 0
   interactionUI: {fileID: 6162657162493609497}
+  playerTaskManager: {fileID: 4199922947359653503}
 --- !u!114 &4199922947359653503
 MonoBehaviour:
   m_ObjectHideFlags: 0

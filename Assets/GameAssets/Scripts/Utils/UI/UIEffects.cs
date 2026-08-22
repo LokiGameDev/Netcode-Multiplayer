@@ -6,6 +6,8 @@ public class UIEffects : MonoBehaviour
 {
     [Header("General Settings")]
     [SerializeField] private EffectInitiateType effectInitiateType;
+    [SerializeField] private UIEffectType uIEffectType;
+    [SerializeField] private RectTransform panel;
 
     [Header("Fade Settings")]
     [SerializeField] private CanvasGroup canvasGroup;
@@ -14,10 +16,13 @@ public class UIEffects : MonoBehaviour
     [SerializeField] private float waitBeforeCompletionDuration = 0;
 
     [Header("Slide Settings")]
-    [SerializeField] private UIEffectType uIEffectType;
     [SerializeField] private float slideDuration = 1f;
-    [SerializeField] private RectTransform panel;
     [SerializeField] private Vector2 panelFinalPosition;
+
+    [Header("Scale Effect")]
+    [SerializeField] private float scalingSpeed = 5f;
+    [SerializeField] private float minIconSize = 1f;
+    [SerializeField] private float maxIconSize = 1.25f;
 
     private Coroutine currentCoroutine;
 
@@ -40,6 +45,12 @@ public class UIEffects : MonoBehaviour
     private void OnEnable()
     {
         if(effectInitiateType == EffectInitiateType.OnEnable) StartEffect();
+    }
+
+    private void OnDisable()
+    {
+        if(currentCoroutine!=null) StopCoroutine(currentCoroutine);
+        StopAllCoroutines();
     }
 
     #region Fade Effect
@@ -153,6 +164,9 @@ public class UIEffects : MonoBehaviour
             case UIEffectType.FadeOut:
                 StartFadeEffect(UIEffectType.FadeOut);
                 break;
+            case UIEffectType.ScaleEffect:
+                StartscalingEffect();
+                break;
         }
     }
 
@@ -201,6 +215,27 @@ public class UIEffects : MonoBehaviour
     }
 
     #endregion
+
+    #region Scale Effect
+
+    private void StartscalingEffect()
+    {
+        if(currentCoroutine!=null) StopCoroutine(currentCoroutine);
+
+        currentCoroutine = StartCoroutine(ScaleEffectEnumerator());
+    }
+
+    private IEnumerator ScaleEffectEnumerator()
+    {
+        while(true)
+        {
+            float scale = minIconSize + (1+Mathf.Sin(Time.time * scalingSpeed))/2 * (maxIconSize-minIconSize);
+            panel.localScale = Vector3.one * scale;
+            yield return null;
+        }
+    }
+
+    #endregion
 }
 
 public enum UIEffectType
@@ -210,7 +245,8 @@ public enum UIEffectType
     DropDown,
     PopUp,
     LeftSlide,
-    RightSlide
+    RightSlide,
+    ScaleEffect
 }
 
 public enum EffectInitiateType

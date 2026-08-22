@@ -7,6 +7,7 @@ public class Chair : NetworkBehaviour, ITask
     public int taskId { get; set; }
     public TaskType taskType => TaskType.FixBrokenChair;
     public string ActionName { get; set; }
+    public bool isCompleted { get; set; } = false;
 
     public NetworkVariable<int> TaskId { get; set; } = new NetworkVariable<int>(
             0,
@@ -15,11 +16,9 @@ public class Chair : NetworkBehaviour, ITask
         );
 
     [SerializeField] private string toActivateText = "";
- 
-    [SerializeField] private float fixingTime = 3;
+
     [SerializeField] private int DebugTaskID = 0;
 
-    private PlayerTaskManager playerTaskManager;
     private Coroutine coroutine;
 
     private void OnEnable()
@@ -30,7 +29,7 @@ public class Chair : NetworkBehaviour, ITask
     public void CompleteTask()
     {
         Debug.Log("Completed task");
-        playerTaskManager.TaskComplete(taskId);
+        isCompleted = true;
     }
 
     public string GetActionName()
@@ -38,13 +37,13 @@ public class Chair : NetworkBehaviour, ITask
         return ActionName;
     }
 
-    public void Interact(PlayerTaskManager playerTaskManager)
+    public void Interact()
     {
         Debug.Log("Interacted");
-        this.playerTaskManager = playerTaskManager;
-        if(coroutine!=null) StopCoroutine(coroutine);
+
+        if(isCompleted) return;
         
-        coroutine = StartCoroutine(StartInteracting());
+        UIManager.Instance.InitiateTask(TaskId.Value, taskType);
     }
 
     public void AssignTaskID(int id)
@@ -57,13 +56,5 @@ public class Chair : NetworkBehaviour, ITask
     public Transform GetInteractionPoint()
     {
         return gameObject.transform;
-    }
-
-    private IEnumerator StartInteracting()
-    {
-        Debug.Log("Started task");
-        yield return new WaitForSeconds(fixingTime);
-        CompleteTask();
-        coroutine = null;
     }
 }

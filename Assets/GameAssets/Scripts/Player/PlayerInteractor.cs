@@ -7,6 +7,7 @@ public class PlayerInteractor : NetworkBehaviour
     [SerializeField] private InputReader inputReader;
     [SerializeField] private float interactionRange;
     [SerializeField] private InteractionUI interactionUI;
+    [SerializeField] PlayerTaskManager playerTaskManager;
 
     private IInteractable currentInteractable;
 
@@ -16,6 +17,7 @@ public class PlayerInteractor : NetworkBehaviour
     {
         if(!IsOwner) return;
 
+        playerTaskManager = GetComponent<PlayerTaskManager>();
         inputReader.PlayerInteractEvent += PlayerInteract;
     }
 
@@ -34,7 +36,7 @@ public class PlayerInteractor : NetworkBehaviour
         }
         if(currentTask!=null)
         {
-            currentTask?.Interact(GetComponent<PlayerTaskManager>());
+            currentTask?.Interact();
         }
     }
 
@@ -106,8 +108,11 @@ public class PlayerInteractor : NetworkBehaviour
 
             if (task != null)
             {
-                currentTask = task;
-                break;
+                if(playerTaskManager.IsPlayerHaveThisTask(task.TaskId.Value) && !task.isCompleted)
+                {
+                    currentTask = task;
+                    break;
+                }
             }
         }
     }

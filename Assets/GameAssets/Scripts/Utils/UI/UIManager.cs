@@ -36,4 +36,27 @@ public class UIManager : MonoBehaviour
     {
         uITaskManager.CompleteTask(taskId);
     }
+
+    public void FillTheTaskBar(int count)
+    {
+        uITaskManager.GameTotalTasks(count);
+    }
+
+    public void FillCompletedTaskCount(int count)
+    {
+        uITaskManager.CompletedTaskCount(count);
+    }
+
+    public Transform GetPlayerPositionToScreen()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player!=null) return player.transform;
+
+        return null;
+    }
+
+    public void InitiateTask(int id, TaskType taskType)
+    {
+        uITaskManager.StartTaskPanel(id, taskType);
+    }
 }

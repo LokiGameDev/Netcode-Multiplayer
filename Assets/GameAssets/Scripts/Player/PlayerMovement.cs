@@ -152,4 +152,9 @@ public class PlayerMovement : NetworkBehaviour
         }
         playerAnimationManager.SetGroundedState(true);
     }
+
+    public void ResetVelocity()
+    {
+        playerRigidbody.linearVelocity = new Vector3(0, 0, 0);
+    }
 }

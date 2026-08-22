@@ -13,6 +13,7 @@ public class WorldFallPoint : MonoBehaviour
     {
         if(collider.CompareTag("Player"))
         {
+            collider.gameObject.GetComponent<PlayerMovement>().ResetVelocity();
             if(spawnPoint==null) collider.gameObject.transform.position = new Vector3(0,0,0);
             else collider.gameObject.transform.position = spawnPoint.position + new Vector3(0,10,0);
         }
