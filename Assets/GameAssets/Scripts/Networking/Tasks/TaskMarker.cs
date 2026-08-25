@@ -11,6 +11,7 @@ public class TaskMarker : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float radius = 350;
+    [SerializeField] private float minDistanceBetweenTask = 5;
 
     private Camera cam;
 
@@ -40,13 +41,15 @@ public class TaskMarker : MonoBehaviour
         Vector3 screenPosition =
             cam.WorldToScreenPoint(target.position + new Vector3(0,0.5f,0));
 
-        Transform player = UIManager.Instance.GetPlayerPositionToScreen();
+        Transform player = UIManager.Instance.GetPlayerPosition();
 
         Vector2 center = indicatorArea.position;
 
         if(player!=null) center = cam.WorldToScreenPoint(player.position);
 
         Vector2 direction = (Vector2)screenPosition - center;
+
+        if (screenPosition.z < 0) direction = -direction;
 
         bool isInside = RectTransformUtility.RectangleContainsScreenPoint(indicatorArea, screenPosition, null);
 
@@ -57,6 +60,11 @@ public class TaskMarker : MonoBehaviour
             directionArrow.gameObject.SetActive(false);
 
             targetIcon.position = cam.WorldToScreenPoint(target.position + new Vector3(0,2.5f,0));
+
+            float distance = Vector3.Distance(UIManager.Instance.GetPlayerPosition().position, target.position);
+
+            if(distance < minDistanceBetweenTask) targetIcon.gameObject.SetActive(false);
+            else targetIcon.gameObject.SetActive(true);
         }
         else
         {
@@ -66,7 +74,7 @@ public class TaskMarker : MonoBehaviour
 
             direction.Normalize();
 
-            Vector2 arrowPosition = center + direction * radius;
+            Vector2 arrowPosition = center + (direction * radius);
 
             directionArrow.position = arrowPosition;
 
@@ -74,6 +82,8 @@ public class TaskMarker : MonoBehaviour
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
             directionArrow.rotation = Quaternion.Euler(0, 0, angle - 90);
+            
+            //UIManager.Instance.DisplayDebugValues(screenPosition, center, arrowPosition, angle);
         }
     }
 

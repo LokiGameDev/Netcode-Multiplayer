@@ -8,6 +8,7 @@ public class LobbyList : MonoBehaviour
     [SerializeField] private Transform lobbyItemsParent;
     [SerializeField] private LobbyItem lobbyItemPrefab;
     [SerializeField] private GameObject noLobbyFoundText;
+    [SerializeField] private GameObject loadingPanel;
 
     private bool IsRefreshing = false;
     private bool IsJoining = false;
@@ -15,6 +16,7 @@ public class LobbyList : MonoBehaviour
     private void OnEnable()
     {
         RefreshList();
+        loadingPanel.SetActive(false);
     }
 
     public void Refresh()
@@ -94,5 +96,10 @@ public class LobbyList : MonoBehaviour
     private void NoLobbyFoundState(bool state)
     {
         noLobbyFoundText.SetActive(state);
+    }
+
+    public void LoadingPanelStart()
+    {
+        loadingPanel.SetActive(true);
     }
 }

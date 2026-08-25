@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class TaskManager : NetworkBehaviour
 {
+    public TaskList taskList;
+
+    [SerializeField] private GameObject taskCompletionEffectPrefab;
+
+    private TaskCompletionEffect taskCompletionEffect;
 
     private Dictionary<ulong, List<PlayerTask>> assignedTasks = new Dictionary<ulong, List<PlayerTask>>();
 
@@ -16,8 +21,23 @@ public class TaskManager : NetworkBehaviour
 
     private int currentTaskId = 1;
 
-    private int currentTaskCount = 0;
-    private int completedTaskCount = 0;
+    public NetworkVariable<int> currentTaskCount { get; set; } = new NetworkVariable<int>(
+            0,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Server
+        );
+
+    public NetworkVariable<bool> isAssigning { get; set; } = new NetworkVariable<bool>(
+            false,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Server
+        );
+
+    public NetworkVariable<int> completedTaskCount { get; set; } = new NetworkVariable<int>(
+            0,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Server
+        );
 
     private static TaskManager instance;
     public static TaskManager Instance
@@ -34,15 +54,19 @@ public class TaskManager : NetworkBehaviour
         }
     }
 
+    public void Start()
+    {
+        taskCompletionEffect = Instantiate(taskCompletionEffectPrefab, this.transform).GetComponent<TaskCompletionEffect>();
+    }
+
     public override void OnNetworkSpawn()
     {
-        RegisterTaskObjects();
-        
         if(!IsHost) return;
 
         NetworkManager.Singleton.OnClientConnectedCallback += PlayerConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
 
+        RegisterTaskObjects();
     }
 
     public override void OnNetworkDespawn()
@@ -86,7 +110,8 @@ public class TaskManager : NetworkBehaviour
 
     public ITask GetTaskObjectLocation(int id)
     {
-        if(assignedTasksObjects.ContainsKey(id)) return assignedTasksObjects[id];
+        Dictionary<int, ITask> keyValuePairs = taskList.GetAssignedTasks();
+        if(keyValuePairs.ContainsKey(id)) return keyValuePairs[id];
         return null;
     }
 
@@ -111,11 +136,13 @@ public class TaskManager : NetworkBehaviour
 
         assignedTasksObjects[taskId].CompleteTask();
 
+        taskCompletionEffect.transform.position = assignedTasksObjects[taskId].GetInteractionPoint().position;
+        taskCompletionEffect.PlayEffect(taskCompletionEffect.transform.position);
+
         Debug.Log($"Player {playerId} completed task {taskId}");
 
-        completedTaskCount++;
+        completedTaskCount.Value++;
 
-        UIManager.Instance.FillCompletedTaskCount(completedTaskCount);
         // Notify that player's client
         SendTaskCompletedRpc(
             taskId, playerId,
@@ -153,6 +180,7 @@ public class TaskManager : NetworkBehaviour
 
     private void PlayerConnected(ulong playerId)
     {
+        isAssigning.Value = true;
         AssignTasks(playerId);
     }
 
@@ -178,6 +206,8 @@ public class TaskManager : NetworkBehaviour
 
     private void AssignTasks(ulong playerId)
     {
+        isAssigning.Value = true;
+
         int numberOfTasks = Random.Range(3,5);
 
         Debug.Log($"For {playerId} Tasks are:");
@@ -200,16 +230,16 @@ public class TaskManager : NetworkBehaviour
             worldTask.AssignTaskID(currentTaskId);
             currentTaskId++;
 
-            currentTaskCount++;
+            currentTaskCount.Value++;
 
             // Add task to player's list
             tasks.Add(new PlayerTask
             {
-                TaskId = worldTask.taskId,
+                TaskId = worldTask.TaskId.Value,
                 Type = worldTask.taskType
             });
 
-            assignedTasksObjects[worldTask.taskId] = worldTask;
+            assignedTasksObjects[worldTask.TaskId.Value] = worldTask;
 
             // Remove it from available pools
             availableTasks[worldTask.taskType].Remove(worldTask);
@@ -224,11 +254,11 @@ public class TaskManager : NetworkBehaviour
         {
             Debug.Log(
                 $"Player {playerId}: {task.Type} (ID {task.TaskId})");
-        }   
-
-        UIManager.Instance.FillTheTaskBar(currentTaskCount);
+        }
 
         SendTasksToPlayer(playerId);
+
+        isAssigning.Value = false;
     }
 }
 

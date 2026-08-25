@@ -123,7 +123,7 @@ public class HostGameManager : IDisposable
     {
         try
         {
-            await LobbyService.Instance.RemovePlayerAsync(lobbyId, authId);
+            await LobbyService.Instance?.RemovePlayerAsync(lobbyId, authId);
         }
         catch(Exception e)
         {

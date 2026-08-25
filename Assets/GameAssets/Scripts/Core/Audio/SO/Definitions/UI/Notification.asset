@@ -21,6 +21,6 @@ MonoBehaviour:
   Loop: 0
   SpatialBlend: 0
   Priority: 0
-  MixerGroup: {fileID: 0}
+  MixerGroup: {fileID: 6607239319539517408, guid: 34692009108e54046840950ea3efd5f7, type: 2}
   selectionMode: 1
   currentClipIndex: 1

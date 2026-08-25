@@ -17,5 +17,6 @@ public enum AudioID
     //World
     Lever,
     Springpad,
-    Platform
+    Platform,
+    TaskCompletion
 }

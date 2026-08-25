@@ -6,10 +6,12 @@ public class AudioDefinition : ScriptableObject
 {
     public AudioID id;
     public AudioClip[] clips;
+    [Range(0f, 1f)]
     public float Volume = 1;
     public float Pitch = 1;
     public float RandomPitch = 0;
     public bool Loop = true;
+    [Range(0f, 1f)]
     public float SpatialBlend = 0;
     public int Priority = 0;
     public AudioMixerGroup MixerGroup;

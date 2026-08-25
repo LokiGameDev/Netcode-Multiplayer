@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEditor;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -30,5 +31,14 @@ public class MainMenuManager : MonoBehaviour
     public async void StartClient()
     {
         await ClientSingleton.Instance.GameManager.StartClientAsync(joinCodeInputField.text);
+    }
+
+    public void QuitTheGame()
+    {
+        #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+        #else
+            Application.Quit();
+        #endif
     }
 }

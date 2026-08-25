@@ -108,7 +108,7 @@ public class PlayerInteractor : NetworkBehaviour
 
             if (task != null)
             {
-                if(playerTaskManager.IsPlayerHaveThisTask(task.TaskId.Value) && !task.isCompleted)
+                if(playerTaskManager.IsPlayerHaveThisTask(task.TaskId.Value) && !task.isCompleted.Value)
                 {
                     currentTask = task;
                     break;

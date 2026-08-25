@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7235653915998874993}
   - component: {fileID: -5345014126026547771}
   - component: {fileID: 2903477247401714268}
+  - component: {fileID: 3291419981633150327}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
   database: {fileID: 11400000, guid: 57a1b46c377256245b282f2ee0cac092, type: 2}
   audioPool: {fileID: -5345014126026547771}
+  audioSettingsUpdater: {fileID: 3291419981633150327}
   musicManager: {fileID: 2903477247401714268}
   musicSourceA: {fileID: 1470210092427422524}
   musicSourceB: {fileID: 6507171830694930363}
@@ -81,6 +83,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicManager
   isStartedBackground: 0
+--- !u!114 &3291419981633150327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350412418276426115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7165b78b88ed1234abe4ab964a55d841, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioSettingsUpdater
+  audioMixer: {fileID: 24100000, guid: 34692009108e54046840950ea3efd5f7, type: 2}
 --- !u!1 &4047965426306146549
 GameObject:
   m_ObjectHideFlags: 0

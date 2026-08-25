@@ -1,13 +1,24 @@
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BrokenTomb : NetworkBehaviour, ITask
 {
-    public int taskId { get; set; }
     public TaskType taskType => TaskType.RebuildBrokenTomb;
     public string ActionName { get; set; }
-    public bool isCompleted { get; set; } = false;
+
+    public NetworkVariable<bool> isCompleted { get; set; } = new NetworkVariable<bool>(
+            false,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Server
+        );
+    
+    public NetworkVariable<bool> isAssigned { get; set; } = new NetworkVariable<bool>(
+            false,
+            NetworkVariableReadPermission.Everyone,
+            NetworkVariableWritePermission.Server
+        );
 
     public NetworkVariable<int> TaskId { get; set; } = new NetworkVariable<int>(
             0,
@@ -16,20 +27,30 @@ public class BrokenTomb : NetworkBehaviour, ITask
         );
 
     [SerializeField] private string toActivateText = "";
-
     [SerializeField] private int DebugTaskID = 0;
+
+    public UnityEvent OnStartEvent;
+    public UnityEvent OnCompletionEvent;
 
     private Coroutine coroutine;
 
     private void OnEnable()
     {
         ActionName = toActivateText;
+        isCompleted.OnValueChanged += CompletionTaskThings;
+    }
+
+    private void CompletionTaskThings(bool prev, bool current)
+    {
+        if(current) OnCompletionEvent?.Invoke();
+        else OnStartEvent?.Invoke();
     }
 
     public void CompleteTask()
     {
         Debug.Log("Completed task");
-        isCompleted = true;
+        isCompleted.Value = true;
+        OnCompletionEvent?.Invoke();
     }
 
     public string GetActionName()
@@ -41,16 +62,17 @@ public class BrokenTomb : NetworkBehaviour, ITask
     {
         Debug.Log("Interacted");
 
-        if(isCompleted) return;
+        if(isCompleted.Value) return;
 
         UIManager.Instance.InitiateTask(TaskId.Value, taskType);
     }
 
     public void AssignTaskID(int id)
     {
-        taskId = id;
         TaskId.Value = id;
         DebugTaskID = id;
+        isAssigned.Value = true;
+        OnStartEvent?.Invoke();
     }
 
     public Transform GetInteractionPoint()

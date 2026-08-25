@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 1593016605814472872}
   - component: {fileID: 6197861008539115826}
   - component: {fileID: 3397798234597632433}
+  - component: {fileID: 2524086420564844670}
   m_Layer: 0
   m_Name: lantern-glass
   m_TagString: Untagged
@@ -155,7 +156,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.92009, y: 0.5, z: 8.5208}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2040055703965988819}
@@ -218,6 +219,27 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2524086420564844670
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3722613792722093448}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.14591199, y: 0.29229978, z: 0.14591199}
+  m_Center: {x: 0, y: 0.14614989, z: 0}
 --- !u!1 &4255974954924361944
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +251,6 @@ GameObject:
   - component: {fileID: 2040055703965988819}
   - component: {fileID: 2151248107148058794}
   - component: {fileID: 1421541345707778457}
-  - component: {fileID: 5460123731884959672}
   m_Layer: 0
   m_Name: BoxLight
   m_TagString: Untagged
@@ -310,24 +331,3 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5460123731884959672
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4255974954924361944}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}

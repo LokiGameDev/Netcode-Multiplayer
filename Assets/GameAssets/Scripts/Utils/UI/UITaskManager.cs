@@ -16,7 +16,7 @@ public class UITaskManager : NetworkBehaviour
     [SerializeField] private TaskMarker taskMarker;
     [SerializeField] private TaskPanelUIManager taskPanelUIManager;
 
-    private GameObject[] taskBars;
+    private List<GameObject> taskBars = new List<GameObject>();
 
     private Dictionary<int, PlayerTask> currentPlayerTasks = new Dictionary<int, PlayerTask>();
     private Dictionary<int, TaskItem> currentTaskItems = new Dictionary<int, TaskItem>();
@@ -49,12 +49,10 @@ public class UITaskManager : NetworkBehaviour
 
     public void GameTotalTasks(int count)
     {
-        taskBars = new GameObject[count];
-
         for(int i=taskCompletionContainer.childCount;i<count;i++)
         {
             GameObject taskBar = Instantiate(taskBarPrefab, taskCompletionContainer);
-            taskBars[i] = taskBar;
+            taskBars.Add(taskBar);
         }
     }
 

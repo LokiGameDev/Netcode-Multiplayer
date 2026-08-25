@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("Managers")]
     [SerializeField] private AudioPool audioPool;
+    [SerializeField] private AudioSettingsUpdater audioSettingsUpdater;
 
     [Header("Music")]
     [SerializeField] private MusicManager musicManager;
@@ -58,6 +60,26 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         Instance.musicManager.Stop();
+    }
+
+    public void SetMusicVolume(float value)
+    {
+        audioSettingsUpdater.SetMusicVolume(value);
+    }
+
+    public void SetSFXVolume(float value)
+    {
+        audioSettingsUpdater.SetSFXVolume(value);
+    }
+
+    public float GetMusicVolume()
+    {
+        return audioSettingsUpdater.GetMusicVolume();
+    }
+
+    public float GetSFXVolume()
+    {
+        return audioSettingsUpdater.GetSFXVolume();
     }
 
     #endregion
