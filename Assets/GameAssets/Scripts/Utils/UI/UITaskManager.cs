@@ -36,6 +36,10 @@ public class UITaskManager : NetworkBehaviour
 
     public void CompleteTask(int taskID)
     {
+        Debug.Log($"{taskID} Completion intiated");
+
+        if(!currentPlayerTasks.ContainsKey(taskID)) return;
+
         if(!currentPlayerTasks[taskID].Completed && currentTaskId == taskID)
         {
             currentTaskItems[taskID].CompleteTask();
@@ -95,13 +99,13 @@ public class UITaskManager : NetworkBehaviour
                 taskName = "Clean the debris";
                 break;
             case TaskType.CloseTheOpenedTomb:
-                taskName = "Close the opened tomb";
+                taskName = "Close the opened grave";
                 break;
             case TaskType.FixBrokenChair:
                 taskName = "Fix the broken chair";
                 break;
             case TaskType.RebuildBrokenTomb:
-                taskName = "Rebuild broken tomb";
+                taskName = "Rebuild broken grave";
                 break;
         }
         return taskName;

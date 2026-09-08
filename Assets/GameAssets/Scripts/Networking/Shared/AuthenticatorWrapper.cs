@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using Unity.Services.Friends;
+using Unity.Services.Friends.Models;
 using UnityEngine;
 
 public static class AuthenticatorWrapper
@@ -85,6 +86,8 @@ public static class AuthenticatorWrapper
             await UnityServices.InitializeAsync();
 
             await FriendsService.Instance.InitializeAsync();
+
+            await FriendsService.Instance.SetPresenceAvailabilityAsync(Availability.Online);
         }
         catch(Exception e)
         {

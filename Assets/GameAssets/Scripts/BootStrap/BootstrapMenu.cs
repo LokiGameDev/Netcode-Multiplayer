@@ -25,6 +25,12 @@ public class BootstrapMenu : MonoBehaviour
     private void Start()
     {
         Debug.Log(PlayerPrefs.GetString(PlayerName));
+
+        if(!PlayerPrefs.HasKey("PlayerGems"))
+        {
+            PlayerPrefs.SetInt("PlayerGems", 0);
+        }
+
         connectionLostPanel.SetActive(false);
         logoLoadingPanel.SetActive(true);
         newAccountPanel.SetActive(PlayerPrefs.GetString(PlayerName).Length < minPlayerNameLength);

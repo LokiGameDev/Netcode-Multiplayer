@@ -33,6 +33,11 @@ public class MainMenuManager : MonoBehaviour
         await ClientSingleton.Instance.GameManager.StartClientAsync(joinCodeInputField.text);
     }
 
+    public async void StartClient(string joinCode)
+    {
+        await ClientSingleton.Instance.GameManager.StartClientAsync(joinCode);
+    }
+
     public void QuitTheGame()
     {
         #if UNITY_EDITOR

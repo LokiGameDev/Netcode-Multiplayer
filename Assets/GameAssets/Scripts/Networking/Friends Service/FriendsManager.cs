@@ -4,9 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using TMPro;
 using Unity.Services.Authentication;
+using Unity.Services.Core;
 using Unity.Services.Friends;
 using Unity.Services.Friends.Models;
+using Unity.Services.Friends.Notifications;
+using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FriendsManager : MonoBehaviour
 {
@@ -14,41 +18,54 @@ public class FriendsManager : MonoBehaviour
     [SerializeField] private TMP_InputField friendIdInputField;
     [SerializeField] private TMP_Text playerIDText;
     [SerializeField] private ShowNotification displayMessage;
+    [SerializeField] private InvitationItem invitationItem;
+    [SerializeField] private MainMenuManager mainMenuManager;
     [Header("Firends List Items")]
     [SerializeField] private Transform friendsListParent;
     [SerializeField] private FriendItem friendItemPrefab;
     [SerializeField] private GameObject noFriendsObject;
     [Header("Request List Items")]
     [SerializeField] private Transform friendsRequestListParent;
-    [SerializeField] private FriendItem friendRequestItemPrefab;
+    [SerializeField] private FriendRequestItem friendRequestItemPrefab;
     [SerializeField] private GameObject noFriendsRequestObject;
+
+    [SerializeField] private GameObject loadingPanel;
 
     private List<Relationship> friendsList = new List<Relationship>();
 
+    private Dictionary<string, FriendItem> friendItems = new();
+    private Dictionary<string, FriendRequestItem> friendRequestItems = new();
+
+    private List<Relationship> friendRequests = new List<Relationship>();
+
+    private LobbyData currentInvitedLobbyData;
+
+    public UnityEvent FriendRequestSent;
+
     private void Start()
     {
-        noFriendsObject.SetActive(true);
-        noFriendsRequestObject.SetActive(true);
-        StartInitialize();
+        loadingPanel.SetActive(false);
     }
 
-    private async void StartInitialize()
+    private void OnEnable()
     {
-        try
-        {
-            await FriendsService.Instance.InitializeAsync();
-        }
-        catch(Exception e)
-        {
-            Debug.LogError(e);
-            return;
-        }
-
+        FriendsService.Instance.MessageReceived += OnMessageReceived;
+        FriendsService.Instance.PresenceUpdated += OnPresenceUpdated;
+        
         //playerIDText.text = AuthenticationService.Instance.PlayerId;
 
         Debug.Log("ID : " + AuthenticationService.Instance.PlayerId + ", Name : " + AuthenticationService.Instance.PlayerName);
 
-        RefreshFriendsList();
+        noFriendsObject.SetActive(true);
+        noFriendsRequestObject.SetActive(true);
+
+        RefreshLists();
+    }
+
+    private void OnDisable()
+    {
+        FriendsService.Instance.MessageReceived -= OnMessageReceived;
+        FriendsService.Instance.PresenceUpdated -= OnPresenceUpdated;
     }
 
     public void RefreshLists()
@@ -64,20 +81,18 @@ public class FriendsManager : MonoBehaviour
             var friends = FriendsService.Instance.Friends;
 
             Debug.Log(friends.Count);
-            noFriendsObject.SetActive(friends.Count==0);
 
-            friendsList.Clear();
-            foreach(Transform child in friendsListParent)
-            {
-                Destroy(child.gameObject);
-            }
+            noFriendsObject.SetActive(friends.Count==0);
 
             foreach(var frnd in friends)
             {
+                if(friendsList.Contains(frnd)) continue;
+
                 Debug.Log("Adding " + frnd.Member.Profile.Name + " to the friends list.");
                 friendsList.Add(frnd);
                 var friend = Instantiate(friendItemPrefab, friendsListParent);
                 friend.Initialize(this, frnd);
+                friendItems[frnd.Member.Id] = friend;
             }
         }
         catch(Exception e)
@@ -92,12 +107,22 @@ public class FriendsManager : MonoBehaviour
         var requests = FriendsService.Instance.IncomingFriendRequests;
 
         Debug.Log($"Incoming requests: {requests.Count}");
-        displayMessage.ShowText($"{requests.Count}");
+
+        //displayMessage.ShowText($"You have {requests.Count} requests");
+
         noFriendsRequestObject.SetActive(requests.Count==0);
 
         foreach (var request in requests)
         {
+            if(friendRequests.Contains(request)) continue;
+
+            friendRequests.Add(request);
+
             var friendRequest = Instantiate(friendRequestItemPrefab, friendsRequestListParent);
+
+            friendRequest.Initialize(this, request);
+
+            friendRequestItems[request.Member.Id] = friendRequest;
 
             Debug.Log(
                 $"Role: {request.Member.Role}, " +
@@ -165,11 +190,49 @@ public class FriendsManager : MonoBehaviour
                 await FriendsService.Instance.AddFriendByNameAsync(name);
 
             Debug.Log($"Friend request created: {relationship}");
+
+            FriendRequestSent?.Invoke();
         }
-        catch (Exception e)
+        catch (RequestFailedException e)
         {
-            displayMessage.ShowText("Something went wrong Try again");
-            Debug.LogError($"Failed to add [{name}]\n{e}");
+            Debug.LogError(
+                $"Failed to add [{name}] | " +
+                $"ErrorCode: {e.ErrorCode} | " +
+                $"Message: {e.Message}"
+            );
+
+            switch (e.ErrorCode)
+            {
+                case CommonErrorCodes.NotFound:
+                    displayMessage.ShowText("Player not found.");
+                    break;
+
+                case CommonErrorCodes.Forbidden:
+                    displayMessage.ShowText("You cannot send a request to this player.");
+                    break;
+
+                case CommonErrorCodes.TooManyRequests:
+                    displayMessage.ShowText("Too many requests.\nTry again later.");
+                    break;
+
+                case CommonErrorCodes.Timeout:
+                case CommonErrorCodes.TransportError:
+                    displayMessage.ShowText("Check your internet connection.");
+                    break;
+
+                case CommonErrorCodes.ServiceUnavailable:
+                    displayMessage.ShowText("Service is temporarily unavailable.");
+                    break;
+
+                case CommonErrorCodes.InvalidToken:
+                case CommonErrorCodes.TokenExpired:
+                    displayMessage.ShowText("Your session has expired.\nPlease reconnect.");
+                    break;
+
+                default:
+                    displayMessage.ShowText("Unable to send friend request.");
+                    break;
+            }
         }
     }
 
@@ -202,14 +265,87 @@ public class FriendsManager : MonoBehaviour
         return false;
     }
 
-    public void MessageFriend()
+    public async Task AcceptFriendRequest(Relationship request)
     {
-        displayMessage.ShowText("Not yet implemented");
+        try
+        {
+            Relationship relationship =
+            await FriendsService.Instance.AddFriendAsync(request.Member.Id);
+
+            friendRequests.Remove(request);
+
+            Debug.Log($"Relationship is now: {relationship.Type}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Failed to accept friend request: {e}");
+        }
     }
 
-    public void AcceptFriendRequest()
+    private void OnPresenceUpdated(IPresenceUpdatedEvent @event)
     {
-        displayMessage.ShowText("Not yet implemented");
+        if (friendItems.TryGetValue(@event.ID, out FriendItem friend))
+        {
+            friend.UpdatePresence(@event.Presence.Availability);
+        }
+        if (friendRequestItems.TryGetValue(@event.ID, out FriendRequestItem friendRequest))
+        {
+            friendRequest.UpdatePresence(@event.Presence.Availability);
+        }
+    }
+
+    public List<Relationship> GetCurrentOnlineFriends()
+    {
+        List<Relationship> currentOnline = new List<Relationship>();
+        foreach(var frnd in friendsList)
+        {
+            if(frnd.Member.Presence.Availability == Availability.Online)
+            {
+                currentOnline.Add(frnd);
+            }
+        }
+
+        return currentOnline;
+    }
+
+    public void OnMessageReceived(IMessageReceivedEvent @event)
+    {
+        Debug.Log($"Message Received from {@event.UserId}");
+        if (friendItems.ContainsKey(@event.UserId))
+        {
+            currentInvitedLobbyData = @event.GetAs<LobbyData>();
+            Debug.Log($"Message Received from {currentInvitedLobbyData.lobbyCode}");
+            invitationItem.ShowInvitation(currentInvitedLobbyData.lobbyOwnerName, currentInvitedLobbyData.lobbyName);
+        }
+    }
+
+    public void AcceptCurrentInvitation(string OwnerName)
+    {
+        if(OwnerName == currentInvitedLobbyData.lobbyOwnerName)
+        {
+            Debug.Log($"Accepted invitation to join {currentInvitedLobbyData.lobbyCode}");
+            mainMenuManager.StartClient(currentInvitedLobbyData.lobbyCode);
+            StartTheLoadingPanel();
+        }
+    }
+
+    private void StartTheLoadingPanel()
+    {
+        loadingPanel.SetActive(true);
+    }
+
+    private async void OnApplicationQuit()
+    {
+        try
+        {
+            await FriendsService.Instance.SetPresenceAvailabilityAsync(
+                Availability.Offline
+            );
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e);
+        }
     }
 
     public async void DeleteAllFriends()
@@ -232,4 +368,12 @@ public class FriendsManager : MonoBehaviour
 
         friendsList.Clear();
     }
+}
+
+
+public class LobbyData
+{
+    public string lobbyOwnerName;
+    public string lobbyName;
+    public string lobbyCode;
 }

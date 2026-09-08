@@ -9,6 +9,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private Rigidbody playerRigidbody;
     [SerializeField] private GameObject playerModel;
     [SerializeField] private PlayerAnimationManager playerAnimationManager;
+    [SerializeField] private PlayerEffectsManager playerEffectsManager;
     [SerializeField] private Transform player;
     [SerializeField] private Transform cameraPivot;
 
@@ -21,6 +22,8 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float lookSensitivity = 10f;
     [SerializeField] private float minPitch = -30f;
     [SerializeField] private float maxPitch = 10f;
+
+    private bool jumpRequested;
 
     private float yaw;
     private float pitch;
@@ -37,6 +40,8 @@ public class PlayerMovement : NetworkBehaviour
         yaw = player.eulerAngles.y;
         inputReader.PlayerMovementEvent += HandleMovementInput;
         inputReader.PlayerJumpEvent += HandleJumpInput;
+
+        playerEffectsManager.SetTrailEffectsState(IsGrounded());
     }
 
     public override void OnNetworkDespawn()
@@ -47,57 +52,154 @@ public class PlayerMovement : NetworkBehaviour
         inputReader.PlayerJumpEvent -= HandleJumpInput;
     }
 
-    private void FixedUpdate() 
+    //---- Old Movement Code----//
+    // private void FixedUpdate() 
+    // {
+    //     if(!IsOwner) return; 
+
+    //     Vector3 forward = cameraPivot.forward;
+    //     Vector3 right = cameraPivot.right;
+
+    //     forward.y = 0;
+    //     right.y = 0;
+
+    //     forward.Normalize();
+    //     right.Normalize();
+
+    //     Vector3 moveDirection =
+    //         forward * previousPlayerInput.y +
+    //         right * previousPlayerInput.x;
+
+    //     if (moveDirection.sqrMagnitude > 1f) moveDirection.Normalize();
+
+    //     //Vector3 playerInput = new Vector3(previousPlayerInput.x, 0, previousPlayerInput.y).normalized;
+    //     //playerRigidbody.linearVelocity = new Vector3(playerInput.x * playerSpeed, playerRigidbody.linearVelocity.y, playerInput.z * playerSpeed);
+
+    //     playerRigidbody.linearVelocity = new Vector3(
+    //         moveDirection.x * playerSpeed,
+    //         playerRigidbody.linearVelocity.y,
+    //         moveDirection.z * playerSpeed
+    //     );
+
+
+    //     if (playerRigidbody.linearVelocity.y < 0)
+    //     {
+    //         playerRigidbody.linearVelocity +=
+    //             Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+    //     }
+
+    //     //Vector3 moveDirection = new Vector3(playerInput.x, 0f, playerInput.z);
+
+    //     if (moveDirection.sqrMagnitude > 0.01f)
+    //     {
+    //         Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
+    //         playerModel.transform.rotation = Quaternion.Slerp(
+    //             playerModel.transform.rotation,
+    //             targetRotation,
+    //             rotationSpeed * Time.fixedDeltaTime
+    //         );
+    //     }
+
+    //     float currentSpeed = playerRigidbody.linearVelocity.magnitude;
+    //     if(currentSpeed < 0.1f) currentSpeed = 0;
+
+    //     playerAnimationManager.PlayerStateChange(PlayerState.Moving, currentSpeed);
+    // }
+
+    //---- New Movement Code----//
+    private void FixedUpdate()
     {
-        if(!IsOwner) return; 
+        if (!IsOwner)
+            return;
 
-        Vector3 forward = cameraPivot.forward;
-        Vector3 right = cameraPivot.right;
+        // -------------------------
+        // JUMP
+        // -------------------------
 
-        forward.y = 0;
-        right.y = 0;
+        if (jumpRequested && IsGrounded())
+        {
+            playerRigidbody.linearVelocity = new Vector3(
+                playerRigidbody.linearVelocity.x,
+                playerJumpForce,
+                playerRigidbody.linearVelocity.z
+            );
 
-        forward.Normalize();
-        right.Normalize();
+            jumpRequested = false;
 
-        Vector3 moveDirection =
-            forward * previousPlayerInput.y +
-            right * previousPlayerInput.x;
+            Debug.Log("Player Jumped");
+        }
 
-        moveDirection.Normalize();
+        // -------------------------
+        // MOVEMENT
+        // -------------------------
 
-        //Vector3 playerInput = new Vector3(previousPlayerInput.x, 0, previousPlayerInput.y).normalized;
-        //playerRigidbody.linearVelocity = new Vector3(playerInput.x * playerSpeed, playerRigidbody.linearVelocity.y, playerInput.z * playerSpeed);
-        
-        playerRigidbody.linearVelocity = new Vector3(
-            moveDirection.x * playerSpeed,
-            playerRigidbody.linearVelocity.y,
-            moveDirection.z * playerSpeed
-        );
+        if (IsGrounded())
+        {
+            Vector3 forward = cameraPivot.forward;
+            Vector3 right = cameraPivot.right;
 
+            forward.y = 0;
+            right.y = 0;
+
+            forward.Normalize();
+            right.Normalize();
+
+            Vector3 moveDirection =
+                forward * previousPlayerInput.y +
+                right * previousPlayerInput.x;
+
+            if (moveDirection.sqrMagnitude > 1f)
+                moveDirection.Normalize();
+
+            playerRigidbody.linearVelocity = new Vector3(
+                moveDirection.x * playerSpeed,
+                playerRigidbody.linearVelocity.y,
+                moveDirection.z * playerSpeed
+            );
+
+            // Rotation
+            if (moveDirection.sqrMagnitude > 0.01f)
+            {
+                Quaternion targetRotation =
+                    Quaternion.LookRotation(moveDirection);
+
+                playerModel.transform.rotation =
+                    Quaternion.Slerp(
+                        playerModel.transform.rotation,
+                        targetRotation,
+                        rotationSpeed * Time.fixedDeltaTime
+                    );
+            }
+
+            // Animation
+            float currentSpeed =
+                new Vector3(
+                    playerRigidbody.linearVelocity.x,
+                    0,
+                    playerRigidbody.linearVelocity.z
+                ).magnitude;
+
+            if (currentSpeed < 0.1f)
+                currentSpeed = 0;
+
+            playerAnimationManager.PlayerStateChange(
+                PlayerState.Moving,
+                currentSpeed
+            );
+        }
+
+        // -------------------------
+        // FALL GRAVITY
+        // -------------------------
 
         if (playerRigidbody.linearVelocity.y < 0)
         {
             playerRigidbody.linearVelocity +=
-                Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+                Vector3.up *
+                Physics.gravity.y *
+                (fallMultiplier - 1f) *
+                Time.fixedDeltaTime;
         }
-
-        //Vector3 moveDirection = new Vector3(playerInput.x, 0f, playerInput.z);
-
-        if (moveDirection.sqrMagnitude > 0.01f)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
-            playerModel.transform.rotation = Quaternion.Slerp(
-                playerModel.transform.rotation,
-                targetRotation,
-                rotationSpeed * Time.fixedDeltaTime
-            );
-        }
-
-        float currentSpeed = playerRigidbody.linearVelocity.magnitude;
-        if(currentSpeed < 0.1f) currentSpeed = 0;
-        
-        playerAnimationManager.PlayerStateChange(PlayerState.Moving, currentSpeed);
     }
 
     private void LateUpdate()
@@ -111,6 +213,8 @@ public class PlayerMovement : NetworkBehaviour
         cameraPivot.rotation = Quaternion.Euler(pitch, yaw, 0f);
 
         cameraPivot.position = player.position;
+
+        playerEffectsManager.SetTrailEffectsState(IsGrounded());
     }
 
     private void PlayerJump()
@@ -119,6 +223,7 @@ public class PlayerMovement : NetworkBehaviour
 
         if(IsGrounded())
         {
+            jumpRequested = true;
             playerRigidbody.linearVelocity = new Vector3(playerRigidbody.linearVelocity.x, playerJumpForce, playerRigidbody.linearVelocity.z);
             Debug.Log("Player Jumped");
 

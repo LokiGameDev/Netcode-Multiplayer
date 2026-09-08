@@ -3,12 +3,15 @@ using TMPro;
 using Unity.Services.Friends.Models;
 using Unity.Services.Friends;
 using Unity.Services.Friends.Notifications;
+using System;
 
 public class FriendRequestItem : MonoBehaviour
 {
     [SerializeField] private TMP_Text friendNameText;
     [SerializeField] private TMP_Text friendStatusText;
     [SerializeField] private bool friendOnlineStatus;
+    [SerializeField] private Color onlineStatusColor = Color.lawnGreen;
+    [SerializeField] private Color offlineStatusColor = Color.softRed;
 
     private Relationship relationship;
     private FriendsManager friendsManager;
@@ -20,30 +23,34 @@ public class FriendRequestItem : MonoBehaviour
         friendNameText.text = relationship.Member.Profile.Name;
         friendOnlineStatus = relationship.Member.Presence.Availability == Availability.Online;
 
-        if(friendOnlineStatus) friendStatusText.text = "Online";
-        else friendStatusText.text = "Offline";
+        UpdatePresence(relationship.Member.Presence.Availability);
     }
 
-    public void Accept()
+    public async void Accept()
     {
-        friendsManager.AcceptFriendRequest();
+        try
+        {
+            await friendsManager.AcceptFriendRequest(relationship);
+        }
+        catch(Exception e)
+        {
+            Debug.LogError(e);
+        }
     }
 
-    private void OnEnable()
+    public void UpdatePresence(Availability availability)
     {
-        FriendsService.Instance.PresenceUpdated += OnPresenceUpdated;
-    }
+        friendOnlineStatus = availability == Availability.Online;
 
-    private void OnDisable()
-    {
-        FriendsService.Instance.PresenceUpdated -= OnPresenceUpdated;
-    }
-
-    private void OnPresenceUpdated(IPresenceUpdatedEvent @event)
-    {
-        friendOnlineStatus = relationship.Member.Presence.Availability == Availability.Online;
-
-        if(friendOnlineStatus) friendStatusText.text = "Online";
-        else friendStatusText.text = "Offline";
+        if (friendOnlineStatus)
+        {
+            friendStatusText.text = "Online";
+            friendStatusText.color = onlineStatusColor;
+        }
+        else
+        {
+            friendStatusText.text = "Offline";
+            friendStatusText.color = offlineStatusColor;
+        }
     }
 }

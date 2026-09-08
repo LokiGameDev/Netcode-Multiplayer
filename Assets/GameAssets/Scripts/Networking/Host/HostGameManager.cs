@@ -19,8 +19,12 @@ public class HostGameManager : IDisposable
     private string joinCode;
     private string lobbyId;
     private string GameSceneName = "Game1";
+    public string hostName { get; private set; }
+    public string currentLobbyName { get; private set; }
     private Allocation allocation;
     public NetworkServer NetworkServer { get; private set; }
+
+    public Lobby currentLobby { get; private set; }
 
     public async Task StartHostAsync(LobbySettings lobbySettings = null)
     {
@@ -62,11 +66,13 @@ public class HostGameManager : IDisposable
             if(lobbySettings!=null)
             {
                 lobbyName = lobbySettings.LobbyName;
+                currentLobbyName = lobbyName;
                 lobbyOptions.IsPrivate = !lobbySettings.PublicLobby;
             }
             else
             {
                 lobbyName = PlayerPrefs.GetString("PlayerName", "DefaultHost");
+                currentLobbyName = lobbyName;
                 lobbyOptions.IsPrivate = false;
             }
 
@@ -78,10 +84,15 @@ public class HostGameManager : IDisposable
             };
 
             Lobby lobby = await LobbyService.Instance.CreateLobbyAsync(lobbyName+"'s Lobby", MaxConnections, lobbyOptions);
+            
+            currentLobby = lobby;
 
             Debug.Log($"{lobby.IsPrivate}");
 
             lobbyId = lobby.Id;
+
+            hostName = PlayerPrefs.GetString("PlayerName", "Player");
+
             HostSingleton.Instance.StartCoroutine(HeartBeatLobby(15));
         }
         catch(Exception e)
@@ -95,7 +106,8 @@ public class HostGameManager : IDisposable
         UserData userData = new UserData
         {
             userName = PlayerPrefs.GetString("PlayerName", "DefaultName"),
-            userAuthId = AuthenticationService.Instance.PlayerId
+            userAuthId = AuthenticationService.Instance.PlayerId,
+            skinID = PlayerPrefs.GetString("PlayerSkinID", "Default")
         };
 
         string payload = JsonUtility.ToJson(userData);
@@ -103,6 +115,8 @@ public class HostGameManager : IDisposable
 
         NetworkManager.Singleton.NetworkConfig.ConnectionData = payloadBytes;
         NetworkServer.OnClientLeft += HandleClientLeft;
+
+        QualityManager.Instance?.SetGameFPS(CurrentGameScene.Game);
 
         NetworkManager.Singleton.StartHost();
 

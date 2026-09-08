@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf685daac27e5eb4684eee13c511065d, type: 3}
   m_Name: Music
   m_EditorClassIdentifier: Assembly-CSharp::AudioDefinition
-  id: 3
+  id: 4
   clips:
   - {fileID: 8300000, guid: 3e21c2644857b5b47a4fea70eb1387eb, type: 3}
   - {fileID: 8300000, guid: 5e7605c544513cb4fbd607fe3da3d9d3, type: 3}
-  Volume: 0.18
+  - {fileID: 8300000, guid: 8fbe2fb1305bd604b986fabb3a083ca9, type: 3}
+  - {fileID: 8300000, guid: 8b77af9bc043b824d9158f8cd5900d10, type: 3}
+  - {fileID: 8300000, guid: 5ed88c375d3bc1246935cea560066d6a, type: 3}
+  Volume: 0.15
   Pitch: 1
   RandomPitch: 0
   Loop: 0

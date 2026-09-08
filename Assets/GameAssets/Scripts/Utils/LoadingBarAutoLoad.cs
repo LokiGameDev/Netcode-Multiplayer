@@ -10,6 +10,7 @@ public class LoadingBarAutoLoad : MonoBehaviour
     private void OnEnable()
     {
         loadingBar.value = 0;
+        AudioManager.Instance.Play(AudioID.Loading);
         StartCoroutine(LoadingBarLoad());
     }
 

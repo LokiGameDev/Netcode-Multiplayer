@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e93d938399871e4897ab23ba869d259, type: 3}
+  m_Name: SkinDatabase
+  m_EditorClassIdentifier: Assembly-CSharp::SkinDatatbase
+  definitions:
+  - {fileID: 11400000, guid: e7127973d0828344786d94c17997bacb, type: 2}
+  - {fileID: 11400000, guid: 2393c8fcd3a3abc4db88ce301e9a081b, type: 2}
+  - {fileID: 11400000, guid: 48a7a98dca2fc8c459e728a133111bbc, type: 2}
+  - {fileID: 11400000, guid: eac1cad58684dbd45b0254960693dc0a, type: 2}
+  - {fileID: 11400000, guid: d5701484ab0fe104eaf1e6844d881a30, type: 2}

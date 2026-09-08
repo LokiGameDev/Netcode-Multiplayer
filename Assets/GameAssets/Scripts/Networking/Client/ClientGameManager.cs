@@ -55,7 +55,8 @@ public class ClientGameManager : IDisposable
         UserData userData = new UserData
         {
             userName = PlayerPrefs.GetString("PlayerName", "PlayerName"),
-            userAuthId = AuthenticationService.Instance.PlayerId
+            userAuthId = AuthenticationService.Instance.PlayerId,
+            skinID = PlayerPrefs.GetString("PlayerSkinID", "Default")
         };
 
         string payload = JsonUtility.ToJson(userData);
@@ -63,6 +64,8 @@ public class ClientGameManager : IDisposable
 
         NetworkManager.Singleton.NetworkConfig.ConnectionData = payloadBytes;
 
+        QualityManager.Instance?.SetGameFPS(CurrentGameScene.Game);
+        
         NetworkManager.Singleton.StartClient();
     }
 

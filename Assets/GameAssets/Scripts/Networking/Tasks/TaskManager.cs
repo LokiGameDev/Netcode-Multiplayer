@@ -150,7 +150,7 @@ public class TaskManager : NetworkBehaviour
         );
 
         // Server checks global progress
-        //CheckAllTasksCompleted();
+        CheckAllTasksCompleted();
     }
 
     [Rpc(SendTo.SpecifiedInParams)]
@@ -167,6 +167,14 @@ public class TaskManager : NetworkBehaviour
             taskId,
             RpcTarget.Single(playerId, RpcTargetUse.Temp)
         );
+    }
+
+    private void CheckAllTasksCompleted()
+    {
+        if(completedTaskCount.Value >= assignedTasksObjects.Count)
+        {
+            GameStateManager.Instance.GameFinished(GameState.GameWon);
+        }
     }
 
     private void AssignTasksToPendingPlayers()

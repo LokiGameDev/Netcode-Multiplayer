@@ -10,6 +10,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UITaskManager uITaskManager;
     [SerializeField] private TMP_Text debugText;
 
+    [Header("Panels")]
+    [SerializeField] private GameObject waitingPanel;
+    [SerializeField] private GameObject playingPanel;
+    [SerializeField] private GameObject gameWonPanel;
+    [SerializeField] private GameObject gameLostPanel;
+    [SerializeField] private GameObject loadingPanel;
+
     private static UIManager instance;
     public static UIManager Instance
     {
@@ -37,6 +44,8 @@ public class UIManager : MonoBehaviour
         TaskManager.Instance.currentTaskCount.OnValueChanged += FillTheTaskBar;
 
         debugText.gameObject.SetActive(false);
+
+        SetPanel(waitingPanel);
     }
 
     public void InitiatePlayerTasksUI(Dictionary<int, PlayerTask> playerTasks)
@@ -82,5 +91,36 @@ public class UIManager : MonoBehaviour
     {
         if(!debugText.gameObject.activeInHierarchy) debugText.gameObject.SetActive(true);
         debugText.text = $"ObjectToScreen: {a}\nPlayerToScreen: {b}\nPointerPosition: {c}\nAngle: {d}";
+    }
+
+    public void ShowCurrentPanel(GameState gameState)
+    {
+        switch(gameState)
+        {
+            case GameState.WaitingForPlayers:
+                SetPanel(waitingPanel);
+                break;
+            case GameState.Playing:
+                SetPanel(playingPanel);
+                break;
+            case GameState.GameWon:
+                SetPanel(gameWonPanel);
+                break;
+            case GameState.GameLost:
+                SetPanel(gameLostPanel);
+                break;
+            case GameState.Loading:
+                SetPanel(loadingPanel);
+                break;
+        }
+    }
+
+    private void SetPanel(GameObject activePanel)
+    {
+        waitingPanel.SetActive(activePanel == waitingPanel);
+        playingPanel.SetActive(activePanel == playingPanel);
+        gameWonPanel.SetActive(activePanel == gameWonPanel);
+        gameLostPanel.SetActive(activePanel == gameLostPanel);
+        loadingPanel.SetActive(activePanel == loadingPanel);
     }
 }

@@ -24,6 +24,10 @@ public class UIEffects : MonoBehaviour
     [SerializeField] private float minIconSize = 1f;
     [SerializeField] private float maxIconSize = 1.25f;
 
+    [Header("Rotate Around")]
+    [SerializeField] private float rotatingSpeed = 150;
+    [SerializeField] private bool clockwiseDirection = true;
+
     private Coroutine currentCoroutine;
 
     [Header("Fade Events")]
@@ -167,6 +171,9 @@ public class UIEffects : MonoBehaviour
             case UIEffectType.ScaleEffect:
                 StartscalingEffect();
                 break;
+            case UIEffectType.RotateAround:
+                StartRotateEffect();
+                break;
         }
     }
 
@@ -236,6 +243,27 @@ public class UIEffects : MonoBehaviour
     }
 
     #endregion
+
+    #region Rotate Effect
+
+    private void StartRotateEffect()
+    {
+        if(currentCoroutine!=null) StopCoroutine(currentCoroutine);
+
+        currentCoroutine = StartCoroutine(RotatingEffect());
+    }
+
+    private IEnumerator RotatingEffect()
+    {
+        while(true)
+        {
+            float angle = rotatingSpeed * Time.deltaTime * (clockwiseDirection?-1:1);
+            panel.Rotate(0,0,angle);
+            yield return null;
+        }
+    }
+
+    #endregion
 }
 
 public enum UIEffectType
@@ -246,7 +274,8 @@ public enum UIEffectType
     PopUp,
     LeftSlide,
     RightSlide,
-    ScaleEffect
+    ScaleEffect,
+    RotateAround
 }
 
 public enum EffectInitiateType

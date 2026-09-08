@@ -34,6 +34,8 @@ public class NetworkClient : IDisposable
     {
         if(SceneManager.GetActiveScene().name != MenuSceneName)
         {
+            QualityManager.Instance.SetGameFPS(CurrentGameScene.Menu);
+
             SceneManager.LoadScene(MenuSceneName);
         }
 

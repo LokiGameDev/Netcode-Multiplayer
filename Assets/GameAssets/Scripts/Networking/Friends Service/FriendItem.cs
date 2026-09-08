@@ -10,6 +10,9 @@ public class FriendItem : MonoBehaviour
     [SerializeField] private TMP_Text friendStatusText;
     [SerializeField] private bool friendOnlineStatus;
 
+    [SerializeField] private Color onlineStatusColor = Color.lawnGreen;
+    [SerializeField] private Color offlineStatusColor = Color.softRed;
+
     private Relationship relationship;
     private FriendsManager friendsManager;
 
@@ -17,33 +20,26 @@ public class FriendItem : MonoBehaviour
     {
         this.friendsManager = friendsManager;
         this.relationship = relationship;
-        friendNameText.text = relationship.Member.Profile.Name;
+        string name = relationship.Member.Profile.Name;
+        friendNameText.text = name.Split('#')[0];;
         friendOnlineStatus = relationship.Member.Presence.Availability == Availability.Online;
 
-        if(friendOnlineStatus) friendStatusText.text = "Online";
-        else friendStatusText.text = "Offline";
+        UpdatePresence(relationship.Member.Presence.Availability);
     }
 
-    public void Message()
+    public void UpdatePresence(Availability availability)
     {
-        friendsManager.MessageFriend();
-    }
+        friendOnlineStatus = availability == Availability.Online;
 
-    private void OnEnable()
-    {
-        FriendsService.Instance.PresenceUpdated += OnPresenceUpdated;
-    }
-
-    private void OnDisable()
-    {
-        FriendsService.Instance.PresenceUpdated -= OnPresenceUpdated;
-    }
-
-    private void OnPresenceUpdated(IPresenceUpdatedEvent @event)
-    {
-        friendOnlineStatus = relationship.Member.Presence.Availability == Availability.Online;
-
-        if(friendOnlineStatus) friendStatusText.text = "Online";
-        else friendStatusText.text = "Offline";
+        if (friendOnlineStatus)
+        {
+            friendStatusText.text = "Online";
+            friendStatusText.color = onlineStatusColor;
+        }
+        else
+        {
+            friendStatusText.text = "Offline";
+            friendStatusText.color = offlineStatusColor;
+        }
     }
 }
