@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections;
 
+/// <summary>Animates a menu button group between open and closed states.</summary>
 public class MenuButtonAnimation : MonoBehaviour
 {
+    [Header("Menu Buttons")]
+    [Tooltip("Main button used as the closed position.")]
     [SerializeField] private RectTransform menuButton;
+    [Tooltip("Buttons animated from the main button position.")]
     [SerializeField] private RectTransform[] buttons;
 
     private Vector2[] targetPositions;
@@ -12,6 +16,7 @@ public class MenuButtonAnimation : MonoBehaviour
 
     private bool isOpen = false;
 
+    /// <summary>Stores target positions and initializes the closed state.</summary>
     private void Awake()
     {
         targetPositions = new Vector2[buttons.Length];
@@ -28,6 +33,7 @@ public class MenuButtonAnimation : MonoBehaviour
         else CloseMenu();
     }
 
+    /// <summary>Toggles the menu between open and closed states.</summary>
     public void ChangeTheMenuPanelState()
     {
         isOpen = !isOpen;
@@ -35,6 +41,7 @@ public class MenuButtonAnimation : MonoBehaviour
         else CloseMenu();
     }
 
+    /// <summary>Animates all menu buttons into their target positions.</summary>
     public void OpenMenu()
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -44,6 +51,7 @@ public class MenuButtonAnimation : MonoBehaviour
         isOpen = true;
     }
 
+    /// <summary>Animates all menu buttons back to the main button.</summary>
     public void CloseMenu()
     {
         for (int i = 0; i < buttons.Length; i++)
@@ -53,6 +61,7 @@ public class MenuButtonAnimation : MonoBehaviour
         isOpen = false;
     }
 
+    /// <summary>Animates one menu button's position, scale, and opacity.</summary>
     private IEnumerator AnimateButton(RectTransform button, Vector2 targetPos, int finalScale)
     {
         Vector2 startPos = button.anchoredPosition;

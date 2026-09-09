@@ -2,12 +2,15 @@ using UnityEngine;
 using System.Collections.Generic;
 
 [CreateAssetMenu(fileName = "SkinDatabase", menuName = "Custom/Skin/Skin Database")]
+/// <summary>Stores skin definitions and provides skin purchase lookups.</summary>
 public class SkinDatatbase : ScriptableObject
 {
+    [Tooltip("Skin definitions available to the skin system.")]
     [SerializeField] private List<SkinData> definitions;
 
     private Dictionary<string, SkinData> lookup;
 
+    /// <summary>Builds the lookup table from the configured skin definitions.</summary>
     public void Initialize()
     {
         lookup = new Dictionary<string, SkinData>();
@@ -18,6 +21,7 @@ public class SkinDatatbase : ScriptableObject
         }
     }
 
+    /// <summary>Returns the skin definition for an identifier.</summary>
     public SkinData Get(string id)
     {
         if (lookup.TryGetValue(id, out var definition))
@@ -27,11 +31,13 @@ public class SkinDatatbase : ScriptableObject
         return null;
     }
 
+    /// <summary>Returns all configured skin definitions.</summary>
     public List<SkinData> GetAllSkins()
     {
         return definitions;
     }
 
+    /// <summary>Stores ownership for the selected skin.</summary>
     public void PurchaseSkin(string skinID)
     {
         foreach(var skin in definitions)

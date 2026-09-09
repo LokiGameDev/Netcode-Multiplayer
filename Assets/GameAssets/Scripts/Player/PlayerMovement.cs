@@ -3,24 +3,43 @@ using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 
+/// <summary>Processes local movement, jumping, camera look, and gravity.</summary>
 public class PlayerMovement : NetworkBehaviour
 {
+    [Header("Player References")]
+    [Tooltip("Reads movement and look input for the local player.")]
     [SerializeField] private InputReader inputReader;
+    [Tooltip("Rigidbody moved by the player controller.")]
     [SerializeField] private Rigidbody playerRigidbody;
+    [Tooltip("Model rotated to face the movement direction.")]
     [SerializeField] private GameObject playerModel;
+    [Tooltip("Updates movement and jump animations.")]
     [SerializeField] private PlayerAnimationManager playerAnimationManager;
+    [Tooltip("Controls movement-related player effects.")]
     [SerializeField] private PlayerEffectsManager playerEffectsManager;
+    [Tooltip("Player transform used as the camera position anchor.")]
     [SerializeField] private Transform player;
+    [Tooltip("Pivot rotated by look input.")]
     [SerializeField] private Transform cameraPivot;
 
+    [Header("Movement Settings")]
+    [Tooltip("Horizontal movement speed.")]
     [SerializeField] private float playerSpeed = 20;
+    [Tooltip("Vertical force applied when jumping.")]
     [SerializeField] private float playerJumpForce = 1;
+    [Tooltip("Raycast distance used to detect the ground.")]
     [SerializeField] private float playerHeight = 1.1f;
+    [Tooltip("Speed used to rotate the player model.")]
     [SerializeField] private float rotationSpeed = 15f;
+    [Tooltip("Additional gravity applied while falling.")]
     [SerializeField] private float fallMultiplier = 2.5F;
 
+    [Header("Look Settings")]
+    [Tooltip("Sensitivity applied to look input.")]
     [SerializeField] private float lookSensitivity = 10f;
+    [Tooltip("Minimum vertical camera angle.")]
     [SerializeField] private float minPitch = -30f;
+    [Tooltip("Maximum vertical camera angle.")]
     [SerializeField] private float maxPitch = 10f;
 
     private bool jumpRequested;
@@ -30,6 +49,7 @@ public class PlayerMovement : NetworkBehaviour
 
     private Vector2 previousPlayerInput;
 
+    /// <summary>Subscribes the local player to movement and jump input.</summary>
     public override void OnNetworkSpawn()
     {
         if(!IsOwner) return;
@@ -44,6 +64,7 @@ public class PlayerMovement : NetworkBehaviour
         playerEffectsManager.SetTrailEffectsState(IsGrounded());
     }
 
+    /// <summary>Unsubscribes the local player from movement and jump input.</summary>
     public override void OnNetworkDespawn()
     {
         if(!IsOwner) return;
@@ -107,6 +128,7 @@ public class PlayerMovement : NetworkBehaviour
     // }
 
     //---- New Movement Code----//
+    /// <summary>Applies jumping, movement, rotation, animation, and gravity.</summary>
     private void FixedUpdate()
     {
         if (!IsOwner)
@@ -202,6 +224,7 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
+    /// <summary>Updates the local camera pivot from look input.</summary>
     private void LateUpdate()
     {
         if(!IsOwner) return;
@@ -217,6 +240,7 @@ public class PlayerMovement : NetworkBehaviour
         playerEffectsManager.SetTrailEffectsState(IsGrounded());
     }
 
+    /// <summary>Requests and applies a jump for the local player.</summary>
     private void PlayerJump()
     {
         if(!IsOwner) return;
@@ -233,21 +257,27 @@ public class PlayerMovement : NetworkBehaviour
         }
     }
 
+    /// <summary>Stores the latest movement input.</summary>
+    /// <param name="movement">Movement vector from the input reader.</param>
     private void HandleMovementInput(Vector2 movement)
     {
         previousPlayerInput = movement;
     }
 
+    /// <summary>Handles a jump event from the input reader.</summary>
     private void HandleJumpInput()
     {
         PlayerJump();
     }
 
+    /// <summary>Checks whether the player is touching the ground.</summary>
+    /// <returns>True when the ground raycast hits a collider.</returns>
     private bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, playerHeight);
     }
 
+    /// <summary>Waits for landing before restoring the grounded animation state.</summary>
     private IEnumerator PlayerInJumpState()
     {
         yield return new WaitForSeconds(0.2f);
@@ -258,6 +288,7 @@ public class PlayerMovement : NetworkBehaviour
         playerAnimationManager.SetGroundedState(true);
     }
 
+    /// <summary>Stops the player's current rigidbody movement.</summary>
     public void ResetVelocity()
     {
         playerRigidbody.linearVelocity = new Vector3(0, 0, 0);

@@ -3,17 +3,28 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>Builds task list UI and sends completion requests to the server.</summary>
 public class UITaskManager : NetworkBehaviour
 {
+    [Header("Task List")]
+    [Tooltip("Parent transform for assigned task entries.")]
     [SerializeField] private Transform taskContainer;
+    [Tooltip("Prefab used for each assigned task entry.")]
     [SerializeField] private TaskItem taskItemPrefab;
 
+    [Header("Progress")]
+    [Tooltip("Parent transform for task progress bars.")]
     [SerializeField] private Transform taskCompletionContainer;
+    [Tooltip("Prefab used for each task progress bar.")]
     [SerializeField] private GameObject taskBarPrefab;
 
+    [Tooltip("Color applied to completed task bars.")]
     [SerializeField] private Color completedColor;
 
+    [Header("Task Guidance")]
+    [Tooltip("Marker that points to the current task.")]
     [SerializeField] private TaskMarker taskMarker;
+    [Tooltip("Manager that opens task detail panels.")]
     [SerializeField] private TaskPanelUIManager taskPanelUIManager;
 
     private List<GameObject> taskBars = new List<GameObject>();
@@ -23,6 +34,8 @@ public class UITaskManager : NetworkBehaviour
 
     private int currentTaskId = 0;
 
+    /// <summary>Creates UI entries for the supplied player tasks.</summary>
+    /// <param name="tasks">Tasks to display.</param>
     public void InitiatePlayerTasks(Dictionary<int, PlayerTask> tasks)
     {
         foreach(PlayerTask playerTask in tasks.Values)
@@ -34,6 +47,8 @@ public class UITaskManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Completes the selected task and requests server confirmation.</summary>
+    /// <param name="taskID">Task identifier to complete.</param>
     public void CompleteTask(int taskID)
     {
         Debug.Log($"{taskID} Completion intiated");
@@ -51,6 +66,8 @@ public class UITaskManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Creates progress bars until the total task count is represented.</summary>
+    /// <param name="count">Total number of tasks.</param>
     public void GameTotalTasks(int count)
     {
         for(int i=taskCompletionContainer.childCount;i<count;i++)
@@ -60,6 +77,8 @@ public class UITaskManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Colors the progress bars for completed tasks.</summary>
+    /// <param name="count">Number of completed tasks.</param>
     public void CompletedTaskCount(int count)
     {
         for(int i=0;i<count;i++)
@@ -68,6 +87,8 @@ public class UITaskManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Selects a task and updates its world marker.</summary>
+    /// <param name="id">Task identifier to select.</param>
     public void CurrentTask(int id)
     {
         foreach(var item in currentTaskItems)
@@ -81,12 +102,18 @@ public class UITaskManager : NetworkBehaviour
         taskMarker.SetCurrentTarget(target.GetInteractionPoint());
     }
 
+    /// <summary>Opens the detail panel for a task.</summary>
+    /// <param name="id">Task identifier.</param>
+    /// <param name="taskType">Task type used to choose the panel.</param>
     public void StartTaskPanel(int id, TaskType taskType)
     {
         taskPanelUIManager.StartTask(id, taskType);
         currentTaskId = id;
     }
 
+    /// <summary>Returns the player-facing name for a task type.</summary>
+    /// <param name="taskType">Task type to name.</param>
+    /// <returns>Display name for the task type.</returns>
     private string GetTaskName(TaskType taskType)
     {
         string taskName = "";
@@ -112,6 +139,8 @@ public class UITaskManager : NetworkBehaviour
     }
 
     [Rpc(SendTo.Server)]
+    /// <summary>Requests that the server complete a task for this player.</summary>
+    /// <param name="taskId">Task identifier to complete.</param>
     private void CompleteTaskRpc(int taskId)
     {
         TaskManager.Instance.CompleteTask(

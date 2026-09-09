@@ -1,20 +1,28 @@
 using UnityEngine;
 
+/// <summary>Points the HUD toward the currently selected task.</summary>
 public class TaskMarker : MonoBehaviour
 {
+    [Tooltip("World transform of the current task target.")]
     [SerializeField] private Transform target;
 
     [Header("UI")]
+    [Tooltip("Screen area used to position the task indicator.")]
     [SerializeField] private RectTransform indicatorArea;
+    [Tooltip("Icon shown when the task is on screen.")]
     [SerializeField] private RectTransform targetIcon;
+    [Tooltip("Arrow shown when the task is off screen.")]
     [SerializeField] private RectTransform directionArrow;
 
     [Header("Settings")]
+    [Tooltip("Distance from the indicator center used for the direction arrow.")]
     [SerializeField] private float radius = 350;
+    [Tooltip("Minimum distance before the on-screen task icon is hidden.")]
     [SerializeField] private float minDistanceBetweenTask = 5;
 
     private Camera cam;
 
+    /// <summary>Initializes the camera and hides task indicators.</summary>
     private void Start()
     {
         cam = Camera.main;
@@ -22,6 +30,7 @@ public class TaskMarker : MonoBehaviour
         directionArrow.gameObject.SetActive(false);
     }
 
+    /// <summary>Updates the task indicator during the frame.</summary>
     private void LateUpdate()
     {
         if(target==null)
@@ -36,6 +45,7 @@ public class TaskMarker : MonoBehaviour
         UpdateIndicator();
     }
 
+    /// <summary>Positions and rotates the indicator for the target.</summary>
     private void UpdateIndicator()
     {
         Vector3 screenPosition =
@@ -87,6 +97,7 @@ public class TaskMarker : MonoBehaviour
         }
     }
 
+    /// <summary>Sets the world target represented by this marker.</summary>
     public void SetCurrentTarget(Transform currentTarget)
     {
         if(currentTarget==null)

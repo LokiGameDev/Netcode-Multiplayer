@@ -1,7 +1,9 @@
 using UnityEngine;
 
+/// <summary>Restricts device orientation to landscape modes.</summary>
 public class LockLandscape : MonoBehaviour
 {
+    /// <summary>Configures the allowed landscape orientations.</summary>
     void Awake()
     {
         // Allow only landscape orientations
@@ -14,6 +16,7 @@ public class LockLandscape : MonoBehaviour
         Screen.orientation = ScreenOrientation.LandscapeLeft;
     }
 
+    /// <summary>Restores landscape orientation if another mode is active.</summary>
     void Start()
     {
         // Optional: Ensure it stays locked even if device rotates

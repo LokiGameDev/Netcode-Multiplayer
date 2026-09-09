@@ -9,10 +9,14 @@ using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 
+/// <summary>Maintains the list of online friends available for invitation.</summary>
 public class OnlineFriendsListManager : NetworkBehaviour
 {
+    [Tooltip("Parent transform for online friend items.")]
     [SerializeField] private Transform onlineFriendsListContainer;
+    [Tooltip("Prefab used for each online friend item.")]
     [SerializeField] private GameObject onlineFriendItemPrefab;
+    [Tooltip("Panel containing the online friends list.")]
     [SerializeField] private GameObject onlineListPanel;
 
     private List<Relationship> currentOnlineFriends = new List<Relationship>();
@@ -20,6 +24,7 @@ public class OnlineFriendsListManager : NetworkBehaviour
     private List<GameObject> onlineFriendItems = new List<GameObject>();
 
     private LobbyData currentLobbyData = new LobbyData();
+    /// <summary>Initializes the online friends panel for the host.</summary>
     private void OnEnable()
     {
         onlineListPanel.SetActive(false);
@@ -33,6 +38,7 @@ public class OnlineFriendsListManager : NetworkBehaviour
         currentLobbyData.lobbyOwnerName = HostSingleton.Instance.GameManager.hostName;
     }
 
+    /// <summary>Refreshes displayed online friends and removes stale entries.</summary>
     public void RefreshTheList()
     {
         List<Relationship> friendsList = GetOnlineFriends();
@@ -61,6 +67,7 @@ public class OnlineFriendsListManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Checks whether a friend is already in the current lobby.</summary>
     public async Task<bool> DoPlayerExistInLobby(string memberId)
     {
         Lobby currentLobby = await LobbyService.Instance.GetLobbyAsync(HostSingleton.Instance.GameManager.currentLobby.Id);
@@ -77,11 +84,13 @@ public class OnlineFriendsListManager : NetworkBehaviour
         return isAlreadyInLobby;
     }
 
+    /// <summary>Toggles the online friends panel.</summary>
     public void SetOnlinePanelState()
     {
         onlineListPanel.SetActive(!onlineListPanel.activeInHierarchy);
     }
 
+    /// <summary>Sends the current lobby invitation to a friend.</summary>
     public async void SendInvite(Relationship friend)
     {
         try
@@ -94,6 +103,7 @@ public class OnlineFriendsListManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Returns the relationships whose presence is online.</summary>
     private List<Relationship> GetOnlineFriends()
     {
         List<Relationship> friends = new List<Relationship>();

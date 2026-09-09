@@ -1,14 +1,21 @@
 using System.Collections;
 using UnityEngine;
 
+/// <summary>Controls player preview interaction in the menu.</summary>
 public class MenuPlayerInteraction : MonoBehaviour
 {
+    [Header("Player Preview")]
+    [Tooltip("Player object shown in the menu preview.")]
     [SerializeField] private GameObject playerObject;
+    [Tooltip("Animator controlling the preview player.")]
     [SerializeField] private Animator playerAnimator;
+    [Tooltip("Touch area used to rotate the preview player.")]
     [SerializeField] private TouchLookArea touchLookArea;
+    [Tooltip("Animator controller assigned to the preview.")]
     [SerializeField] private RuntimeAnimatorController animatorController;
     private Coroutine randomActionCoroutine;
 
+    /// <summary>Initializes the preview player and its input callbacks.</summary>
     public void Initialize()
     {
         Debug.Log("Menu player intiated");
@@ -24,6 +31,7 @@ public class MenuPlayerInteraction : MonoBehaviour
         touchLookArea.OnLook += HandlePlayerDrag;
     }
 
+    /// <summary>Stops preview animations when disabled.</summary>
     public void OnDisable()
     {
         StopAllCoroutines();
@@ -31,6 +39,7 @@ public class MenuPlayerInteraction : MonoBehaviour
         randomActionCoroutine = null;
     }
 
+    /// <summary>Stops animations and removes touch callbacks on destruction.</summary>
     public void OnDestroy()
     {
         StopAllCoroutines();
@@ -40,6 +49,8 @@ public class MenuPlayerInteraction : MonoBehaviour
         touchLookArea.OnLook -= HandlePlayerDrag;
     }
 
+    /// <summary>Replaces the preview animator with a new skin.</summary>
+    /// <param name="currentSkin">Skin object to preview.</param>
     public void ResetSkin(GameObject currentSkin)
     {
         playerAnimator = currentSkin.GetComponent<Animator>();
@@ -49,6 +60,7 @@ public class MenuPlayerInteraction : MonoBehaviour
         playerAnimator.runtimeAnimatorController = animatorController;
     }
 
+    /// <summary>Plays a random preview animation after a short delay.</summary>
     private IEnumerator PlayRandomAction()
     {
         yield return new WaitForSeconds(Random.Range(5,7));
@@ -62,6 +74,7 @@ public class MenuPlayerInteraction : MonoBehaviour
         randomActionCoroutine = null;
     }
 
+    /// <summary>Restarts the idle action routine when it finishes.</summary>
     private void Update()
     {
         if(randomActionCoroutine!=null) return;
@@ -69,6 +82,8 @@ public class MenuPlayerInteraction : MonoBehaviour
         randomActionCoroutine = StartCoroutine(PlayRandomAction());
     }
 
+    /// <summary>Rotates the preview player from touch drag input.</summary>
+    /// <param name="drag">Look delta from the touch area.</param>
     private void HandlePlayerDrag(Vector2 drag)
     {
         playerObject.transform.rotation *= Quaternion.Euler(0, -drag.x, 0);

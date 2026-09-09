@@ -4,18 +4,23 @@ using Unity.Services.Friends.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>Displays an online friend and sends lobby invitations.</summary>
 public class OnlineFriendItem : MonoBehaviour
 {
+    [Tooltip("Text displaying the friend's name.")]
     [SerializeField] TMP_Text friendNameText;
+    [Tooltip("Button used to invite the friend.")]
     [SerializeField] Button inviteButton;
 
     private OnlineFriendsListManager manager;
 
     private bool isInviteSent = false;
 
+    /// <summary>Gets the relationship represented by this item.</summary>
     public Relationship relationship { get; private set; }
     private bool isChecking = false;
 
+    /// <summary>Initializes the item and checks the friend's lobby presence.</summary>
     public void SetUp(Relationship relationship, OnlineFriendsListManager onlineFriendsListManager)
     {
         this.relationship = relationship;
@@ -24,6 +29,7 @@ public class OnlineFriendItem : MonoBehaviour
         CheckForPlayerPresence();
     }
 
+    /// <summary>Sends a lobby invitation when one has not already been sent.</summary>
     public void Invite()
     {
         CheckForPlayerPresence();
@@ -37,6 +43,7 @@ public class OnlineFriendItem : MonoBehaviour
         }
     }
 
+    /// <summary>Checks whether the friend is already in the current lobby.</summary>
     public async void CheckForPlayerPresence()
     {
         Debug.Log("Checked");

@@ -2,17 +2,24 @@ using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 
+/// <summary>Finds nearby interactables and forwards the player's interaction input.</summary>
 public class PlayerInteractor : NetworkBehaviour
 {
+    [Header("Interaction")]
+    [Tooltip("Input source used to trigger interactions.")]
     [SerializeField] private InputReader inputReader;
+    [Tooltip("Maximum distance at which objects can be interacted with.")]
     [SerializeField] private float interactionRange;
+    [Tooltip("UI shown for the nearby interaction target.")]
     [SerializeField] private InteractionUI interactionUI;
+    [Tooltip("Tracks tasks assigned to this player.")]
     [SerializeField] PlayerTaskManager playerTaskManager;
 
     private IInteractable currentInteractable;
 
     private ITask currentTask;
 
+    /// <summary>Subscribes the local player to interaction input.</summary>
     public override void OnNetworkSpawn()
     {
         if(!IsOwner) return;
@@ -21,6 +28,7 @@ public class PlayerInteractor : NetworkBehaviour
         inputReader.PlayerInteractEvent += PlayerInteract;
     }
 
+    /// <summary>Unsubscribes the local player from interaction input.</summary>
     public override void OnNetworkDespawn()
     {
         if(!IsOwner) return;
@@ -28,6 +36,7 @@ public class PlayerInteractor : NetworkBehaviour
         inputReader.PlayerInteractEvent -= PlayerInteract;
     }
 
+    /// <summary>Activates the current interactable or assigned task.</summary>
     private void PlayerInteract()
     {
         if(currentInteractable!=null)
@@ -40,6 +49,7 @@ public class PlayerInteractor : NetworkBehaviour
         }
     }
 
+    /// <summary>Refreshes nearby targets and interaction UI.</summary>
     private void Update()
     {
         FindInteractable();
@@ -70,6 +80,7 @@ public class PlayerInteractor : NetworkBehaviour
         }
     }
 
+    /// <summary>Finds the first nearby object implementing IInteractable.</summary>
     private void FindInteractable()
     {
         currentInteractable = null;
@@ -92,6 +103,7 @@ public class PlayerInteractor : NetworkBehaviour
         }
     }
 
+    /// <summary>Finds the first nearby incomplete task assigned to this player.</summary>
     private void FindTask()
     {
         currentTask = null;
@@ -117,7 +129,8 @@ public class PlayerInteractor : NetworkBehaviour
         }
     }
 
-    void OnDrawGizmos()
+    /// <summary>Draws the interaction range in the Scene view.</summary>
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, interactionRange);
     }

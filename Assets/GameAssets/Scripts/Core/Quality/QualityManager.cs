@@ -1,10 +1,11 @@
 using TMPro;
 using UnityEngine;
 
-
+/// <summary>Manages frame-rate limits and optional FPS diagnostics.</summary>
 public class QualityManager : MonoBehaviour
 {
     private static QualityManager instance;
+    /// <summary>Gets the active quality manager instance.</summary>
     public static QualityManager Instance
     {
         get
@@ -17,9 +18,12 @@ public class QualityManager : MonoBehaviour
         }
     }
 
+    [Tooltip("Text element used to display the current FPS.")]
     [SerializeField] private TMP_Text fpsText;
+    [Tooltip("Object containing the FPS display.")]
     [SerializeField] private GameObject fpsObject;
 
+    [Tooltip("Whether the FPS display is enabled.")]
     [SerializeField] private bool debugFPS = false;
 
     public int maxDeviceFPS = 0;
@@ -31,6 +35,7 @@ public class QualityManager : MonoBehaviour
     private int frames;
 
 
+    /// <summary>Updates the optional FPS display.</summary>
     private void Update()
     {
         ShowFPSText(debugFPS);
@@ -52,6 +57,7 @@ public class QualityManager : MonoBehaviour
         }
     }
 
+    /// <summary>Initializes the singleton and default menu frame rate.</summary>
     private void Awake()
     {
         if(instance!=null && instance!=this) Destroy(this);
@@ -78,6 +84,7 @@ public class QualityManager : MonoBehaviour
         fpsText.text = $"{currentFPS} FPS";
     }
 
+    /// <summary>Sets the target frame rate for the current scene type.</summary>
     public void SetGameFPS(CurrentGameScene currentGameScene)
     {
         switch(currentGameScene)
@@ -93,6 +100,7 @@ public class QualityManager : MonoBehaviour
         }
     }
 
+    /// <summary>Shows or hides the FPS display.</summary>
     public void ShowFPSText(bool state)
     {
         fpsObject.SetActive(state);

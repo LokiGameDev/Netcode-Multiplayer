@@ -2,21 +2,31 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
+/// <summary>Shows an animated, temporary notification message.</summary>
 public class ShowNotification : MonoBehaviour
 {
+    [Header("Notification")]
+    [Tooltip("Text used to display the notification.")]
     [SerializeField] private TMP_Text text;
+    [Tooltip("Panel animated when the notification appears.")]
     [SerializeField] private RectTransform displayBox;
+    [Tooltip("Canvas group faded when the notification closes.")]
     [SerializeField] private CanvasGroup canvasGroup;
+    [Tooltip("Total notification display duration.")]
     [SerializeField] private float fadeDuration = 1;
+    [Tooltip("Duration of the pop-in animation.")]
     [SerializeField] private float popDuration = 0.5f;
 
     private Coroutine coroutine;
 
+    /// <summary>Initializes the notification as hidden.</summary>
     private void Start()
     {
         canvasGroup.alpha = 0;
     }
 
+    /// <summary>Displays a message and starts its animation.</summary>
+    /// <param name="message">Notification text.</param>
     public void ShowText(string message)
     {
         if(coroutine!=null)
@@ -28,6 +38,7 @@ public class ShowNotification : MonoBehaviour
         coroutine = StartCoroutine(DisplayMessageFade());
     }
 
+    /// <summary>Animates the notification in and fades it out.</summary>
     private IEnumerator DisplayMessageFade()
     {
         float time = 0f;

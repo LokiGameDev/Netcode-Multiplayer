@@ -6,10 +6,14 @@ using Unity.Services.Friends;
 using Unity.Services.Friends.Models;
 using UnityEngine;
 
+/// <summary>Authenticates the player and initializes the Friends service.</summary>
 public static class AuthenticatorWrapper
 {
     public static AuthState AuthState { get; private set; } = AuthState.NotAuthenticated;
 
+    /// <summary>Authenticates the player and prepares online friends services.</summary>
+    /// <param name="maxRetries">Maximum anonymous sign-in attempts.</param>
+    /// <returns>The resulting authentication state.</returns>
     public static async Task<AuthState> DoAuthorize(int maxRetries = 5)
     {
         if(AuthState == AuthState.Authenticated) return AuthState;
@@ -27,6 +31,7 @@ public static class AuthenticatorWrapper
         return AuthState;
     }
 
+    /// <summary>Waits for an authentication attempt already in progress.</summary>
     private static async Task Authenticating()
     {
         while(AuthState==AuthState.Authenticating || AuthState==AuthState.NotAuthenticated)
@@ -36,6 +41,8 @@ public static class AuthenticatorWrapper
         return;
     }
 
+    /// <summary>Attempts anonymous sign-in and updates the authentication state.</summary>
+    /// <param name="maxRetries">Maximum number of sign-in attempts.</param>
     private static async Task SignInAnonymouslyAsync(int maxRetries)
     {
         AuthState = AuthState.Authenticating;
@@ -79,6 +86,7 @@ public static class AuthenticatorWrapper
         return;
     }
 
+    /// <summary>Initializes Unity Services and sets the player presence online.</summary>
     private static async Task GetFriendsListAsync()
     {
         try
@@ -98,6 +106,7 @@ public static class AuthenticatorWrapper
     }
 }
 
+/// <summary>States reported by the authentication workflow.</summary>
 public enum AuthState
 {
     NotAuthenticated,

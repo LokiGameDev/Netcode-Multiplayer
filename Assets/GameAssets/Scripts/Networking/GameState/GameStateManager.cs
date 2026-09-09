@@ -6,6 +6,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>Tracks the shared game state and player readiness.</summary>
 public class GameStateManager : NetworkBehaviour
 {
     private static GameStateManager instance;
@@ -21,6 +22,7 @@ public class GameStateManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Registers this component as the active game-state manager.</summary>
     private void Awake()
     {
         if(instance!=null & instance!=this) Destroy(this);
@@ -55,6 +57,7 @@ public class GameStateManager : NetworkBehaviour
 
     public UnityEvent playercountChanged;
 
+    /// <summary>Subscribes to network callbacks and initializes the host state.</summary>
     public override void OnNetworkSpawn()
     {
         currentGameState.OnValueChanged += OnGameStateChanged;
@@ -71,6 +74,7 @@ public class GameStateManager : NetworkBehaviour
         currentGameState.Value = GameState.WaitingForPlayers;
     }
 
+    /// <summary>Unsubscribes from network callbacks when the object despawns.</summary>
     public override void OnNetworkDespawn()
     {
         if(!IsServer) return;
@@ -79,11 +83,13 @@ public class GameStateManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback -= PlayerDisconnected;
     }
 
+    /// <summary>Applies the current state to the local UI.</summary>
     public void Start()
     {
         OnGameStateChanged(currentGameState.Value, currentGameState.Value);
     }
 
+    /// <summary>Adds a connected player and starts the game when the lobby is full.</summary>
     private void PlayerConnected(ulong obj)
     {
         playerCount.Value += 1;
@@ -91,11 +97,13 @@ public class GameStateManager : NetworkBehaviour
         if(playerCount.Value >= maxPlayerCount.Value) StartTheGame();
     }
 
+    /// <summary>Removes a disconnected player from the count.</summary>
     private void PlayerDisconnected(ulong obj)
     {
         playerCount.Value -= 1;
     }
 
+    /// <summary>Updates the UI when the networked game state changes.</summary>
     private void OnGameStateChanged(GameState previous, GameState current)
     {
         Debug.Log($"Game State: {previous} -> {current}");
@@ -122,69 +130,84 @@ public class GameStateManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Shows the waiting-for-players panel.</summary>
     private void ShowWaitingUI()
     {
         UIManager.Instance.ShowCurrentPanel(GameState.WaitingForPlayers);
     }
 
+    /// <summary>Shows the active gameplay panel.</summary>
     private void StartGame()
     {
         UIManager.Instance.ShowCurrentPanel(GameState.Playing);
     }
 
+    /// <summary>Shows the game-won panel.</summary>
     private void ShowGameWonUI()
     {
         UIManager.Instance.ShowCurrentPanel(GameState.GameWon);
     }
 
+    /// <summary>Shows the game-lost panel.</summary>
     private void ShowGameLostUI()
     {
         UIManager.Instance.ShowCurrentPanel(GameState.GameLost);
     }
 
+    /// <summary>Shows the loading panel.</summary>
     private void ShowLoadingUI()
     {
         UIManager.Instance.ShowCurrentPanel(GameState.Loading);
     }
 
+    /// <summary>Notifies the UI that the player count changed.</summary>
     private void PlayerCountChanged(int a, int b)
     {
         playercountChanged?.Invoke();
     }
 
+    /// <summary>Returns the current number of players.</summary>
     public int CurrentPlayerCount()
     {
         return playerCount.Value;
     }
 
+    /// <summary>Returns the lobby's maximum player count.</summary>
     public int MaxPlayerInLobby()
     {
         return maxPlayerCount.Value;
     }
 
+    /// <summary>Begins the short loading phase before gameplay.</summary>
     public void StartTheGame()
     {
         currentGameState.Value = GameState.Loading;
         StartCoroutine(LoadingPanelTimer());
     }
 
+    /// <summary>Waits briefly before switching to the playing state.</summary>
     private IEnumerator LoadingPanelTimer()
     {
         yield return new WaitForSeconds(2);
         currentGameState.Value = GameState.Playing;
     }
 
+    /// <summary>Sets the final game state when the match ends.</summary>
+    /// <param name="gameState">Winning or losing state to apply.</param>
     public void GameFinished(GameState gameState)
     {
         if(gameState == GameState.GameWon) currentGameState.Value = GameState.GameWon;
         else if(gameState == GameState.GameLost) currentGameState.Value = GameState.GameLost;
     }
 
+    /// <summary>Adds a player name to the waiting list.</summary>
+    /// <param name="name">Name of the joining player.</param>
     public void PlayerJoined(string name)
     {
         playerWaitingList.Add(name);
     }
 
+    /// <summary>Stops the active host or client session.</summary>
     public void FinishTheGame()
     {
         if(NetworkManager.Singleton.IsHost)
@@ -195,6 +218,7 @@ public class GameStateManager : NetworkBehaviour
     }
 }
 
+/// <summary>States displayed during a multiplayer match.</summary>
 public enum GameState
 {
     None,

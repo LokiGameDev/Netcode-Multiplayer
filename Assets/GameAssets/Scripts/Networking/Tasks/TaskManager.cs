@@ -3,10 +3,14 @@ using System.Linq;
 using Unity.Netcode;
 using UnityEngine;
 
+/// <summary>Assigns tasks to players and tracks shared task progress.</summary>
 public class TaskManager : NetworkBehaviour
 {
+    [Header("Task Configuration")]
+    [Tooltip("List of world tasks available for assignment.")]
     public TaskList taskList;
 
+    [Tooltip("Effect prefab played when a task is completed.")]
     [SerializeField] private GameObject taskCompletionEffectPrefab;
 
     private TaskCompletionEffect taskCompletionEffect;
@@ -54,11 +58,13 @@ public class TaskManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Creates the task completion effect instance.</summary>
     public void Start()
     {
         taskCompletionEffect = Instantiate(taskCompletionEffectPrefab, this.transform).GetComponent<TaskCompletionEffect>();
     }
 
+    /// <summary>Registers host callbacks and discovers world tasks.</summary>
     public override void OnNetworkSpawn()
     {
         if(!IsHost) return;
@@ -69,6 +75,7 @@ public class TaskManager : NetworkBehaviour
         RegisterTaskObjects();
     }
 
+    /// <summary>Unregisters host callbacks when the manager despawns.</summary>
     public override void OnNetworkDespawn()
     {
         if(!IsHost) return;
@@ -77,6 +84,7 @@ public class TaskManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback -= PlayerDisconnected;
     }
 
+    /// <summary>Collects available task objects and assigns the host's tasks.</summary>
     private void RegisterTaskObjects()
     {
         ITask[] taskObjects =
@@ -108,6 +116,9 @@ public class TaskManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Finds the world task associated with an assigned ID.</summary>
+    /// <param name="id">Assigned task ID.</param>
+    /// <returns>The matching task object, or null when it is not found.</returns>
     public ITask GetTaskObjectLocation(int id)
     {
         Dictionary<int, ITask> keyValuePairs = taskList.GetAssignedTasks();
@@ -115,6 +126,9 @@ public class TaskManager : NetworkBehaviour
         return null;
     }
 
+    /// <summary>Completes a player's task and updates shared progress.</summary>
+    /// <param name="playerId">Client that completed the task.</param>
+    /// <param name="taskId">Task ID to complete.</param>
     public void CompleteTask(ulong playerId, int taskId)
     {
         if (!IsServer)
@@ -154,6 +168,7 @@ public class TaskManager : NetworkBehaviour
     }
 
     [Rpc(SendTo.SpecifiedInParams)]
+    /// <summary>Notifies a client that its task was completed.</summary>
     private void SendTaskCompletedRpc(int taskId, ulong playerId, RpcParams rpcParams = default)
     {
         if (!NetworkManager.Singleton.ConnectedClients.TryGetValue(
@@ -169,6 +184,7 @@ public class TaskManager : NetworkBehaviour
         );
     }
 
+    /// <summary>Checks whether all assigned tasks are complete.</summary>
     private void CheckAllTasksCompleted()
     {
         if(completedTaskCount.Value >= assignedTasksObjects.Count)
@@ -177,6 +193,7 @@ public class TaskManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Assigns tasks to players waiting for task allocation.</summary>
     private void AssignTasksToPendingPlayers()
     {
         foreach(var id in pendingPlayers)
@@ -186,17 +203,20 @@ public class TaskManager : NetworkBehaviour
         }
     }
 
+    /// <summary>Assigns tasks when a player connects.</summary>
     private void PlayerConnected(ulong playerId)
     {
         isAssigning.Value = true;
         AssignTasks(playerId);
     }
 
+    /// <summary>Handles a player leaving the session.</summary>
     private void PlayerDisconnected(ulong playerId)
     {
         
     }
 
+    /// <summary>Sends the assigned task list to a client.</summary>
     private void SendTasksToPlayer(ulong playerId)
     {
         if (!NetworkManager.Singleton.ConnectedClients.TryGetValue(
@@ -212,6 +232,7 @@ public class TaskManager : NetworkBehaviour
         );
     }
 
+    /// <summary>Selects available tasks and assigns them to a player.</summary>
     private void AssignTasks(ulong playerId)
     {
         isAssigning.Value = true;
@@ -270,12 +291,14 @@ public class TaskManager : NetworkBehaviour
     }
 }
 
+/// <summary>Network-serializable task data assigned to one player.</summary>
 public struct PlayerTask : INetworkSerializable
 {
     public int TaskId;
     public TaskType Type;
     public bool Completed;
 
+    /// <summary>Serializes the task ID, type, and completion state.</summary>
     public void NetworkSerialize<T>(BufferSerializer<T> serializer)
         where T : IReaderWriter
     {
@@ -285,6 +308,7 @@ public struct PlayerTask : INetworkSerializable
     }
 }
 
+/// <summary>Types of tasks that can appear in the game world.</summary>
 public enum TaskType
 {
     RepairLight,

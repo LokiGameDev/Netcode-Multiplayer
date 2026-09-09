@@ -12,26 +12,44 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Manages friend relationships, friend requests, and lobby invitations.
+/// </summary>
 public class FriendsManager : MonoBehaviour
 {
+    [Tooltip("Input used to find a player by display name.")]
     [SerializeField] private TMP_InputField friendNameInputField;
+    [Tooltip("Input used to find a player by ID.")]
     [SerializeField] private TMP_InputField friendIdInputField;
+    [Tooltip("Text element that displays the local player ID.")]
     [SerializeField] private TMP_Text playerIDText;
+    [Tooltip("Displays status messages to the player.")]
     [SerializeField] private ShowNotification displayMessage;
+    [Tooltip("UI item used to display an incoming lobby invitation.")]
     [SerializeField] private InvitationItem invitationItem;
+    [Tooltip("Main menu controller used to join an invited lobby.")]
     [SerializeField] private MainMenuManager mainMenuManager;
-    [Header("Firends List Items")]
+    [Header("Friends List Items")]
+    [Tooltip("Parent transform for friend list entries.")]
     [SerializeField] private Transform friendsListParent;
+    [Tooltip("Prefab used for a friend list entry.")]
     [SerializeField] private FriendItem friendItemPrefab;
+    [Tooltip("Object shown when the friend list is empty.")]
     [SerializeField] private GameObject noFriendsObject;
     [Header("Request List Items")]
+    [Tooltip("Parent transform for incoming friend request entries.")]
     [SerializeField] private Transform friendsRequestListParent;
+    [Tooltip("Prefab used for an incoming friend request entry.")]
     [SerializeField] private FriendRequestItem friendRequestItemPrefab;
+    [Tooltip("Object shown when there are no incoming requests.")]
     [SerializeField] private GameObject noFriendsRequestObject;
 
+    [Tooltip("Confirmation panel shown before removing a friend.")]
     [SerializeField] private GameObject DeleteFriendConfirmationPanel;
+    [Tooltip("Displays the name of the friend being removed.")]
     [SerializeField] private TMP_Text DeleteFriendNameText;
 
+    [Tooltip("Panel shown while the friends service is loading.")]
     [SerializeField] private GameObject loadingPanel;
 
     private Dictionary<string, FriendItem> friendItems = new();
@@ -48,11 +66,13 @@ public class FriendsManager : MonoBehaviour
 
     public UnityEvent FriendRequestSent;
 
+    /// <summary>Initializes the loading panel state.</summary>
     private void Start()
     {
         loadingPanel.SetActive(false);
     }
 
+    /// <summary>Subscribes to friends service events and refreshes the lists.</summary>
     private void OnEnable()
     {
         FriendsService.Instance.MessageReceived += OnMessageReceived;
@@ -71,6 +91,7 @@ public class FriendsManager : MonoBehaviour
         RefreshLists();
     }
 
+    /// <summary>Unsubscribes from friends service events.</summary>
     private void OnDisable()
     {
         FriendsService.Instance.MessageReceived -= OnMessageReceived;
@@ -79,12 +100,14 @@ public class FriendsManager : MonoBehaviour
         FriendsService.Instance.RelationshipDeleted -= OnRelationShipRemoved;
     }
 
+    /// <summary>Refreshes both friends and incoming request lists.</summary>
     public void RefreshLists()
     {
         RefreshFriendsList();
         RefreshRequestList();
     }
 
+    /// <summary>Synchronizes the displayed friends with the friends service.</summary>
     public void RefreshFriendsList()
     {
         try
@@ -127,6 +150,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Synchronizes the displayed requests with the friends service.</summary>
     public void RefreshRequestList()
     {
         try
@@ -161,6 +185,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Removes displayed entries that are no longer friends.</summary>
     public void RemoveNonFriends()
     {
         foreach(var frnd in CurrentlyNotFriends)
@@ -173,6 +198,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Validates the entered name and sends a friend request.</summary>
     public async void AddFriendByName()
     {
         string name = friendNameInputField.text.Trim();
@@ -191,6 +217,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Sends a friend request and displays the service result.</summary>
     private async Task AddFriendByNameAsync(string name)
     {
         try
@@ -251,6 +278,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Checks whether a relationship already exists for the given name.</summary>
     private bool HasRelationship(string name)
     {
         // Check friends
@@ -280,6 +308,7 @@ public class FriendsManager : MonoBehaviour
         return false;
     }
 
+    /// <summary>Accepts an incoming friend request and updates the request list.</summary>
     public async Task AcceptFriendRequest(Relationship request)
     {
         try
@@ -308,6 +337,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Updates displayed presence for the affected friend.</summary>
     private void OnPresenceUpdated(IPresenceUpdatedEvent @event)
     {
         if (friendItems.TryGetValue(@event.ID, out FriendItem friend))
@@ -320,16 +350,19 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Refreshes the friends list after a relationship is added.</summary>
     private void OnRelationShipAdded(IRelationshipAddedEvent @event)
     {
         RefreshFriendsList();
     }
 
+    /// <summary>Refreshes the friends list after a relationship is removed.</summary>
     private void OnRelationShipRemoved(IRelationshipDeletedEvent @event)
     {
         RefreshFriendsList();
     }
 
+    /// <summary>Returns the friends currently marked as online.</summary>
     public List<Relationship> GetCurrentOnlineFriends()
     {
         List<Relationship> currentOnline = new List<Relationship>();
@@ -344,6 +377,7 @@ public class FriendsManager : MonoBehaviour
         return currentOnline;
     }
 
+    /// <summary>Displays an invitation received from a friend.</summary>
     public void OnMessageReceived(IMessageReceivedEvent @event)
     {
         Debug.Log($"Message Received from {@event.UserId}");
@@ -355,6 +389,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Accepts the currently displayed invitation from the specified owner.</summary>
     public void AcceptCurrentInvitation(string OwnerName)
     {
         if(OwnerName == currentInvitedLobbyData.lobbyOwnerName)
@@ -365,11 +400,13 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Shows the loading panel while joining an invited lobby.</summary>
     private void StartTheLoadingPanel()
     {
         loadingPanel.SetActive(true);
     }
 
+    /// <summary>Marks the local player as offline before application exit.</summary>
     private async void OnApplicationQuit()
     {
         try
@@ -384,6 +421,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    /// <summary>Opens the confirmation panel for the selected friend.</summary>
     public void DeleteFriendRequest(Relationship relationship)
     {
         currentFriendOnDeleteRequest = relationship;
@@ -393,6 +431,7 @@ public class FriendsManager : MonoBehaviour
         DeleteFriendConfirmationPanel.SetActive(true);
     }
 
+    /// <summary>Removes the selected friend after confirmation.</summary>
     public async void DeleteFriendConfirmation()
     {
         try
@@ -425,7 +464,7 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
-    // Testing Purpose Only //
+    /// <summary>Removes all current friends for testing purposes.</summary>
     public async void DeleteAllFriends()
     {
         var friends = friendsList.ToList();
@@ -449,6 +488,7 @@ public class FriendsManager : MonoBehaviour
 }
 
 
+/// <summary>Stores the lobby details shared in a friend invitation.</summary>
 public class LobbyData
 {
     public string lobbyOwnerName;

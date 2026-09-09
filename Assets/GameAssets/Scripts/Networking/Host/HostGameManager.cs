@@ -13,8 +13,10 @@ using Unity.Services.Relay.Models;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>Creates and manages the host Relay and Lobby session.</summary>
 public class HostGameManager : IDisposable
 {
+    [Tooltip("Maximum number of players accepted by Relay.")]
     [SerializeField] private int MaxConnections = 8;
     private string joinCode;
     private string lobbyId;
@@ -26,6 +28,8 @@ public class HostGameManager : IDisposable
 
     public Lobby currentLobby { get; private set; }
 
+    /// <summary>Creates a Relay allocation, Lobby, and network host.</summary>
+    /// <param name="lobbySettings">Optional settings for the new lobby.</param>
     public async Task StartHostAsync(LobbySettings lobbySettings = null)
     {
         if(lobbySettings!=null) MaxConnections = lobbySettings.NumberOfPlayers;
@@ -123,6 +127,8 @@ public class HostGameManager : IDisposable
         NetworkManager.Singleton.SceneManager.LoadScene(GameSceneName, LoadSceneMode.Single);
     }
 
+    /// <summary>Keeps the host lobby active while the session is running.</summary>
+    /// <param name="time">Seconds between heartbeat requests.</param>
     private IEnumerator HeartBeatLobby(float time)
     {
         WaitForSecondsRealtime delay = new WaitForSecondsRealtime(time);
@@ -133,6 +139,8 @@ public class HostGameManager : IDisposable
         }
     }
 
+    /// <summary>Removes a disconnected player from the host lobby.</summary>
+    /// <param name="authId">Authentication ID of the disconnected player.</param>
     private async void HandleClientLeft(string authId)
     {
         try
@@ -146,6 +154,8 @@ public class HostGameManager : IDisposable
         }
     }
 
+    /// <summary>Updates whether the lobby accepts new players.</summary>
+    /// <param name="state">True to lock the lobby.</param>
     public async void UpdateLobbyOptions(bool state)
     {
         UpdateLobbyOptions updateOptions = new UpdateLobbyOptions
@@ -156,11 +166,13 @@ public class HostGameManager : IDisposable
         await LobbyService.Instance.UpdateLobbyAsync(lobbyId, updateOptions);
     }
 
+    /// <summary>Shuts down the host and releases its resources.</summary>
     public void Dispose()
     {
         Shutdown();
     }
 
+    /// <summary>Deletes the lobby and stops the server connection.</summary>
     public async void Shutdown()
     {
         HostSingleton.Instance?.StopCoroutine(nameof(HeartBeatLobby));
@@ -181,6 +193,8 @@ public class HostGameManager : IDisposable
         NetworkServer?.Dispose();
     }
 
+    /// <summary>Returns the Relay join code for this host session.</summary>
+    /// <returns>The current Relay join code.</returns>
     public string GetJoinCode()
     {
         return joinCode;

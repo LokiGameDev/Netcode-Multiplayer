@@ -3,9 +3,12 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>Represents the networked debris-cleaning task.</summary>
 public class Debris : NetworkBehaviour, ITask
 {
+    /// <summary>Gets the task category.</summary>
     public TaskType taskType => TaskType.CleanDebris;
+    /// <summary>Gets or sets the player-facing action label.</summary>
     public string ActionName { get; set; }
     
     public NetworkVariable<bool> isCompleted { get; set; } = new NetworkVariable<bool>(
@@ -26,8 +29,10 @@ public class Debris : NetworkBehaviour, ITask
             NetworkVariableWritePermission.Server
         );
 
+    [Tooltip("Action label shown while debris can be cleaned.")]
     [SerializeField] private string toActivateText = "";
 
+    [Tooltip("Debug task identifier assigned at runtime.")]
     [SerializeField] private int DebugTaskID = 0;
 
     public UnityEvent OnStartEvent;
@@ -35,18 +40,21 @@ public class Debris : NetworkBehaviour, ITask
 
     private Coroutine coroutine;
 
+    /// <summary>Initializes the action label and completion callback.</summary>
     private void OnEnable()
     {
         ActionName = toActivateText;
         isCompleted.OnValueChanged += CompletionTaskThings;
     }
 
+    /// <summary>Invokes the start or completion event for the task state.</summary>
     private void CompletionTaskThings(bool prev, bool current)
     {
         if(current) OnCompletionEvent?.Invoke();
         else OnStartEvent?.Invoke();
     }
 
+    /// <summary>Marks the debris task complete.</summary>
     public void CompleteTask()
     {
         Debug.Log("Completed task");
@@ -54,11 +62,13 @@ public class Debris : NetworkBehaviour, ITask
         OnCompletionEvent?.Invoke();
     }
 
+    /// <summary>Returns the current action label.</summary>
     public string GetActionName()
     {
         return ActionName;
     }
 
+    /// <summary>Starts the debris task UI when the task is incomplete.</summary>
     public void Interact()
     {
         Debug.Log("Interacted");
@@ -70,6 +80,7 @@ public class Debris : NetworkBehaviour, ITask
         UIManager.Instance.InitiateTask(TaskId.Value, taskType);
     }
 
+    /// <summary>Assigns the task ID and marks the task as active.</summary>
     public void AssignTaskID(int id)
     {
         TaskId.Value = id;
@@ -78,6 +89,7 @@ public class Debris : NetworkBehaviour, ITask
         OnStartEvent?.Invoke();
     }
 
+    /// <summary>Returns the debris transform used for interaction.</summary>
     public Transform GetInteractionPoint()
     {
         return gameObject.transform;

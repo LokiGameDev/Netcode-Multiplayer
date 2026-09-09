@@ -3,27 +3,36 @@ using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 
+/// <summary>Queries available lobbies and creates their list items.</summary>
 public class LobbyList : MonoBehaviour
 {
+    [Header("Lobby List")]
+    [Tooltip("Parent transform for lobby items.")]
     [SerializeField] private Transform lobbyItemsParent;
+    [Tooltip("Prefab used for each lobby item.")]
     [SerializeField] private LobbyItem lobbyItemPrefab;
+    [Tooltip("Object shown when no lobbies are found.")]
     [SerializeField] private GameObject noLobbyFoundText;
+    [Tooltip("Panel shown while joining a lobby.")]
     [SerializeField] private GameObject loadingPanel;
 
     private bool IsRefreshing = false;
     private bool IsJoining = false;
 
+    /// <summary>Refreshes the list when the lobby panel is enabled.</summary>
     private void OnEnable()
     {
         RefreshList();
         loadingPanel.SetActive(false);
     }
 
+    /// <summary>Refreshes the visible lobby list.</summary>
     public void Refresh()
     {
         RefreshList();
     }
 
+    /// <summary>Queries unlocked lobbies and rebuilds their UI items.</summary>
     public async void RefreshList()
     {
         if(IsRefreshing) return;
@@ -71,6 +80,8 @@ public class LobbyList : MonoBehaviour
         IsRefreshing = false;
     }
 
+    /// <summary>Joins a lobby and starts its client connection.</summary>
+    /// <param name="lobby">Lobby to join.</param>
     public async void JoinAsync(Lobby lobby)
     {
         if(IsJoining) return;
@@ -93,11 +104,14 @@ public class LobbyList : MonoBehaviour
         IsJoining = false;
     }
 
+    /// <summary>Updates the empty-list message visibility.</summary>
+    /// <param name="state">True when no lobby is available.</param>
     private void NoLobbyFoundState(bool state)
     {
         noLobbyFoundText.SetActive(state);
     }
 
+    /// <summary>Shows the loading panel while a join is in progress.</summary>
     public void LoadingPanelStart()
     {
         loadingPanel.SetActive(true);

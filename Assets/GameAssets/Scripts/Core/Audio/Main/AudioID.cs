@@ -1,3 +1,4 @@
+/// <summary>Identifies audio clips used by the game.</summary>
 public enum AudioID
 {
     //Others

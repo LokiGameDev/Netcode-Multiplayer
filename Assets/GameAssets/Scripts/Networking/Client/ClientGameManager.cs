@@ -11,12 +11,15 @@ using Unity.Netcode.Transports.UTP;
 using Unity.Netcode;
 using Unity.Networking.Transport.Relay;
 
+/// <summary>Initializes Unity services and manages the client connection.</summary>
 public class ClientGameManager : IDisposable
 {
 
     private JoinAllocation allocation;
     private NetworkClient networkClient;
 
+    /// <summary>Initializes services and authenticates the local player.</summary>
+    /// <returns>True when authentication succeeds.</returns>
     public async Task<bool> InitAsync()
     {
         await UnityServices.InitializeAsync();
@@ -30,11 +33,14 @@ public class ClientGameManager : IDisposable
         return false;
     }
 
+    /// <summary>Loads the next scene, which contains the main menu.</summary>
     public void GoToMenu()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1, LoadSceneMode.Single);
     }
 
+    /// <summary>Connects the client to a Relay allocation using a join code.</summary>
+    /// <param name="joinCode">Relay code for the host session.</param>
     public async Task StartClientAsync(string joinCode)
     {
         try
@@ -69,11 +75,13 @@ public class ClientGameManager : IDisposable
         NetworkManager.Singleton.StartClient();
     }
 
+    /// <summary>Disconnects the network client if it is active.</summary>
     public void Disconnect()
     {
         networkClient?.Disconnect();
     }
 
+    /// <summary>Releases the client network resources.</summary>
     public void Dispose()
     {
         networkClient?.Dispose();

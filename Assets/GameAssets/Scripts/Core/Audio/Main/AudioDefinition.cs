@@ -2,9 +2,12 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 [CreateAssetMenu(fileName = "AudioDefinition", menuName = "Custom/Audio/Audio Definition")]
+/// <summary>Describes the clips and playback settings for one audio ID.</summary>
 public class AudioDefinition : ScriptableObject
 {
+    /// <summary>Identifier used to request this audio definition.</summary>
     public AudioID id;
+    /// <summary>Clips available for playback.</summary>
     public AudioClip[] clips;
     [Range(0f, 1f)]
     public float Volume = 1;
@@ -26,6 +29,7 @@ public class AudioDefinition : ScriptableObject
 
     public int currentClipIndex = 0;
 
+    /// <summary>Selects the next clip according to the configured selection mode.</summary>
     public AudioClip GetClip()
     {
         if (clips == null || clips.Length == 0)
