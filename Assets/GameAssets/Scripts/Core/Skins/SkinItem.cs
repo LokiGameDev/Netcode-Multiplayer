@@ -58,12 +58,6 @@ public class SkinItem : MonoBehaviour
             skinManager.EquipSkin(skinData.skinID);
         }
 
-        bool purchased = skinManager.PurchaseSkin(skinData);
-
-        if(purchased)
-        {
-            skinEquipText.gameObject.SetActive(true);
-            skinAmountText.gameObject.SetActive(false);
-        }
+        skinManager.PurchaseSkin(skinData);
     }
 }

@@ -21,9 +21,7 @@ public class FriendRequestItem : MonoBehaviour
         this.friendsManager = friendsManager;
         this.relationship = relationship;
         friendNameText.text = relationship.Member.Profile.Name;
-        friendOnlineStatus = relationship.Member.Presence.Availability == Availability.Online;
-
-        UpdatePresence(relationship.Member.Presence.Availability);
+        friendOnlineStatus = false;
     }
 
     public async void Accept()
@@ -52,5 +50,10 @@ public class FriendRequestItem : MonoBehaviour
             friendStatusText.text = "Offline";
             friendStatusText.color = offlineStatusColor;
         }
+    }
+
+    public void DestroyItself()
+    {
+        Destroy(gameObject);
     }
 }

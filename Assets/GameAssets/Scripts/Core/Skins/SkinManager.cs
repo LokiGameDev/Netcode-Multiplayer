@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,9 +10,13 @@ public class SkinManager : MonoBehaviour
     [SerializeField] private GameObject demoPlayer;
     [SerializeField] private SkinMenuManager skinMenuManager;
     [SerializeField] private ShowNotification showNotification;
+    [SerializeField] private GameObject purchaseSkinConfirmationPanel;
+    [SerializeField] private TMP_Text skinNameText;
+    [SerializeField] private TMP_Text skinCostText;
 
     private string PlayerSkinID = "PlayerSkinID";
     private GameObject currentSkin;
+    private SkinData currentSkinForPurchase;
 
     public UnityEvent skinEquippedEvent;
 
@@ -83,17 +88,23 @@ public class SkinManager : MonoBehaviour
 
         if(amount >= skinData.skinAmount)
         {
-            skinDatatbase.PurchaseSkin(skinData.skinID);
-            EquipSkin(skinData.skinID);
-            PlayerPrefs.SetInt("PlayerGems", amount - skinData.skinAmount);
-            GameManager.Instance.PlayerSpentGems();
-            return true;
+            currentSkinForPurchase = skinData;
+            skinNameText.text = currentSkinForPurchase.skinID;
+            skinCostText.text = currentSkinForPurchase.skinAmount.ToString();
+            purchaseSkinConfirmationPanel.SetActive(true);
         }
         else
         {
             showNotification.ShowText("You don't have enough money");
         }
         return false;
+    }
+
+    public void PurchaseSkinConfirmation()
+    {
+        skinDatatbase.PurchaseSkin(currentSkinForPurchase.skinID);
+        EquipSkin(currentSkinForPurchase.skinID);
+        GameManager.Instance.PlayerSpentGems(currentSkinForPurchase.skinAmount);
     }
 
     public List<SkinData> GetAllSkins()

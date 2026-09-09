@@ -43,4 +43,10 @@ public class GameManager : MonoBehaviour
     {
         PlayerGemsAmountChanged?.Invoke();
     }
+
+    public void PlayerSpentGems(int amount)
+    {
+        PlayerPrefs.SetInt("PlayerGems", PlayerPrefs.GetInt("PlayerGems") - amount);
+        PlayerGemsAmountChanged?.Invoke();
+    }
 }

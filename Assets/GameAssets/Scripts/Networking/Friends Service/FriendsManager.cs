@@ -29,14 +29,20 @@ public class FriendsManager : MonoBehaviour
     [SerializeField] private FriendRequestItem friendRequestItemPrefab;
     [SerializeField] private GameObject noFriendsRequestObject;
 
-    [SerializeField] private GameObject loadingPanel;
+    [SerializeField] private GameObject DeleteFriendConfirmationPanel;
+    [SerializeField] private TMP_Text DeleteFriendNameText;
 
-    private List<Relationship> friendsList = new List<Relationship>();
+    [SerializeField] private GameObject loadingPanel;
 
     private Dictionary<string, FriendItem> friendItems = new();
     private Dictionary<string, FriendRequestItem> friendRequestItems = new();
 
+    private List<Relationship> friendsList = new List<Relationship>();
     private List<Relationship> friendRequests = new List<Relationship>();
+
+    private List<string> CurrentlyNotFriends = new List<string>();
+
+    private Relationship currentFriendOnDeleteRequest;
 
     private LobbyData currentInvitedLobbyData;
 
@@ -51,6 +57,8 @@ public class FriendsManager : MonoBehaviour
     {
         FriendsService.Instance.MessageReceived += OnMessageReceived;
         FriendsService.Instance.PresenceUpdated += OnPresenceUpdated;
+        FriendsService.Instance.RelationshipAdded += OnRelationShipAdded;
+        FriendsService.Instance.RelationshipDeleted += OnRelationShipRemoved;
         
         //playerIDText.text = AuthenticationService.Instance.PlayerId;
 
@@ -58,6 +66,7 @@ public class FriendsManager : MonoBehaviour
 
         noFriendsObject.SetActive(true);
         noFriendsRequestObject.SetActive(true);
+        DeleteFriendConfirmationPanel.SetActive(false);
 
         RefreshLists();
     }
@@ -66,6 +75,8 @@ public class FriendsManager : MonoBehaviour
     {
         FriendsService.Instance.MessageReceived -= OnMessageReceived;
         FriendsService.Instance.PresenceUpdated -= OnPresenceUpdated;
+        FriendsService.Instance.RelationshipAdded -= OnRelationShipAdded;
+        FriendsService.Instance.RelationshipDeleted -= OnRelationShipRemoved;
     }
 
     public void RefreshLists()
@@ -80,18 +91,32 @@ public class FriendsManager : MonoBehaviour
         {
             var friends = FriendsService.Instance.Friends;
 
-            Debug.Log(friends.Count);
+            Debug.Log($"Friends count: {friends.Count}");
 
             noFriendsObject.SetActive(friends.Count==0);
+
+            CurrentlyNotFriends.Clear();
+
+            foreach(var frnd in friendItems)
+            {
+                if(!friends.Contains(frnd.Value.GetRelationship()))
+                {
+                    CurrentlyNotFriends.Add(frnd.Key);
+                }
+            }
+
+            RemoveNonFriends();
 
             foreach(var frnd in friends)
             {
                 if(friendsList.Contains(frnd)) continue;
 
                 Debug.Log("Adding " + frnd.Member.Profile.Name + " to the friends list.");
+
                 friendsList.Add(frnd);
                 var friend = Instantiate(friendItemPrefab, friendsListParent);
                 friend.Initialize(this, frnd);
+
                 friendItems[frnd.Member.Id] = friend;
             }
         }
@@ -104,31 +129,47 @@ public class FriendsManager : MonoBehaviour
 
     public void RefreshRequestList()
     {
-        var requests = FriendsService.Instance.IncomingFriendRequests;
-
-        Debug.Log($"Incoming requests: {requests.Count}");
-
-        //displayMessage.ShowText($"You have {requests.Count} requests");
-
-        noFriendsRequestObject.SetActive(requests.Count==0);
-
-        foreach (var request in requests)
+        try
         {
-            if(friendRequests.Contains(request)) continue;
+            var requests = FriendsService.Instance.IncomingFriendRequests;
 
-            friendRequests.Add(request);
+            Debug.Log($"Incoming requests: {requests.Count}");
 
-            var friendRequest = Instantiate(friendRequestItemPrefab, friendsRequestListParent);
+            noFriendsRequestObject.SetActive(requests.Count==0);
 
-            friendRequest.Initialize(this, request);
+            foreach (var request in requests)
+            {
+                if(friendRequests.Contains(request)) continue;
 
-            friendRequestItems[request.Member.Id] = friendRequest;
+                friendRequests.Add(request);
+                var friendRequest = Instantiate(friendRequestItemPrefab, friendsRequestListParent);
+                friendRequest.Initialize(this, request);
 
-            Debug.Log(
-                $"Role: {request.Member.Role}, " +
-                $"ID: {request.Member.Id}, " +
-                $"Name: {request.Member.Profile.Name}"
-            );
+                friendRequestItems[request.Member.Id] = friendRequest;
+
+                Debug.Log(
+                    $"Role: {request.Member.Role}, " +
+                    $"ID: {request.Member.Id}, " +
+                    $"Name: {request.Member.Profile.Name}"
+                );
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.LogError(e);
+            return;
+        }
+    }
+
+    public void RemoveNonFriends()
+    {
+        foreach(var frnd in CurrentlyNotFriends)
+        {
+            Debug.Log($"Trying to remove {frnd} from friends list");
+
+            var obj = friendItems[frnd];
+            friendItems.Remove(frnd);
+            obj.DestroyItself();
         }
     }
 
@@ -138,43 +179,15 @@ public class FriendsManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(name))
             return;
-        
-        await AddFriendByNameAsync(name);
-    }
 
-    public async void AddFriendById()
-    {
-        string memberId = friendIdInputField.text.Trim();
-
-        if (string.IsNullOrEmpty(memberId))
-            return;
-
-        if (HasRelationship(memberId))
+        if (HasRelationship(name))
         {
             Debug.Log("A relationship already exists with this player.");
             return;
         }
         else
         {
-            await AddFriendByIdAsync(memberId);
-        }
-    }
-
-    private async Task AddFriendByIdAsync(string memberId)
-    {
-        try
-        {
-            Debug.Log($"Trying to add friend: [{memberId}]");
-
-            Relationship relationship =
-                await FriendsService.Instance.AddFriendAsync(memberId);
-
-            Debug.Log($"Friend request created: {relationship}");
-            displayMessage.ShowText("Success");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Failed to add [{memberId}]\n{e}");
+            await AddFriendByNameAsync(name);
         }
     }
 
@@ -190,6 +203,8 @@ public class FriendsManager : MonoBehaviour
                 await FriendsService.Instance.AddFriendByNameAsync(name);
 
             Debug.Log($"Friend request created: {relationship}");
+
+            displayMessage.ShowText("Request sent successfully!");
 
             FriendRequestSent?.Invoke();
         }
@@ -236,11 +251,11 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
-    private bool HasRelationship(string memberId)
+    private bool HasRelationship(string name)
     {
         // Check friends
         if (FriendsService.Instance.Friends
-            .Any(r => r.Member.Id == memberId))
+            .Any(r => r.Member.Profile.Name == name))
         {
             displayMessage.ShowText("You are already friends");
             return true;
@@ -248,7 +263,7 @@ public class FriendsManager : MonoBehaviour
 
         // Check incoming requests
         if (FriendsService.Instance.IncomingFriendRequests
-            .Any(r => r.Member.Id == memberId))
+            .Any(r => r.Member.Profile.Name == name))
         {
             displayMessage.ShowText("They already sent a request");
             return true;
@@ -256,7 +271,7 @@ public class FriendsManager : MonoBehaviour
 
         // Check outgoing requests
         if (FriendsService.Instance.OutgoingFriendRequests
-            .Any(r => r.Member.Id == memberId))
+            .Any(r => r.Member.Profile.Name == name))
         {
             displayMessage.ShowText("You already sent a request");
             return true;
@@ -274,7 +289,18 @@ public class FriendsManager : MonoBehaviour
 
             friendRequests.Remove(request);
 
+            if (friendRequestItems.TryGetValue(request.Member.Id, out FriendRequestItem friendRequestItem))
+            {
+                Debug.Log("Trying to delete request item");
+                friendRequestItems.Remove(request.Member.Id);
+                friendRequestItem.DestroyItself();
+            }
+
+            displayMessage.ShowText("Friend request Accepted");
+
             Debug.Log($"Relationship is now: {relationship.Type}");
+
+            RefreshLists();
         }
         catch (Exception e)
         {
@@ -292,6 +318,16 @@ public class FriendsManager : MonoBehaviour
         {
             friendRequest.UpdatePresence(@event.Presence.Availability);
         }
+    }
+
+    private void OnRelationShipAdded(IRelationshipAddedEvent @event)
+    {
+        RefreshFriendsList();
+    }
+
+    private void OnRelationShipRemoved(IRelationshipDeletedEvent @event)
+    {
+        RefreshFriendsList();
     }
 
     public List<Relationship> GetCurrentOnlineFriends()
@@ -348,6 +384,48 @@ public class FriendsManager : MonoBehaviour
         }
     }
 
+    public void DeleteFriendRequest(Relationship relationship)
+    {
+        currentFriendOnDeleteRequest = relationship;
+
+        DeleteFriendNameText.text = currentFriendOnDeleteRequest.Member.Profile.Name.Split('#')[0];;
+
+        DeleteFriendConfirmationPanel.SetActive(true);
+    }
+
+    public async void DeleteFriendConfirmation()
+    {
+        try
+        {
+            await FriendsService.Instance.DeleteFriendAsync(currentFriendOnDeleteRequest.Member.Id);
+
+            Debug.Log($"Deleted {currentFriendOnDeleteRequest.Member.Id}");
+
+            displayMessage.ShowText($"{currentFriendOnDeleteRequest.Member.Profile.Name} removed successfully");
+
+            friendsList.Remove(currentFriendOnDeleteRequest);
+
+            if (friendItems.TryGetValue(currentFriendOnDeleteRequest.Member.Id, out FriendItem friendItem))
+            {
+                friendItems.Remove(currentFriendOnDeleteRequest.Member.Id);
+                Destroy(friendItem.gameObject);
+            }
+
+            DeleteFriendConfirmationPanel.SetActive(false);
+
+            currentFriendOnDeleteRequest = null;
+
+            RefreshFriendsList();
+        }
+        catch (Exception e)
+        {
+            displayMessage.ShowText($"Something went wrong!");
+
+            Debug.LogError($"Failed to delete {currentFriendOnDeleteRequest.Member.Id}: {e}");
+        }
+    }
+
+    // Testing Purpose Only //
     public async void DeleteAllFriends()
     {
         var friends = friendsList.ToList();
