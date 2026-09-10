@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkinDatatbase
   definitions:
   - {fileID: 11400000, guid: e7127973d0828344786d94c17997bacb, type: 2}
-  - {fileID: 11400000, guid: 2393c8fcd3a3abc4db88ce301e9a081b, type: 2}
-  - {fileID: 11400000, guid: 48a7a98dca2fc8c459e728a133111bbc, type: 2}
-  - {fileID: 11400000, guid: eac1cad58684dbd45b0254960693dc0a, type: 2}
   - {fileID: 11400000, guid: d5701484ab0fe104eaf1e6844d881a30, type: 2}
+  - {fileID: 11400000, guid: 5b36bc26c88a0de439c61896f3b07a15, type: 2}
+  - {fileID: 11400000, guid: 74612351501b65e48bc74a1f90c66d9e, type: 2}
+  - {fileID: 11400000, guid: 2393c8fcd3a3abc4db88ce301e9a081b, type: 2}
+  - {fileID: 11400000, guid: eac1cad58684dbd45b0254960693dc0a, type: 2}
+  - {fileID: 11400000, guid: 48a7a98dca2fc8c459e728a133111bbc, type: 2}

@@ -11,13 +11,18 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] private TMP_Text playerNameText;
     [Tooltip("Applies the player's selected skin.")]
     [SerializeField] private PlayerSkinManager playerSkinManager;
+    [SerializeField] private PlayerAnimationManager playerAnimationManager;
 
-    public NetworkVariable<FixedString32Bytes> PlayerName = new NetworkVariable<FixedString32Bytes>();
+    public NetworkVariable<bool> IsAlive = new();
+
+    public NetworkVariable<FixedString32Bytes> PlayerName = new();
 
     /// <summary>Loads the owner's profile data and subscribes to name changes.</summary>
     public override void OnNetworkSpawn()
     {
         PlayerName.OnValueChanged += PlayerNameChanged;
+
+        IsAlive.Value = true;
 
         if(IsServer)
         {
@@ -34,6 +39,16 @@ public class PlayerManager : NetworkBehaviour
     public override void OnNetworkDespawn()
     {
         PlayerName.OnValueChanged -= PlayerNameChanged;
+    }
+
+    [Rpc(SendTo.SpecifiedInParams)]
+    public void PlayerGotAttackedRpc(RpcParams rpcParams = default)
+    {
+        if(!IsAlive.Value) return;
+
+        playerNameText.gameObject.SetActive(false);
+        IsAlive.Value = false;
+        playerAnimationManager.PlayerStateChange(PlayerState.Dead);
     }
 
     /// <summary>Updates the displayed player name.</summary>

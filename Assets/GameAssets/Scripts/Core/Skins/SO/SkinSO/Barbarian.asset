@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeaedb1f4f87642469e2ac756e7df44e, type: 3}
-  m_Name: Skeleton_Mage
+  m_Name: Barbarian
   m_EditorClassIdentifier: Assembly-CSharp::SkinData
-  skinID: Skeleton_Mage
-  skinAmount: 50
-  skinPrefab: {fileID: 7117728943004432107, guid: 9e854e6c8d9214c42b5559e1f14a43e8, type: 3}
+  skinID: Barbarian
+  skinAmount: 350
+  skinPrefab: {fileID: 6147476744301046398, guid: 9f00189e2f8a13048bf2dab826ff1c40, type: 3}

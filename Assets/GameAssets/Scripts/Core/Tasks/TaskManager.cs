@@ -62,6 +62,8 @@ public class TaskManager : NetworkBehaviour
     public void Start()
     {
         taskCompletionEffect = Instantiate(taskCompletionEffectPrefab, this.transform).GetComponent<TaskCompletionEffect>();
+        
+        RegisterTaskObjects();
     }
 
     /// <summary>Registers host callbacks and discovers world tasks.</summary>
@@ -71,8 +73,6 @@ public class TaskManager : NetworkBehaviour
 
         NetworkManager.Singleton.OnClientConnectedCallback += PlayerConnected;
         NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
-
-        RegisterTaskObjects();
     }
 
     /// <summary>Unregisters host callbacks when the manager despawns.</summary>

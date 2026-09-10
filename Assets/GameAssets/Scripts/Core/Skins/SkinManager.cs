@@ -44,6 +44,11 @@ public class SkinManager : MonoBehaviour
     /// <summary>Creates the currently equipped skin in the demo player.</summary>
     private void InitiatePlayerSkin()
     {
+        if(!skinDatatbase.Contains(PlayerPrefs.GetString(PlayerSkinID, "Default")))
+        {
+            PlayerPrefs.SetString(PlayerSkinID, "Default");
+        }
+
         SkinData skinData = skinDatatbase.Get(PlayerPrefs.GetString(PlayerSkinID, "Default"));
 
         currentSkin = Instantiate(skinData.skinPrefab, playerRoot.transform);

@@ -216,6 +216,23 @@ public class GameStateManager : NetworkBehaviour
         }
         ClientSingleton.Instance.GameManager.Disconnect();
     }
+
+    [Rpc(SendTo.Server)]
+    public void AttackedPlayerRpc(ulong clientID)
+    {
+        if (!NetworkManager.Singleton.ConnectedClients.TryGetValue(
+            clientID, out Unity.Netcode.NetworkClient client))
+            return;
+
+        PlayerManager player =
+            client.PlayerObject.GetComponent<PlayerManager>();
+
+        player.PlayerGotAttackedRpc(
+            RpcTarget.Single(clientID, RpcTargetUse.Temp)
+        );
+        
+        Debug.Log($"[SERVER] Player got attacked: {player.PlayerName.Value}");
+    }
 }
 
 /// <summary>States displayed during a multiplayer match.</summary>

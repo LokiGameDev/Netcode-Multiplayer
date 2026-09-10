@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4465079714294501419}
   - component: {fileID: 2054274632000868109}
   - component: {fileID: 5423263264430968511}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3258947759
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 1043232829
+  InScenePlacedSourceGlobalObjectIdHash: 3258947759
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -205,6 +205,10 @@ PrefabInstance:
       value: bench
       objectReference: {fileID: 0}
     - target: {fileID: 8033209120598132347, guid: 11689ed51b4181a43b2147e048e364e1, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8033209120598132347, guid: 11689ed51b4181a43b2147e048e364e1, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -234,6 +238,10 @@ PrefabInstance:
     - target: {fileID: 1826008410128876396, guid: ff961dfe6d315454db68a96ca1c604ec, type: 3}
       propertyPath: m_Name
       value: bench-damaged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1826008410128876396, guid: ff961dfe6d315454db68a96ca1c604ec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5074258015530898748, guid: ff961dfe6d315454db68a96ca1c604ec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -278,13 +286,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1826008410128876396, guid: ff961dfe6d315454db68a96ca1c604ec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3984690933667465009}
   m_SourcePrefab: {fileID: 100100000, guid: ff961dfe6d315454db68a96ca1c604ec, type: 3}
 --- !u!1 &3014870006875689930 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1826008410128876396, guid: ff961dfe6d315454db68a96ca1c604ec, type: 3}
   m_PrefabInstance: {fileID: 3495269078482129062}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3984690933667465009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3014870006875689930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshModifier
+  m_SerializedVersion: 0
+  m_OverrideArea: 1
+  m_Area: 1
+  m_OverrideGenerateLinks: 0
+  m_GenerateLinks: 0
+  m_IgnoreFromBuild: 0
+  m_ApplyToChildren: 1
+  m_AffectedAgents: ffffffff
 --- !u!4 &8568892630697526682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5074258015530898748, guid: ff961dfe6d315454db68a96ca1c604ec, type: 3}

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eeaedb1f4f87642469e2ac756e7df44e, type: 3}
-  m_Name: Skeleton_Minion
+  m_Name: Ranger
   m_EditorClassIdentifier: Assembly-CSharp::SkinData
-  skinID: Skeleton_Minion
-  skinAmount: 50
-  skinPrefab: {fileID: 4741732023375793342, guid: de2e65d25818e9d4da862d2ae2a727cd, type: 3}
+  skinID: Ranger
+  skinAmount: 300
+  skinPrefab: {fileID: 3137869776606294593, guid: dc112aac08276554f906e89382b2b119, type: 3}

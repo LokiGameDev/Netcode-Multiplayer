@@ -28,6 +28,9 @@ public class PlayerAnimationManager : NetworkBehaviour
                 break;
             case PlayerState.Crouching:
                 break;
+            case PlayerState.Dead:
+                playerAnimator.SetTrigger("IsDead");
+                break;
         }
     }
 
@@ -50,5 +53,6 @@ public enum PlayerState
     Idle,
     Moving,
     Jumping,
-    Crouching
+    Crouching,
+    Dead
 }

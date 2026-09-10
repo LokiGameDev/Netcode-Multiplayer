@@ -397,6 +397,10 @@ MonoBehaviour:
       NameHash: 507951781
       Synchronize: 1
       ParameterType: 4
+    - name: IsDead
+      NameHash: 1270110494
+      Synchronize: 1
+      ParameterType: 4
   AnimatorParametersExpanded: 0
 --- !u!136 &8206826965420690887
 CapsuleCollider:
@@ -463,6 +467,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   playerNameText: {fileID: 3735876137915435063}
   playerSkinManager: {fileID: 4739565606603568392}
+  playerAnimationManager: {fileID: 7584759123318726048}
   PlayerName:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -519,6 +524,7 @@ MonoBehaviour:
   playerModel: {fileID: 3881243274672213923}
   playerAnimationManager: {fileID: 7584759123318726048}
   playerEffectsManager: {fileID: -833232487913778737}
+  playerManager: {fileID: -7681864039773835032}
   player: {fileID: 8469659066525827524}
   cameraPivot: {fileID: 7357571002454551624}
   playerSpeed: 10

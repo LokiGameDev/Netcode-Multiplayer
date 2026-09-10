@@ -17,6 +17,7 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private PlayerAnimationManager playerAnimationManager;
     [Tooltip("Controls movement-related player effects.")]
     [SerializeField] private PlayerEffectsManager playerEffectsManager;
+    [SerializeField] private PlayerManager playerManager;
     [Tooltip("Player transform used as the camera position anchor.")]
     [SerializeField] private Transform player;
     [Tooltip("Pivot rotated by look input.")]
@@ -137,6 +138,12 @@ public class PlayerMovement : NetworkBehaviour
         // -------------------------
         // JUMP
         // -------------------------
+
+        if(!playerManager.IsAlive.Value)
+        {
+            ResetVelocity();
+            return;
+        }
 
         if (jumpRequested && IsGrounded())
         {

@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (36)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 53
@@ -192,6 +196,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -299,6 +307,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6598796129037046658, guid: b877f39675ea98540887414b6f630dcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8550009359077522295, guid: b877f39675ea98540887414b6f630dcc, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1742764285
@@ -310,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 9192596702545561099, guid: b877f39675ea98540887414b6f630dcc, type: 3}
       propertyPath: m_Name
       value: Debris (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9192596702545561099, guid: b877f39675ea98540887414b6f630dcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -329,9 +345,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 386062870}
     m_Modifications:
+    - target: {fileID: 4377693247015029578, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4499981792633272538, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
       propertyPath: m_Name
       value: Tomb (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499981792633272538, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5312231833124454449, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -340,6 +364,10 @@ PrefabInstance:
     - target: {fileID: 5312231833124454449, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 678721616
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840040625511153700, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9093251524821281032, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -403,6 +431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.075
@@ -465,6 +497,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-end (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14
@@ -526,6 +562,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -666,6 +706,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (65)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.925
@@ -727,6 +771,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -921,6 +969,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalScale.x
@@ -1203,6 +1255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-debris (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1262,6 +1318,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1324,6 +1384,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1519,6 +1583,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-decorative (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1299404834362275447, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2041886842911608507, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.970001
@@ -1580,6 +1648,10 @@ PrefabInstance:
     - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_Name
       value: gravestone-bevel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalScale.x
@@ -1866,6 +1938,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross
       objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -1924,6 +2000,81 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
   m_PrefabInstance: {fileID: 96845856}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &101139283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101139284}
+  - component: {fileID: 101139285}
+  - component: {fileID: 101139286}
+  m_Layer: 0
+  m_Name: MonsterManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &101139284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101139283}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &101139285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101139283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 3872608855
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  <InScenePlaced>k__BackingField: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!114 &101139286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101139283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c64d09599238ae14c890e832f49a8ee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterManager
+  ShowTopMostFoldoutHeaderGroup: 1
+  monsterData:
+  - monsterType: 0
+    monsterPrefab: {fileID: 1442325320179489878, guid: d4c1f718f48192c4191a4c9febda0ac3, type: 3}
 --- !u!1 &108198590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2011,6 +2162,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (22)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7
@@ -2072,6 +2227,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2272,6 +2431,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (55)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -47
@@ -2333,6 +2496,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2396,6 +2563,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (45)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.325
@@ -2457,6 +2628,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (64)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2520,6 +2695,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-broken (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.0999985
@@ -2581,6 +2760,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2671,6 +2854,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -400, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &142470529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 142470530}
+  m_Layer: 0
+  m_Name: =======Managers=======
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &142470530
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142470529}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.23096, y: 0.5, z: -9.71776}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &148168947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2722,6 +2936,10 @@ PrefabInstance:
     - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
       propertyPath: m_Name
       value: crypt (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2793,6 +3011,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-debris
       objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2814,6 +3036,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2876,6 +3102,10 @@ PrefabInstance:
     - target: {fileID: 1299404834362275447, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
       propertyPath: m_Name
       value: gravestone-decorative (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299404834362275447, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2041886842911608507, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2979,6 +3209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-debris (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3000,6 +3234,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3103,6 +3341,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-debris
       objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3124,6 +3366,10 @@ PrefabInstance:
     - target: {fileID: 1299404834362275447, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
       propertyPath: m_Name
       value: gravestone-decorative
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299404834362275447, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2041886842911608507, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3186,6 +3432,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3376,6 +3626,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.074998
@@ -3523,6 +3777,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1089238636}
     m_Modifications:
+    - target: {fileID: 1494524536464403821, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581996236258363982, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3531730074013822358, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1
@@ -3563,9 +3825,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4920064069253285043, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079934908036235977, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272179093255949170, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775481484593651369, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078978025051466046, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398679459385456763, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8523607404002588959, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
       propertyPath: m_Name
       value: lightpost-all (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8523607404002588959, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3674,6 +3964,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-debris (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3700,6 +3994,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -3807,6 +4105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross-large (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.91
@@ -3868,6 +4170,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -3978,6 +4284,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross-large (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -4047,6 +4357,10 @@ PrefabInstance:
     - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_Name
       value: gravestone-bevel (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4147,6 +4461,10 @@ PrefabInstance:
     - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_Name
       value: gravestone-bevel (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4479,6 +4797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42
@@ -4581,6 +4903,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4602,6 +4928,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -4673,6 +5003,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -4743,6 +5077,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-end (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.94
@@ -4804,6 +5142,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5115,6 +5457,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-curve-small (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3104239086276608701, guid: e305a03947d1a544ca9dd1fff3b09072, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5136,6 +5482,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (62)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5230,6 +5580,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross-large (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -5300,6 +5654,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28
@@ -5361,6 +5719,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5424,6 +5786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-end
       objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.674999
@@ -5485,6 +5851,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalScale.x
@@ -5556,6 +5926,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5614,6 +5988,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 869172606}
     m_Modifications:
+    - target: {fileID: 1494524536464403821, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581996236258363982, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3531730074013822358, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -5662,9 +6044,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4920064069253285043, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079934908036235977, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272179093255949170, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775481484593651369, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078978025051466046, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398679459385456763, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8523607404002588959, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
       propertyPath: m_Name
       value: lightpost-all (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8523607404002588959, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5687,6 +6097,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5749,6 +6163,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalScale.x
@@ -5825,6 +6243,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross
       objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.91
@@ -5886,6 +6308,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5988,7 +6414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 386062870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TaskObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6076,6 +6502,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-debris (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6097,6 +6527,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6275,6 +6709,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6294,7 +6732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 418336937}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: '|--InnerWalls--|'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6362,6 +6800,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-end (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14
@@ -6424,6 +6866,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (27)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -35
@@ -6485,6 +6931,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -6689,6 +7139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.324999
@@ -6750,6 +7204,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalScale.x
@@ -6861,6 +7319,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6923,6 +7385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-column (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6944,6 +7410,10 @@ PrefabInstance:
     - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_Name
       value: gravestone-broken (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7217,6 +7687,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2128865163}
     m_Modifications:
+    - target: {fileID: 2068585830895584752, guid: a87ee5eb81a122b4aaa85859b07fd27e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4059128149674196105, guid: a87ee5eb81a122b4aaa85859b07fd27e, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -7269,9 +7743,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6905781653466759103, guid: a87ee5eb81a122b4aaa85859b07fd27e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8467887214918978751, guid: a87ee5eb81a122b4aaa85859b07fd27e, type: 3}
       propertyPath: m_Name
       value: lightpost-single (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8467887214918978751, guid: a87ee5eb81a122b4aaa85859b07fd27e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7335,6 +7817,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7356,6 +7842,10 @@ PrefabInstance:
     - target: {fileID: 987600100481560828, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
       propertyPath: m_Name
       value: iron-fence-border-column (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 987600100481560828, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2513495841619511539, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7419,6 +7909,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-end (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14
@@ -7480,6 +7974,10 @@ PrefabInstance:
     - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_Name
       value: brick-wall-end (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7583,6 +8081,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7604,6 +8106,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -7672,7 +8178,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 488129260}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WorldObjects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7714,6 +8220,10 @@ PrefabInstance:
     - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_Name
       value: brick-wall-end (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7817,6 +8327,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-curve-small (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 3104239086276608701, guid: e305a03947d1a544ca9dd1fff3b09072, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7839,7 +8353,8 @@ GameObject:
   - component: {fileID: 496645831}
   - component: {fileID: 496645830}
   - component: {fileID: 496645829}
-  m_Layer: 0
+  - component: {fileID: 496645832}
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7939,6 +8454,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496645827}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &496645832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496645827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: -1372625422
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 72
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 2658fd24db3628f4dbb5e2b77165591c, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1001 &519137939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7991,6 +8538,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8055010779467645315, guid: a9e8cbba19a9bb04c9b06beeb6fb7ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8012,6 +8563,10 @@ PrefabInstance:
     - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_Name
       value: brick-wall-end (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8074,6 +8629,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -8185,6 +8744,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-debris
       objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8206,6 +8769,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8285,7 +8852,7 @@ Transform:
   m_GameObject: {fileID: 555532419}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.25728, y: 0.5, z: -26.19853}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8471,6 +9038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8490,7 +9061,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 579375350}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: '|--Fences--|'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8579,6 +9150,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8681,6 +9256,10 @@ PrefabInstance:
     - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
       propertyPath: m_Name
       value: gravestone-debris (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8818,6 +9397,10 @@ PrefabInstance:
     - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
       propertyPath: m_Name
       value: cross (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9163,6 +9746,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-bevel (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.040001
@@ -9224,6 +9811,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalScale.x
@@ -9294,6 +9885,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -9427,6 +10022,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-broken (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.789999
@@ -9488,6 +10087,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9591,9 +10194,25 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 1572234226
       objectReference: {fileID: 0}
+    - target: {fileID: 2843533348269632337, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535649602741900460, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154576969645480444, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7633310649898736898, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
       propertyPath: m_Name
       value: Light (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633310649898736898, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9616,6 +10235,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9794,6 +10417,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-decorative (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1299404834362275447, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2041886842911608507, guid: 94aabd7b6d7eac84e9113250ba7d0c3f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.9899998
@@ -9856,6 +10483,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-bevel
       objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.01
@@ -9906,6 +10537,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
   m_PrefabInstance: {fileID: 672284892}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &681107633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681107634}
+  m_Layer: 0
+  m_Name: =======   World    =======
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &681107634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681107633}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.23096, y: 0.5, z: -9.71776}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &681397229
 GameObject:
   m_ObjectHideFlags: 0
@@ -10095,6 +10757,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-curve-small (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3104239086276608701, guid: e305a03947d1a544ca9dd1fff3b09072, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10116,6 +10782,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -10187,6 +10857,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-flat (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.01
@@ -10248,6 +10922,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -10406,7 +11084,7 @@ GameObject:
   m_Component:
   - component: {fileID: 704421712}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10480,9 +11158,25 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 4189480992
       objectReference: {fileID: 0}
+    - target: {fileID: 2843533348269632337, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535649602741900460, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154576969645480444, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7633310649898736898, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
       propertyPath: m_Name
       value: Light (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633310649898736898, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10718,6 +11412,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-bevel (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -10939,7 +11637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 784317053}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: '|--OuterWalls--|'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11122,6 +11820,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11322,6 +12024,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (28)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -42
@@ -11424,6 +12130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11445,6 +12155,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11508,6 +12222,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-wide (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -11569,6 +12287,10 @@ PrefabInstance:
     - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_Name
       value: brick-wall-end (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11632,6 +12354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-end (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -52.75
@@ -11691,7 +12417,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 869172606}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: '|--Area 1--|'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11805,6 +12531,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11826,6 +12556,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (66)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11928,6 +12662,10 @@ PrefabInstance:
     - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
       propertyPath: m_Name
       value: crypt (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12232,6 +12970,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (38)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 53
@@ -12293,6 +13035,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12477,6 +13223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12498,6 +13248,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12698,6 +13452,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross-large (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.170002
@@ -12760,6 +13518,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (46)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -47
@@ -12821,6 +13583,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12923,6 +13689,10 @@ PrefabInstance:
     - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
       propertyPath: m_Name
       value: cross (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13228,6 +13998,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: iron-fence-border
       objectReference: {fileID: 0}
+    - target: {fileID: 60591261030568231, guid: f6bad0eb2475f114aae5441e590afa1c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3087075641941022600, guid: f6bad0eb2475f114aae5441e590afa1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31.675
@@ -13289,6 +14063,10 @@ PrefabInstance:
     - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_Name
       value: brick-wall-end (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13525,6 +14303,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6598796129037046658, guid: b877f39675ea98540887414b6f630dcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8550009359077522295, guid: b877f39675ea98540887414b6f630dcc, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3162195717
@@ -13536,6 +14318,10 @@ PrefabInstance:
     - target: {fileID: 9192596702545561099, guid: b877f39675ea98540887414b6f630dcc, type: 3}
       propertyPath: m_Name
       value: Debris (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9192596702545561099, guid: b877f39675ea98540887414b6f630dcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13635,8 +14421,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27075796038af44fb9f6051f345497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundImageMover
+  effectType: 0
   image: {fileID: 996462042}
   scrollSpeed: {x: -0.015, y: -0.015}
+  rotatingSpeed: 10
 --- !u!1001 &998408687
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13648,6 +14436,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13711,6 +14503,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (35)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 53
@@ -13772,6 +14568,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -14641,6 +15441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-end (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.05
@@ -14702,6 +15506,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15052,6 +15860,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21
@@ -15154,6 +15966,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8055010779467645315, guid: a9e8cbba19a9bb04c9b06beeb6fb7ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15216,6 +16032,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-curve-small
       objectReference: {fileID: 0}
+    - target: {fileID: 3104239086276608701, guid: e305a03947d1a544ca9dd1fff3b09072, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15237,6 +16057,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -15305,7 +16129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1089238636}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: '|--Area 2--|'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15374,6 +16198,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (54)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45.675
@@ -15435,6 +16263,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15760,6 +16592,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -16143,6 +16979,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-flat (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -37.03
@@ -16245,6 +17085,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8055010779467645315, guid: a9e8cbba19a9bb04c9b06beeb6fb7ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16306,6 +17150,10 @@ PrefabInstance:
     - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
       propertyPath: m_Name
       value: cross
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16678,6 +17526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8055010779467645315, guid: a9e8cbba19a9bb04c9b06beeb6fb7ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16699,6 +17551,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16895,6 +17751,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-bevel (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -16961,6 +17821,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1410473197}
     m_Modifications:
+    - target: {fileID: 1494524536464403821, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581996236258363982, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3531730074013822358, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.29000092
@@ -17001,9 +17869,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4920064069253285043, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079934908036235977, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272179093255949170, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775481484593651369, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078978025051466046, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398679459385456763, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8523607404002588959, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
       propertyPath: m_Name
       value: lightpost-all (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8523607404002588959, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17026,6 +17922,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17168,6 +18068,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-debris (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17261,6 +18165,10 @@ PrefabInstance:
     - target: {fileID: 4697836301948775090, guid: 19a7d68f7ec3a9c4888c6b843aedba62, type: 3}
       propertyPath: m_Name
       value: gravestone-round
+      objectReference: {fileID: 0}
+    - target: {fileID: 4697836301948775090, guid: 19a7d68f7ec3a9c4888c6b843aedba62, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4818073957344608956, guid: 19a7d68f7ec3a9c4888c6b843aedba62, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17363,6 +18271,10 @@ PrefabInstance:
     - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
       propertyPath: m_Name
       value: cross-column
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17706,6 +18618,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17727,6 +18643,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -17798,6 +18718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (58)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.675
@@ -17859,6 +18783,10 @@ PrefabInstance:
     - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_Name
       value: brick-wall-end (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17922,6 +18850,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (51)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.325003
@@ -17984,6 +18916,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.119999
@@ -18045,6 +18981,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18148,6 +19088,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood
       objectReference: {fileID: 0}
+    - target: {fileID: 8055010779467645315, guid: a9e8cbba19a9bb04c9b06beeb6fb7ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18169,6 +19113,10 @@ PrefabInstance:
     - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_Name
       value: gravestone-broken (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18272,6 +19220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18293,6 +19245,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18493,6 +19449,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-flat (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -18568,6 +19528,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-broken (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.16
@@ -18629,6 +19593,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -18740,6 +19708,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-column (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18802,6 +19774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-column (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18823,6 +19799,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalPosition.x
@@ -18963,6 +19943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -18984,6 +19968,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19046,6 +20034,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19286,6 +20278,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -19307,6 +20303,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19369,6 +20369,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (61)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19649,6 +20653,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: iron-fence-border-column (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 987600100481560828, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2513495841619511539, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -38.675
@@ -19710,6 +20718,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19813,6 +20825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7
@@ -19874,6 +20890,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19951,7 +20971,7 @@ Transform:
   m_GameObject: {fileID: 1405761655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.25728, y: 0.5, z: -26.19853}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19986,7 +21006,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1410473197}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: '|--Area 4--|'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20061,6 +21081,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.130001
@@ -20122,6 +21146,10 @@ PrefabInstance:
     - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_Name
       value: gravestone-broken (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20224,6 +21252,10 @@ PrefabInstance:
     - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
       propertyPath: m_Name
       value: cross-column (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20384,6 +21416,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-flat (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -20453,6 +21489,10 @@ PrefabInstance:
     - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_Name
       value: gravestone-broken (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20531,7 +21571,7 @@ Transform:
   m_GameObject: {fileID: 1451661679}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20595,6 +21635,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.074999
@@ -20657,6 +21701,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-flat
       objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.9200001
@@ -20718,6 +21766,10 @@ PrefabInstance:
     - target: {fileID: 987600100481560828, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
       propertyPath: m_Name
       value: iron-fence-border-column (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 987600100481560828, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2513495841619511539, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20821,6 +21873,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-column (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20842,6 +21898,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -21021,6 +22081,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-bevel (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -21130,6 +22194,10 @@ PrefabInstance:
     - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
       propertyPath: m_Name
       value: crypt (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21440,6 +22508,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (34)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 53
@@ -21713,6 +22785,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2128865163}
     m_Modifications:
+    - target: {fileID: 1494524536464403821, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2581996236258363982, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3531730074013822358, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
       propertyPath: m_LocalPosition.x
       value: -31
@@ -21753,9 +22833,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4920064069253285043, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5079934908036235977, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272179093255949170, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775481484593651369, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7078978025051466046, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7398679459385456763, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8523607404002588959, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
       propertyPath: m_Name
       value: lightpost-all
+      objectReference: {fileID: 0}
+    - target: {fileID: 8523607404002588959, guid: c7b6b012e59b76c4e94530fcca677889, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -21819,6 +22927,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21840,6 +22952,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22210,6 +23326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (69)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38.925
@@ -22347,6 +23467,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (52)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -47
@@ -22408,6 +23532,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22471,6 +23599,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross-large (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.099998
@@ -22532,6 +23664,10 @@ PrefabInstance:
     - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_Name
       value: brick-wall-end (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22635,6 +23771,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -22656,6 +23796,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -22727,6 +23871,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall-end (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.925
@@ -22789,6 +23937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -35
@@ -22850,6 +24002,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23050,6 +24206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (60)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.925
@@ -23112,6 +24272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-wide (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -23173,6 +24337,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (74)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23326,6 +24494,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23347,6 +24519,10 @@ PrefabInstance:
     - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_Name
       value: gravestone-cross-large (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 580077334691935716, guid: 6b794464a7b066e408c5480b45852443, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3980693959164287699, guid: 6b794464a7b066e408c5480b45852443, type: 3}
       propertyPath: m_LocalScale.x
@@ -23417,6 +24593,10 @@ PrefabInstance:
     - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_Name
       value: gravestone-bevel (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalPosition.x
@@ -23518,6 +24698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7
@@ -23579,6 +24763,10 @@ PrefabInstance:
     - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_Name
       value: gravestone-bevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 6794277844931850266, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8430625343666446363, guid: a1a0a8f69ed29d84d88e4999344e9b00, type: 3}
       propertyPath: m_LocalScale.x
@@ -23787,6 +24975,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-broken
       objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.060001
@@ -23849,6 +25041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-flat (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -25
@@ -23910,6 +25106,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24121,6 +25321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-column
       objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24257,6 +25461,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: iron-fence-border-column (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 987600100481560828, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2513495841619511539, guid: a7db59dd7756955439885ba2216ba65c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 31.93
@@ -24319,6 +25527,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (42)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 53
@@ -24380,6 +25592,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (56)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24483,6 +25699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -24504,6 +25724,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24602,6 +25826,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (50)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -47
@@ -24664,6 +25892,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (32)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 53
@@ -24725,6 +25957,10 @@ PrefabInstance:
     - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_Name
       value: gravestone-broken
+      objectReference: {fileID: 0}
+    - target: {fileID: 1681406098930447066, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4141449124691507150, guid: 484837473b8898b458a497c094b8ad5f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24863,6 +26099,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (41)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 53
@@ -24924,6 +26164,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25050,6 +26294,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1848207293}
   m_CullTransparentMesh: 1
+--- !u!1 &1851492348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1851492349}
+  m_Layer: 0
+  m_Name: =======  Others   =======
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1851492349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1851492348}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.23096, y: 0.5, z: -9.71776}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1863722603
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25061,6 +26336,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25124,6 +26403,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (24)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21
@@ -25185,6 +26468,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25248,6 +26535,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-wide (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.9399986
@@ -25310,6 +26601,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: iron-fence-border (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 60591261030568231, guid: f6bad0eb2475f114aae5441e590afa1c, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3087075641941022600, guid: f6bad0eb2475f114aae5441e590afa1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 24.93
@@ -25369,7 +26664,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1878958228}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: '|--Boss Area--|'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25445,6 +26740,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8055010779467645315, guid: a9e8cbba19a9bb04c9b06beeb6fb7ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25466,6 +26765,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25569,6 +26872,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25631,6 +26938,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25652,6 +26963,10 @@ PrefabInstance:
     - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_Name
       value: brick-wall-end (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2200810012234859369, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25762,6 +27077,10 @@ PrefabInstance:
     - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
       propertyPath: m_Name
       value: gravestone-debris (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036180028986985924, guid: 35c31d31d60aa344695712b488326b03, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -25887,6 +27206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 8055010779467645315, guid: a9e8cbba19a9bb04c9b06beeb6fb7ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -25908,6 +27231,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25970,6 +27297,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26073,6 +27404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26135,6 +27470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-column (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26195,8 +27534,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b27075796038af44fb9f6051f345497b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BackgroundImageMover
+  effectType: 0
   image: {fileID: 1927048491}
   scrollSpeed: {x: -0.015, y: -0.015}
+  rotatingSpeed: 10
 --- !u!114 &1927048491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26287,6 +27628,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-wood (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8055010779467645315, guid: a9e8cbba19a9bb04c9b06beeb6fb7ef0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26349,6 +27694,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26370,6 +27719,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26433,6 +27786,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-flat (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.879999
@@ -26494,6 +27851,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -26597,6 +27958,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crypt (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 8297812611981808724, guid: 75f2e5a06dc26ee48a4e7e57f184cba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26618,6 +27983,10 @@ PrefabInstance:
     - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_Name
       value: gravestone-cross (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
@@ -26760,6 +28129,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 386062870}
     m_Modifications:
+    - target: {fileID: 3014870006875689930, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3467351031406864537, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -34.97434
@@ -26808,9 +28181,17 @@ PrefabInstance:
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 3258947759
       objectReference: {fileID: 0}
+    - target: {fileID: 4929502817010704695, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6923989930943475874, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
       propertyPath: m_Name
       value: Chair (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923989930943475874, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26870,9 +28251,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219436849930541900, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882251690465662421, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3916773119189555408, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
       propertyPath: m_Name
       value: BrokenTomb (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3916773119189555408, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4323216972636616793, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -26881,6 +28274,10 @@ PrefabInstance:
     - target: {fileID: 4323216972636616793, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 2627618244
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998476190367207458, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -26943,10 +28340,6 @@ PrefabInstance:
     - target: {fileID: 4465079714294501419, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1043232829
-      objectReference: {fileID: 0}
-    - target: {fileID: 4465079714294501419, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 3258947759
       objectReference: {fileID: 0}
     - target: {fileID: 6923989930943475874, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
       propertyPath: m_Name
@@ -27149,6 +28542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (31)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.325
@@ -27210,6 +28607,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27313,6 +28714,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-column (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27334,6 +28739,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27529,6 +28938,10 @@ PrefabInstance:
     - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_Name
       value: gravestone-wide (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884294173869708363, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5846418426123998910, guid: 8c41f746056bdda48bbadea611211d97, type: 3}
       propertyPath: m_LocalPosition.x
@@ -27791,6 +29204,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (16)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7
@@ -28026,6 +29443,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2052780365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052780366}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2052780366
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052780365}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2114971571}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2053314676
 GameObject:
   m_ObjectHideFlags: 0
@@ -28307,6 +29755,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: gravestone-cross (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 3128862737049269142, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7938982836049299350, guid: 96cfd30e284eac4499d885a11eff7805, type: 3}
       propertyPath: m_LocalScale.x
       value: 3
@@ -28413,6 +29865,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6598796129037046658, guid: b877f39675ea98540887414b6f630dcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8550009359077522295, guid: b877f39675ea98540887414b6f630dcc, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 3177869344
@@ -28424,6 +29880,10 @@ PrefabInstance:
     - target: {fileID: 9192596702545561099, guid: b877f39675ea98540887414b6f630dcc, type: 3}
       propertyPath: m_Name
       value: Debris (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9192596702545561099, guid: b877f39675ea98540887414b6f630dcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28446,6 +29906,10 @@ PrefabInstance:
     - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_Name
       value: brick-wall (54)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28509,6 +29973,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (75)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: 31.925
@@ -28571,6 +30039,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: brick-wall (47)
       objectReference: {fileID: 0}
+    - target: {fileID: 4037861209441925629, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
       propertyPath: m_LocalPosition.x
       value: -47
@@ -28621,6 +30093,75 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8647336308411588893, guid: aa49e557f30f3dc4aa964980e4765718, type: 3}
   m_PrefabInstance: {fileID: 2108487795}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2114971570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2114971571}
+  - component: {fileID: 2114971573}
+  - component: {fileID: 2114971572}
+  m_Layer: 0
+  m_Name: SpawnTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2114971571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114971570}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.04, y: 1.5, z: 31}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2052780366}
+  m_Father: {fileID: 2123189347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2114971572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114971570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7069831f0bcc6e4448c2ef4dac4d27bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterSpawnTrigger
+  monsterType: 0
+  spawnPoint: {fileID: 2052780366}
+--- !u!65 &2114971573
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2114971570}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 2, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2115866955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28672,6 +30213,10 @@ PrefabInstance:
     - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
       propertyPath: m_Name
       value: cross (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -28735,6 +30280,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross
       objectReference: {fileID: 0}
+    - target: {fileID: 8037295211354094124, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28745,6 +30294,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5723159397155404259, guid: 6ce1c84098070f04595b307e4419885e, type: 3}
   m_PrefabInstance: {fileID: 2119841442}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2123189346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2123189347}
+  m_Layer: 0
+  m_Name: MonsterSpawnTriggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2123189347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123189346}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2114971571}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2128865162
 GameObject:
   m_ObjectHideFlags: 0
@@ -28754,7 +30335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2128865163}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: '|--Area 3--|'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28869,6 +30450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: cross-column (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5628301348560926467, guid: 53207326bae33da4fae3ef8697fdeee0, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -28890,6 +30475,10 @@ PrefabInstance:
     - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_Name
       value: gravestone-flat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1657801212437351929, guid: 94a985503c9f9b442a999567045505f5, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3874125810861190030, guid: 94a985503c9f9b442a999567045505f5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -28989,6 +30578,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6598796129037046658, guid: b877f39675ea98540887414b6f630dcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8550009359077522295, guid: b877f39675ea98540887414b6f630dcc, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1310711834
@@ -29000,6 +30593,10 @@ PrefabInstance:
     - target: {fileID: 9192596702545561099, guid: b877f39675ea98540887414b6f630dcc, type: 3}
       propertyPath: m_Name
       value: Debris
+      objectReference: {fileID: 0}
+    - target: {fileID: 9192596702545561099, guid: b877f39675ea98540887414b6f630dcc, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29054,9 +30651,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2219436849930541900, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882251690465662421, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3916773119189555408, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
       propertyPath: m_Name
       value: BrokenTomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 3916773119189555408, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4323216972636616793, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -29065,6 +30674,10 @@ PrefabInstance:
     - target: {fileID: 4323216972636616793, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 2627618244
+      objectReference: {fileID: 0}
+    - target: {fileID: 8998476190367207458, guid: 3a6976df5e48a78448f611c7622472f6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29123,9 +30736,25 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 544883292
       objectReference: {fileID: 0}
+    - target: {fileID: 2843533348269632337, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535649602741900460, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4154576969645480444, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7633310649898736898, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
       propertyPath: m_Name
       value: Light
+      objectReference: {fileID: 0}
+    - target: {fileID: 7633310649898736898, guid: f8ea79a1d4bb3444395f1ded516e8e14, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29140,9 +30769,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 386062870}
     m_Modifications:
+    - target: {fileID: 4377693247015029578, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4499981792633272538, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
       propertyPath: m_Name
       value: Tomb
+      objectReference: {fileID: 0}
+    - target: {fileID: 4499981792633272538, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5312231833124454449, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
       propertyPath: GlobalObjectIdHash
@@ -29151,6 +30788,10 @@ PrefabInstance:
     - target: {fileID: 5312231833124454449, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 678721616
+      objectReference: {fileID: 0}
+    - target: {fileID: 6840040625511153700, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9093251524821281032, guid: 5ad69d18bc225a74c99f7589729fe47a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -29205,6 +30846,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 386062870}
     m_Modifications:
+    - target: {fileID: 3014870006875689930, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3467351031406864537, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 45.515663
@@ -29253,9 +30898,17 @@ PrefabInstance:
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
       value: 3258947759
       objectReference: {fileID: 0}
+    - target: {fileID: 4929502817010704695, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6923989930943475874, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
       propertyPath: m_Name
       value: Chair
+      objectReference: {fileID: 0}
+    - target: {fileID: 6923989930943475874, guid: b51b22920ec65d445a80abd93a4d72a7, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29266,15 +30919,20 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 318677346}
-  - {fileID: 203844589}
-  - {fileID: 1016691074}
-  - {fileID: 488129260}
-  - {fileID: 329818938}
-  - {fileID: 83043999}
-  - {fileID: 704421712}
-  - {fileID: 386062870}
-  - {fileID: 747166465}
+  - {fileID: 142470530}
   - {fileID: 555532420}
   - {fileID: 1405761656}
   - {fileID: 1451661680}
+  - {fileID: 101139284}
+  - {fileID: 681107634}
+  - {fileID: 318677346}
+  - {fileID: 203844589}
+  - {fileID: 1016691074}
+  - {fileID: 704421712}
+  - {fileID: 747166465}
+  - {fileID: 1851492349}
+  - {fileID: 488129260}
+  - {fileID: 329818938}
+  - {fileID: 83043999}
+  - {fileID: 386062870}
+  - {fileID: 2123189347}

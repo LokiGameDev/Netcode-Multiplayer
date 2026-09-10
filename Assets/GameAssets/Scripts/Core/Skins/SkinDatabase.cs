@@ -48,4 +48,21 @@ public class SkinDatatbase : ScriptableObject
             }
         }
     }
+
+    /// <summary>
+    /// Returns whether the database contains the skinID
+    /// </summary>
+    /// <param name="skinID">SkinID of the particular skin</param>
+    /// <returns>Presence of SkinID in database</returns>
+    public bool Contains(string skinID)
+    {
+        foreach(var skin in definitions)
+        {
+            if(skin.skinID == skinID)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

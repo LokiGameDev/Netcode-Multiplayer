@@ -33625,14 +33625,18 @@ MonoBehaviour:
   skinImageRefs:
   - skinData: {fileID: 11400000, guid: e7127973d0828344786d94c17997bacb, type: 2}
     image: {fileID: 21300000, guid: e59c4b871723a7549a49bcebe7c1f9f1, type: 3}
-  - skinData: {fileID: 11400000, guid: 2393c8fcd3a3abc4db88ce301e9a081b, type: 2}
-    image: {fileID: 21300000, guid: a6834f5810d9d80478d02c5021f042c3, type: 3}
-  - skinData: {fileID: 11400000, guid: 48a7a98dca2fc8c459e728a133111bbc, type: 2}
-    image: {fileID: 21300000, guid: 3d4039bbb3cee62418ed0b38eb64f8cd, type: 3}
-  - skinData: {fileID: 11400000, guid: eac1cad58684dbd45b0254960693dc0a, type: 2}
-    image: {fileID: 21300000, guid: 3bfe06116dfdd2a47854c108de748ece, type: 3}
   - skinData: {fileID: 11400000, guid: d5701484ab0fe104eaf1e6844d881a30, type: 2}
-    image: {fileID: 21300000, guid: d6d999d728969c64781fb69598547aa8, type: 3}
+    image: {fileID: 21300000, guid: c7ede5d279f823849bbac79671a712f7, type: 3}
+  - skinData: {fileID: 11400000, guid: 5b36bc26c88a0de439c61896f3b07a15, type: 2}
+    image: {fileID: 21300000, guid: 26f687cbe21dfec4081e211ae0bf8b8c, type: 3}
+  - skinData: {fileID: 11400000, guid: 74612351501b65e48bc74a1f90c66d9e, type: 2}
+    image: {fileID: 21300000, guid: 247d6922b76da6245a54ecb870bd15f6, type: 3}
+  - skinData: {fileID: 11400000, guid: 2393c8fcd3a3abc4db88ce301e9a081b, type: 2}
+    image: {fileID: 21300000, guid: fe2a6f346e7301c41b40496a82deb25f, type: 3}
+  - skinData: {fileID: 11400000, guid: eac1cad58684dbd45b0254960693dc0a, type: 2}
+    image: {fileID: 21300000, guid: a7ea8ba1528ad0446b373ea825cd52ba, type: 3}
+  - skinData: {fileID: 11400000, guid: 48a7a98dca2fc8c459e728a133111bbc, type: 2}
+    image: {fileID: 21300000, guid: 5f468cf1f8bdc264c92a57b01760c956, type: 3}
 --- !u!1 &2135909828
 GameObject:
   m_ObjectHideFlags: 0

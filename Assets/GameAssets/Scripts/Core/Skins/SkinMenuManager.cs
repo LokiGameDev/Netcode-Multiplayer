@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine.UI;
 using UnityEngine;
 
 /// <summary>Builds and updates the skin selection list.</summary>
@@ -33,12 +32,14 @@ public class SkinMenuManager : MonoBehaviour
     {
         skinManager = manager;
         skinDatas = skinManager.GetAllSkins();
+
         foreach(var skin in skinDatas)
         {
             Sprite image = GetSpriteForSkin(skin);
             var item = Instantiate(skinItemPrefab, skinsContainer).GetComponent<SkinItem>();
             item.SetUp(skin, skinManager, image);
             skinItems.Add(item);
+
             if(PlayerPrefs.GetString("PlayerSkinID")==skin.skinID) item.EquipState(true);
         }
     }
