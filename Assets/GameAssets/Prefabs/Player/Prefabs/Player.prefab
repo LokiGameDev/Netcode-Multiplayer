@@ -144,6 +144,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5838228048669051272}
+  - {fileID: 1349372013999785079}
   m_Father: {fileID: 8469659066525827524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -237,6 +238,7 @@ GameObject:
   - component: {fileID: 4199922947359653503}
   - component: {fileID: -833232487913778737}
   - component: {fileID: 4739565606603568392}
+  - component: {fileID: 1797131060481978694}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -400,6 +402,10 @@ MonoBehaviour:
     - name: IsDead
       NameHash: 1270110494
       Synchronize: 1
+      ParameterType: 9
+    - name: IsAlive
+      NameHash: -695135503
+      Synchronize: 1
       ParameterType: 4
   AnimatorParametersExpanded: 0
 --- !u!136 &8206826965420690887
@@ -468,6 +474,13 @@ MonoBehaviour:
   playerNameText: {fileID: 3735876137915435063}
   playerSkinManager: {fileID: 4739565606603568392}
   playerAnimationManager: {fileID: 7584759123318726048}
+  playerRigidBody: {fileID: 8033918139363268815}
+  playerReviver: {fileID: 1797131060481978694}
+  IsAlive:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
   PlayerName:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -578,7 +591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteractor
   ShowTopMostFoldoutHeaderGroup: 1
   inputReader: {fileID: 11400000, guid: 1d6586d989430884ba58ee5504be2001, type: 2}
-  interactionRange: 0
+  interactionRange: 2
   interactionUI: {fileID: 6162657162493609497}
   playerTaskManager: {fileID: 4199922947359653503}
 --- !u!114 &4199922947359653503
@@ -663,6 +676,20 @@ MonoBehaviour:
   playerAnimationManager: {fileID: 7584759123318726048}
   networkAnimator: {fileID: -8812964681379110139}
   playerSkinRoot: {fileID: 4510111610798757145}
+--- !u!114 &1797131060481978694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4799450722047137115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d92045cf487fda4281f2412fff16f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerReviver
+  playerManager: {fileID: -7681864039773835032}
+  playerHealUI: {fileID: 8897575683984380459}
 --- !u!1 &5971733643882037955
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,6 +962,129 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!1 &8897575683984380459
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1349372013999785079}
+  - component: {fileID: 2546118248062952645}
+  - component: {fileID: 6845197056838163936}
+  - component: {fileID: 4291914156570372449}
+  - component: {fileID: 4929622997681698101}
+  m_Layer: 5
+  m_Name: DeathUi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1349372013999785079
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897575683984380459}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5334022758507812008}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -1.51}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2546118248062952645
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897575683984380459}
+  m_CullTransparentMesh: 1
+--- !u!114 &6845197056838163936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897575683984380459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 946b58bc3e5089e43abbe6efb4712063, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4291914156570372449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897575683984380459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f743e0906db3bcf4697a1c519c73ae48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FaceCamera
+--- !u!114 &4929622997681698101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8897575683984380459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99fede2e13e897645afc80acd0a7dbf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIEffects
+  effectInitiateType: 1
+  uIEffectType: 8
+  panel: {fileID: 1349372013999785079}
+  canvasGroup: {fileID: 0}
+  defaultFadeDuration: 0.5
+  waitBeforeStartingDuration: 0
+  waitBeforeCompletionDuration: 0
+  slideDuration: 1
+  panelFinalPosition: {x: 0, y: 0}
+  scalingSpeed: 5
+  minIconSize: 1
+  maxIconSize: 1.25
+  rotatingSpeed: 150
+  clockwiseDirection: 1
+  upDownSpeeding: 2.5
+  offsetDividingValue: 5
+  OnFadeStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFadeCompleted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &2974043543569263645
 PrefabInstance:
   m_ObjectHideFlags: 0

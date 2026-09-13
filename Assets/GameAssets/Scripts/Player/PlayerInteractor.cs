@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using Unity.Netcode;
 using UnityEngine;
@@ -39,19 +40,21 @@ public class PlayerInteractor : NetworkBehaviour
     /// <summary>Activates the current interactable or assigned task.</summary>
     private void PlayerInteract()
     {
-        if(currentInteractable!=null)
-        {
-            currentInteractable?.Interact(OwnerClientId);
-        }
         if(currentTask!=null)
         {
             currentTask?.Interact();
+        }
+        else if(currentInteractable!=null)
+        {
+            currentInteractable?.Interact(OwnerClientId);
         }
     }
 
     /// <summary>Refreshes nearby targets and interaction UI.</summary>
     private void Update()
     {
+        if(!IsOwner) return;
+
         FindInteractable();
         FindTask();
 
@@ -62,10 +65,6 @@ public class PlayerInteractor : NetworkBehaviour
                 currentInteractable.GetInteractionPoint()
             );
         }
-        else
-        {
-            interactionUI.Hide();
-        }
 
         if (currentTask != null)
         {
@@ -74,7 +73,8 @@ public class PlayerInteractor : NetworkBehaviour
                 currentTask.GetInteractionPoint()
             );
         }
-        else
+        
+        if(currentInteractable==null && currentTask==null)
         {
             interactionUI.Hide();
         }
@@ -90,13 +90,18 @@ public class PlayerInteractor : NetworkBehaviour
             interactionRange
         );
 
+        Debug.Log("Colliders: " + colliders.Count());
+
         foreach (Collider collider in colliders)
         {
+            if(collider.transform.root == transform.root) continue;
+
             IInteractable interactable =
                 collider.GetComponent<IInteractable>();
 
-            if (interactable != null)
+            if (interactable != null && interactable.IsInteractable)
             {
+                Debug.Log("Current interactable: " + collider.gameObject.name);
                 currentInteractable = interactable;
                 break;
             }

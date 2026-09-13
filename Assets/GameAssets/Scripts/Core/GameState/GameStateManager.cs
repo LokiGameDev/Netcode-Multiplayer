@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -42,6 +40,12 @@ public class GameStateManager : NetworkBehaviour
         NetworkVariableWritePermission.Server
     );
 
+    NetworkVariable<int> currentAlivePlayers = new NetworkVariable<int>(
+        0,
+        NetworkVariableReadPermission.Everyone,
+        NetworkVariableWritePermission.Server
+    );
+
     NetworkVariable<GameState> currentGameState = new NetworkVariable<GameState>(
         GameState.None,
         NetworkVariableReadPermission.Everyone,
@@ -69,6 +73,7 @@ public class GameStateManager : NetworkBehaviour
         NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
         
         playerCount.Value += 1;
+        currentAlivePlayers.Value += 1;
         maxPlayerCount.Value = HostSingleton.Instance.GameManager.currentLobby.MaxPlayers;
         PlayerJoined(HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(OwnerClientId).userName);
         currentGameState.Value = GameState.WaitingForPlayers;
@@ -93,6 +98,7 @@ public class GameStateManager : NetworkBehaviour
     private void PlayerConnected(ulong obj)
     {
         playerCount.Value += 1;
+        currentAlivePlayers.Value += 1;
         PlayerJoined(HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(obj).userName);
         if(playerCount.Value >= maxPlayerCount.Value) StartTheGame();
     }
@@ -101,6 +107,7 @@ public class GameStateManager : NetworkBehaviour
     private void PlayerDisconnected(ulong obj)
     {
         playerCount.Value -= 1;
+        currentAlivePlayers.Value -= 1;
     }
 
     /// <summary>Updates the UI when the networked game state changes.</summary>
@@ -230,8 +237,29 @@ public class GameStateManager : NetworkBehaviour
         player.PlayerGotAttackedRpc(
             RpcTarget.Single(clientID, RpcTargetUse.Temp)
         );
+
+        currentAlivePlayers.Value -= 1;
         
         Debug.Log($"[SERVER] Player got attacked: {player.PlayerName.Value}");
+    }
+
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    public void PlayerGotRevivedRpc(ulong clientID)
+    {
+        if (!NetworkManager.Singleton.ConnectedClients.TryGetValue(
+            clientID, out Unity.Netcode.NetworkClient client))
+            return;
+
+        PlayerManager player =
+            client.PlayerObject.GetComponent<PlayerManager>();
+
+        player.PlayerGotRevivedRpc(
+            RpcTarget.Single(clientID, RpcTargetUse.Temp)
+        );
+
+        currentAlivePlayers.Value += 1;
+        
+        Debug.Log($"[SERVER] Player got revived: {player.PlayerName.Value}");
     }
 }
 

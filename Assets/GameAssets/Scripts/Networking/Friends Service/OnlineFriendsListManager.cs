@@ -28,20 +28,27 @@ public class OnlineFriendsListManager : NetworkBehaviour
     private void OnEnable()
     {
         onlineListPanel.SetActive(false);
+    }
 
-        if(!IsHost) return;
+    private void Start()
+    {
+        if(!IsServer) return;
 
         RefreshTheList();
 
         currentLobbyData.lobbyCode = HostSingleton.Instance.GameManager.GetJoinCode();
         currentLobbyData.lobbyName = HostSingleton.Instance.GameManager.currentLobbyName;
         currentLobbyData.lobbyOwnerName = HostSingleton.Instance.GameManager.hostName;
+
+        Debug.Log($"Current lobby details: {currentLobbyData.lobbyCode}, {currentLobbyData.lobbyName}");
     }
 
     /// <summary>Refreshes displayed online friends and removes stale entries.</summary>
     public void RefreshTheList()
     {
         List<Relationship> friendsList = GetOnlineFriends();
+
+        Debug.Log("Online friends list");
 
         foreach(var frnd in friendsList)
         {
@@ -95,6 +102,7 @@ public class OnlineFriendsListManager : NetworkBehaviour
     {
         try
         {
+            Debug.Log($"Inviting for this lobby: {currentLobbyData.lobbyCode}, {currentLobbyData.lobbyName}");
             await FriendsService.Instance.MessageAsync(friend.Member.Id, currentLobbyData);
         }
         catch(Exception e)

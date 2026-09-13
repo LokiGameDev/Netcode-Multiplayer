@@ -1,4 +1,3 @@
-using TMPro;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,6 +7,7 @@ public class NetworkInteractor : NetworkBehaviour, IInteractable
 {
     /// <summary>Gets or sets the current interaction label.</summary>
     public string ActionName { get; set;} = "Interact";
+    public bool IsInteractable { get; set;} = true;
     public string textToActivate;
     public string textToDeactivate;
 

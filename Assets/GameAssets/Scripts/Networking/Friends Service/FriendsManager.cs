@@ -384,7 +384,7 @@ public class FriendsManager : MonoBehaviour
         if (friendItems.ContainsKey(@event.UserId))
         {
             currentInvitedLobbyData = @event.GetAs<LobbyData>();
-            Debug.Log($"Message Received from {currentInvitedLobbyData.lobbyCode}");
+            Debug.Log($"Message Received. Lobby code: {currentInvitedLobbyData.lobbyCode}");
             invitationItem.ShowInvitation(currentInvitedLobbyData.lobbyOwnerName, currentInvitedLobbyData.lobbyName);
         }
     }

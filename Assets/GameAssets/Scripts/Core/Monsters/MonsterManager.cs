@@ -62,5 +62,6 @@ public class MonsterManager : NetworkBehaviour
 
 public enum MonsterType
 {
-    Skeleton
+    Skeleton,
+    Mage
 }

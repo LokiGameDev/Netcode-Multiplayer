@@ -6,6 +6,8 @@ public interface IInteractable
     /// <summary>Gets or sets the action label shown to the player.</summary>
     public string ActionName { get; set; }
 
+    public bool IsInteractable { get; set; }
+
     /// <summary>Returns the current interaction label.</summary>
     public string GetActionName();
     /// <summary>Returns the world point used for interaction.</summary>

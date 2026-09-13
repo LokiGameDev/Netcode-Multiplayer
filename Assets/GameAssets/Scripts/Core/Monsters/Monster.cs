@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -25,6 +24,7 @@ public class Monster : NetworkBehaviour
     [SerializeField] private GameObject attackHitBox;
 
     private bool isDead = true;
+    private bool isAttacking = false;
 
     private Transform currentTarget;
     private bool canAttack = true;
@@ -38,6 +38,8 @@ public class Monster : NetworkBehaviour
         if(navMeshAgent==null) navMeshAgent = GetComponent<NavMeshAgent>();
 
         navMeshAgent.speed = monsterSpeed;
+        navMeshAgent.updateRotation = true;
+        navMeshAgent.stoppingDistance = attackingRange;
 
         GetComponent<Collider>().enabled = false;
         attackHitBox.SetActive(false);
@@ -74,12 +76,15 @@ public class Monster : NetworkBehaviour
 
         if(currentTarget == null)
         {
+            navMeshAgent.isStopped = true;
             monsterAnim.SetBool("Attacking", false);
             monsterAnim.SetFloat("Speed", 0);
             return;
         }
 
         float distance = Vector3.Distance(currentTarget.position, transform.position);
+
+        navMeshAgent.isStopped = false;
 
         if(!currentTarget.GetComponent<PlayerManager>().IsAlive.Value)
         {
@@ -89,35 +94,54 @@ public class Monster : NetworkBehaviour
 
         if(distance < attackingRange)
         {
-            // Attacking
-
-            if(!canAttack) return;
-            
-            canAttack = false;
-
-            StartCoroutine(AttackReloadingTime());
-
-            monsterAnim.SetFloat("Speed", 0);
-            monsterAnim.SetBool("Attacking", true);
+            Attack();
         }
         else if(distance < detectingRange)
         {
-            // Movement
-
-            monsterAnim.SetBool("Attacking", false);
-
-            if(monsterAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) return;
-
-            transform.LookAt(currentTarget);
-
-            navMeshAgent.SetDestination(currentTarget.position);
-
-            monsterAnim.SetFloat("Speed", navMeshAgent.velocity.magnitude);
+            Follow();
         }
         else
         {
+            navMeshAgent.isStopped = true;
+
             monsterAnim.SetFloat("Speed", 0);
+
+            currentTarget = null;
         }
+    }
+
+    private void Attack()
+    {
+        if(!canAttack) return;
+
+        isAttacking = true;
+
+        navMeshAgent.SetDestination(currentTarget.position);
+
+        monsterAnim.SetFloat("Speed", 0);
+        monsterAnim.SetBool("Attacking", true);
+
+        navMeshAgent.SetDestination(transform.position);
+
+        navMeshAgent.isStopped = true;
+        navMeshAgent.velocity = Vector3.zero;
+        
+        canAttack = false;
+
+        StartCoroutine(AttackReloadingTime());
+    }
+
+    private void Follow()
+    {
+        if(isAttacking) return;
+
+        if(monsterAnim.GetCurrentAnimatorStateInfo(0).IsName("Attack")) return;
+        
+        navMeshAgent.isStopped = false;
+
+        navMeshAgent.SetDestination(currentTarget.position);
+
+        monsterAnim.SetFloat("Speed", navMeshAgent.velocity.magnitude);
     }
 
     /// <summary>
@@ -168,7 +192,9 @@ public class Monster : NetworkBehaviour
         yield return new WaitForSeconds(reloadingTime/2);
         attackHitBox.SetActive(true);
         yield return new WaitForSeconds(reloadingTime/2);
+        monsterAnim.SetBool("Attacking", false);
         attackHitBox.SetActive(false);
         canAttack = true;
+        isAttacking = false;
     }
 }

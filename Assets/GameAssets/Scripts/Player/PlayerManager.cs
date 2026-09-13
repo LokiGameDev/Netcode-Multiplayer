@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.Collections;
 using Unity.Netcode;
@@ -12,8 +13,14 @@ public class PlayerManager : NetworkBehaviour
     [Tooltip("Applies the player's selected skin.")]
     [SerializeField] private PlayerSkinManager playerSkinManager;
     [SerializeField] private PlayerAnimationManager playerAnimationManager;
+    [SerializeField] private Rigidbody playerRigidBody;
+    [SerializeField] private PlayerReviver playerReviver;
 
-    public NetworkVariable<bool> IsAlive = new();
+    public NetworkVariable<bool> IsAlive = new(
+        true,
+        readPerm: NetworkVariableReadPermission.Everyone,
+        writePerm: NetworkVariableWritePermission.Owner
+    );
 
     public NetworkVariable<FixedString32Bytes> PlayerName = new();
 
@@ -21,8 +28,9 @@ public class PlayerManager : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         PlayerName.OnValueChanged += PlayerNameChanged;
-
-        IsAlive.Value = true;
+        IsAlive.OnValueChanged += PlayerStateChanged;
+        
+        if(IsOwner) IsAlive.Value = true;
 
         if(IsServer)
         {
@@ -41,14 +49,48 @@ public class PlayerManager : NetworkBehaviour
         PlayerName.OnValueChanged -= PlayerNameChanged;
     }
 
+    private void Start()
+    {
+        playerNameText.gameObject.SetActive(IsAlive.Value);
+        playerReviver.InteractStateChange(!IsAlive.Value);
+    }
+
     [Rpc(SendTo.SpecifiedInParams)]
     public void PlayerGotAttackedRpc(RpcParams rpcParams = default)
     {
         if(!IsAlive.Value) return;
 
+        Debug.Log("[Cleint] Player got killed");
         playerNameText.gameObject.SetActive(false);
         IsAlive.Value = false;
         playerAnimationManager.PlayerStateChange(PlayerState.Dead);
+    }
+
+    [Rpc(SendTo.SpecifiedInParams)]
+    public void PlayerGotRevivedRpc(RpcParams rpcParams = default)
+    {
+        Debug.Log("[Cleint] Player received revive call");
+        
+        if(IsAlive.Value) return;
+
+        Debug.Log("[Cleint] Player got revived");
+
+        playerNameText.gameObject.SetActive(true);
+        IsAlive.Value = true;
+        playerAnimationManager.PlayerStateChange(PlayerState.Idle);
+    }
+
+    private void PlayerStateChanged(bool previousValue, bool newValue)
+    {
+        playerNameText.gameObject.SetActive(IsAlive.Value);
+        playerReviver.InteractStateChange(!IsAlive.Value);
+        //playerRigidBody.isKinematic = IsAlive.Value;
+    }
+
+    public void PlayerGotRevived()
+    {
+        Debug.Log("[Client] Player got revivied");
+        GameStateManager.Instance.PlayerGotRevivedRpc(GetComponent<NetworkObject>().OwnerClientId);
     }
 
     /// <summary>Updates the displayed player name.</summary>

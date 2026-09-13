@@ -11,6 +11,8 @@ public class PlayerAnimationManager : NetworkBehaviour
     public void Start()
     {
         if(playerAnimator==null) playerAnimator = GetComponentInChildren<Animator>();
+
+        playerAnimator.SetBool("IsAlive", true);
     }
 
     /// <summary>Applies a player state and optional movement value to the animator.</summary>
@@ -19,6 +21,7 @@ public class PlayerAnimationManager : NetworkBehaviour
         switch(playerState)
         {
             case PlayerState.Idle:
+                playerAnimator.SetBool("IsAlive", true);
                 break;
             case PlayerState.Moving:
                 playerAnimator.SetFloat("Speed", value);
@@ -30,6 +33,7 @@ public class PlayerAnimationManager : NetworkBehaviour
                 break;
             case PlayerState.Dead:
                 playerAnimator.SetTrigger("IsDead");
+                playerAnimator.SetBool("IsAlive", false);
                 break;
         }
     }

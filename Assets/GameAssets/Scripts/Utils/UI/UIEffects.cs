@@ -43,6 +43,12 @@ public class UIEffects : MonoBehaviour
     [Tooltip("Whether the rotation runs clockwise.")]
     [SerializeField] private bool clockwiseDirection = true;
 
+    [Header("Up and Down")]
+    [Tooltip("Moving speed.")]
+    [SerializeField] private float upDownSpeeding = 2.5f;
+    [Tooltip("Offset dividing value for movement range")]
+    [SerializeField] private float offsetDividingValue = 5;
+
     private Coroutine currentCoroutine;
 
     [Header("Fade Events")]
@@ -203,6 +209,9 @@ public class UIEffects : MonoBehaviour
             case UIEffectType.RotateAround:
                 StartRotateEffect();
                 break;
+            case UIEffectType.UpAndDown:
+                StartUpAndDownEffect();
+                break;
         }
     }
 
@@ -300,6 +309,36 @@ public class UIEffects : MonoBehaviour
     }
 
     #endregion
+
+    #region Up and Down effect
+
+    /// <summary>Starts the continuous up and down effect.</summary>
+    private void StartUpAndDownEffect()
+    {
+        if(currentCoroutine!=null) StopCoroutine(currentCoroutine);
+
+        currentCoroutine = StartCoroutine(UpAndDownMovement());
+    }
+
+    /// <summary>Moves the panel up and down until the effect is stopped.</summary>
+    private IEnumerator UpAndDownMovement()
+    {
+        Vector2 startPosition = panel.anchoredPosition;
+
+        while(true)
+        {
+            float yOffset = Mathf.Sin(Time.time * upDownSpeeding) / offsetDividingValue;
+
+            panel.anchoredPosition = new Vector2(
+                startPosition.x,
+                startPosition.y + yOffset
+            );
+
+            yield return null;
+        }
+    }
+
+    #endregion
 }
 
 /// <summary>Available UI effect animations.</summary>
@@ -312,7 +351,8 @@ public enum UIEffectType
     LeftSlide,
     RightSlide,
     ScaleEffect,
-    RotateAround
+    RotateAround,
+    UpAndDown
 }
 
 /// <summary>Events that can start a UI effect.</summary>
