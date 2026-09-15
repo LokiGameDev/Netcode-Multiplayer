@@ -1519,6 +1519,8 @@ MonoBehaviour:
   maxIconSize: 1.25
   rotatingSpeed: 150
   clockwiseDirection: 1
+  upDownSpeeding: 2.5
+  offsetDividingValue: 5
   OnFadeStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -1778,6 +1780,8 @@ MonoBehaviour:
   maxIconSize: 1.25
   rotatingSpeed: 150
   clockwiseDirection: 1
+  upDownSpeeding: 2.5
+  offsetDividingValue: 5
   OnFadeStarted:
     m_PersistentCalls:
       m_Calls:

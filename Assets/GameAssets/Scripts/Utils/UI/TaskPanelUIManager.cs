@@ -50,7 +50,7 @@ public class TaskPanelUIManager : MonoBehaviour
     /// <summary>Closes the selected task panel without completing it.</summary>
     public void CloseCurrentTaskPanel()
     {
-        currentTaskPanel.SetActive(false);
+        if(currentTaskPanel!=null) currentTaskPanel.SetActive(false);
         currentTaskId = -1;
     }
 }

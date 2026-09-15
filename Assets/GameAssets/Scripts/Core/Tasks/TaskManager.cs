@@ -71,8 +71,8 @@ public class TaskManager : NetworkBehaviour
     {
         if(!IsHost) return;
 
-        NetworkManager.Singleton.OnClientConnectedCallback += PlayerConnected;
-        NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
+        // NetworkManager.Singleton.OnClientConnectedCallback += PlayerConnected;
+        // NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
     }
 
     /// <summary>Unregisters host callbacks when the manager despawns.</summary>
@@ -80,8 +80,8 @@ public class TaskManager : NetworkBehaviour
     {
         if(!IsHost) return;
 
-        NetworkManager.Singleton.OnClientConnectedCallback -= PlayerConnected;
-        NetworkManager.Singleton.OnClientDisconnectCallback -= PlayerDisconnected;
+        // NetworkManager.Singleton.OnClientConnectedCallback -= PlayerConnected;
+        // NetworkManager.Singleton.OnClientDisconnectCallback -= PlayerDisconnected;
     }
 
     /// <summary>Collects available task objects and assigns the host's tasks.</summary>
@@ -204,14 +204,14 @@ public class TaskManager : NetworkBehaviour
     }
 
     /// <summary>Assigns tasks when a player connects.</summary>
-    private void PlayerConnected(ulong playerId)
+    public void PlayerConnected(ulong playerId)
     {
         isAssigning.Value = true;
         AssignTasks(playerId);
     }
 
     /// <summary>Handles a player leaving the session.</summary>
-    private void PlayerDisconnected(ulong playerId)
+    public void PlayerDisconnected(ulong playerId)
     {
         
     }

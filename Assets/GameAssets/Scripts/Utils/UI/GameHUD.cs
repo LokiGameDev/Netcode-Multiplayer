@@ -11,6 +11,7 @@ public class GameHUD : NetworkBehaviour
     [SerializeField] private GameObject[] enableOnStart;
     [Tooltip("Objects disabled when the HUD starts.")]
     [SerializeField] private GameObject[] disableOnStart;
+    [SerializeField] private GameObject[] playerStateObjects;
 
     [Header("Join Code")]
     [Tooltip("Text displaying the host join code.")]
@@ -46,5 +47,10 @@ public class GameHUD : NetworkBehaviour
 
         string joinCode = HostSingleton.Instance.GameManager.GetJoinCode();
         joinCodeText.text = joinCode;
+    }
+
+    public void PlayerStateChanged(bool state)
+    {
+        foreach(GameObject gameObject in playerStateObjects) gameObject.SetActive(state);
     }
 }

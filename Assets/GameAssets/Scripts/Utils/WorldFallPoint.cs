@@ -1,10 +1,12 @@
+using Unity.Netcode;
 using UnityEngine;
 
 /// <summary>Returns players to a safe position after they fall from the world.</summary>
-public class WorldFallPoint : MonoBehaviour
+public class WorldFallPoint : NetworkBehaviour
 {
     [Tooltip("Position used to respawn fallen players.")]
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private PlayerSpawnManager spawnManager;
 
     /// <summary>Finds the default world spawn when needed.</summary>
     private void Start()
@@ -15,11 +17,11 @@ public class WorldFallPoint : MonoBehaviour
     /// <summary>Moves players entering the fall trigger back to safety.</summary>
     private void OnTriggerEnter(Collider collider)
     {
+        if(!IsHost) return;
+
         if(collider.CompareTag("Player"))
         {
-            collider.gameObject.GetComponent<PlayerMovement>().ResetVelocity();
-            if(spawnPoint==null) collider.gameObject.transform.position = new Vector3(0,0,0);
-            else collider.gameObject.transform.position = spawnPoint.position + new Vector3(0,10,0);
+            //spawnManager.SpawnPlayer(collider.GetComponent<PlayerManager>());
         }
     }
 }

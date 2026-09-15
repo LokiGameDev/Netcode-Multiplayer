@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerSkin
   - Monsters
+  - Tasks
   layers:
   - Default
   - TransparentFX

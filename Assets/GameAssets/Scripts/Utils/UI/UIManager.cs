@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameHUD gameHUD;
     [Tooltip("Manager used to display assigned tasks.")]
     [SerializeField] private UITaskManager uITaskManager;
+    [SerializeField] private TaskPanelUIManager taskPanelUIManager;
+    [SerializeField] private MobileControlEnabler mobileControls;
     [Tooltip("Text used for temporary debug values.")]
     [SerializeField] private TMP_Text debugText;
 
@@ -34,7 +36,7 @@ public class UIManager : MonoBehaviour
         {
             if(instance==null)
             {
-                Debug.LogError("UIManager is null");
+                Debug.Log("UIManager is null");
                 return null;
             }
             return instance;
@@ -150,5 +152,12 @@ public class UIManager : MonoBehaviour
         gameWonPanel.SetActive(activePanel == gameWonPanel);
         gameLostPanel.SetActive(activePanel == gameLostPanel);
         loadingPanel.SetActive(activePanel == loadingPanel);
+    }
+
+    public void PlayerStateChange(bool state)
+    {
+        mobileControls.PlayerStateChanged(state);
+        gameHUD.PlayerStateChanged(state);
+        if(!state) taskPanelUIManager.CloseCurrentTaskPanel();
     }
 }

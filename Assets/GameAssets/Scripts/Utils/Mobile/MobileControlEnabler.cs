@@ -11,4 +11,11 @@ public class MobileControlEnabler : MonoBehaviour
     {
         mobileControls.SetActive(Application.isMobilePlatform);
     }
+
+    public void PlayerStateChanged(bool state)
+    {
+        if(!Application.isMobilePlatform) return;
+
+        mobileControls.SetActive(state);
+    }
 }

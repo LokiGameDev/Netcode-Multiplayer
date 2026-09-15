@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Cinemachine;
 using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
@@ -22,6 +23,8 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private Transform player;
     [Tooltip("Pivot rotated by look input.")]
     [SerializeField] private Transform cameraPivot;
+    [SerializeField] private CinemachineBasicMultiChannelPerlin cameraNoise;
+    [SerializeField] private GameObject footCircleEffect;
 
     [Header("Movement Settings")]
     [Tooltip("Horizontal movement speed.")]
@@ -34,6 +37,9 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float rotationSpeed = 15f;
     [Tooltip("Additional gravity applied while falling.")]
     [SerializeField] private float fallMultiplier = 2.5F;
+
+    [SerializeField] private float movingAmplitude = 0.45f;
+    [SerializeField] private float shakeSmoothSpeed = 1f;
 
     [Header("Look Settings")]
     [Tooltip("Sensitivity applied to look input.")]
@@ -141,7 +147,6 @@ public class PlayerMovement : NetworkBehaviour
 
         if(!playerManager.IsAlive.Value)
         {
-            ResetVelocity();
             return;
         }
 
@@ -215,6 +220,19 @@ public class PlayerMovement : NetworkBehaviour
                 PlayerState.Moving,
                 currentSpeed
             );
+
+            Vector3 velocity = playerRigidbody.linearVelocity;
+            velocity.y = 0f;
+
+            bool isMoving = velocity.magnitude > 0.1f;
+
+            float targetAmplitude = isMoving ? movingAmplitude : 0f;
+
+            cameraNoise.AmplitudeGain = Mathf.MoveTowards(
+                cameraNoise.AmplitudeGain,
+                targetAmplitude,
+                shakeSmoothSpeed * Time.deltaTime
+            );
         }
 
         // -------------------------
@@ -259,6 +277,7 @@ public class PlayerMovement : NetworkBehaviour
             Debug.Log("Player Jumped");
 
             playerAnimationManager.PlayerStateChange(PlayerState.Jumping);
+            footCircleEffect.SetActive(false);
             StartCoroutine(PlayerInJumpState());
             playerAnimationManager.SetGroundedState(false);
         }
@@ -288,10 +307,13 @@ public class PlayerMovement : NetworkBehaviour
     private IEnumerator PlayerInJumpState()
     {
         yield return new WaitForSeconds(0.2f);
+
         while(!IsGrounded())
         {
-            yield return true;
+            yield return null;
         }
+
+        footCircleEffect.SetActive(true);
         playerAnimationManager.SetGroundedState(true);
     }
 

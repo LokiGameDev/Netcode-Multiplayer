@@ -425,6 +425,7 @@ MonoBehaviour:
   monsterAnim: {fileID: 5653865558414728656}
   navMeshAgent: {fileID: 4597043543950684453}
   attackHitBox: {fileID: 8231905753811185105}
+  facingEnemySpeed: 180
 --- !u!195 &4597043543950684453
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -914,7 +915,7 @@ GameObject:
   - component: {fileID: 2808552252334407818}
   - component: {fileID: 5653865558414728656}
   m_Layer: 0
-  m_Name: Skeleton_Minion
+  m_Name: Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1871,14 +1872,14 @@ GameObject:
   m_Component:
   - component: {fileID: 3090833889715981434}
   - component: {fileID: 4217546833390362780}
-  - component: {fileID: 6882545867379252935}
+  - component: {fileID: 5636886760878624240}
   m_Layer: 0
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3090833889715981434
 Transform:
   m_ObjectHideFlags: 0
@@ -1888,7 +1889,7 @@ Transform:
   m_GameObject: {fileID: 8231905753811185105}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.06799984, z: 0.965}
+  m_LocalPosition: {x: 0, y: 1, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1915,7 +1916,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6882545867379252935
+--- !u!114 &5636886760878624240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

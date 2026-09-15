@@ -1,5 +1,6 @@
 using System.Collections;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,27 +8,26 @@ public class Monster : NetworkBehaviour
 {
     [Header("Monster Settings")]
     [Tooltip("Movement speed of the monster")]
-    [SerializeField] private float monsterSpeed = 7.5f;
+    [SerializeField] protected float monsterSpeed = 7.5f;
     [Tooltip("Detection range of the monster")]
-    [SerializeField] private float detectingRange = 5f;
+    [SerializeField] protected float detectingRange = 5f;
     [Tooltip("Monster attacking range")]
-    [SerializeField] private float attackingRange = 2.5f;
-    [SerializeField] private float resurrectTime = 2f;
+    [SerializeField] protected float attackingRange = 2.5f;
+    [SerializeField] protected float resurrectTime = 2f;
 
     [Tooltip("Reloading time for attacking")]
-    [SerializeField] private float reloadingTime = 1.5f;
+    [SerializeField] protected float reloadingTime = 1.5f;
 
     [Header("References")]
     [Tooltip("Monster animator for animations")]
-    [SerializeField] private Animator monsterAnim;
-    [SerializeField] private NavMeshAgent navMeshAgent;
-    [SerializeField] private GameObject attackHitBox;
+    [SerializeField] protected Animator monsterAnim;
+    [SerializeField] protected NavMeshAgent navMeshAgent;
 
-    private bool isDead = true;
-    private bool isAttacking = false;
+    protected bool isDead = true;
+    protected bool isAttacking = false;
 
-    private Transform currentTarget;
-    private bool canAttack = true;
+    protected Transform currentTarget;
+    protected bool canAttack = true;
 
     /// <summary>
     /// Initializes the animator for the monster
@@ -36,13 +36,13 @@ public class Monster : NetworkBehaviour
     {
         if(monsterAnim==null) monsterAnim = GetComponentInChildren<Animator>();
         if(navMeshAgent==null) navMeshAgent = GetComponent<NavMeshAgent>();
+        GetComponent<NetworkAnimator>().Animator = monsterAnim;
 
         navMeshAgent.speed = monsterSpeed;
         navMeshAgent.updateRotation = true;
         navMeshAgent.stoppingDistance = attackingRange;
 
         GetComponent<Collider>().enabled = false;
-        attackHitBox.SetActive(false);
 
         StartCoroutine(ResurrectTime());
     }
@@ -110,7 +110,7 @@ public class Monster : NetworkBehaviour
         }
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         if(!canAttack) return;
 
@@ -131,7 +131,7 @@ public class Monster : NetworkBehaviour
         StartCoroutine(AttackReloadingTime());
     }
 
-    private void Follow()
+    protected virtual void Follow()
     {
         if(isAttacking) return;
 
@@ -189,11 +189,8 @@ public class Monster : NetworkBehaviour
 
     private IEnumerator AttackReloadingTime()
     {
-        yield return new WaitForSeconds(reloadingTime/2);
-        attackHitBox.SetActive(true);
-        yield return new WaitForSeconds(reloadingTime/2);
+        yield return new WaitForSeconds(reloadingTime);
         monsterAnim.SetBool("Attacking", false);
-        attackHitBox.SetActive(false);
         canAttack = true;
         isAttacking = false;
     }

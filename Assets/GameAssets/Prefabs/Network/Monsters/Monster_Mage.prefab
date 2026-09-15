@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 8792519455643387760}
   - component: {fileID: 2875290476050983103}
   - component: {fileID: 2602409907070114537}
-  - component: {fileID: 8874143447257486899}
+  - component: {fileID: 1766717192187534834}
   - component: {fileID: 8899636180581584447}
   m_Layer: 0
   m_Name: Monster_Mage
@@ -223,10 +223,18 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkAnimatorExpanded: 0
   AuthorityMode: 0
-  m_Animator: {fileID: 0}
+  m_Animator: {fileID: 543014415915387233}
   TransitionStateInfoList: []
   AnimatorParameterEntries:
-    ParameterEntries: []
+    ParameterEntries:
+    - name: Speed
+      NameHash: -823668238
+      Synchronize: 1
+      ParameterType: 1
+    - name: Attacking
+      NameHash: -2123461723
+      Synchronize: 1
+      ParameterType: 4
   AnimatorParametersExpanded: 0
 --- !u!136 &2602409907070114537
 CapsuleCollider:
@@ -251,7 +259,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &8874143447257486899
+--- !u!114 &1766717192187534834
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,18 +268,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 904325242417601078}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01cbc28b010c834285a5a039b991a90, type: 3}
+  m_Script: {fileID: 11500000, guid: e096b39b5b9521f418393901bb602d5b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkeletonMonster
+  m_EditorClassIdentifier: Assembly-CSharp::MageMonster
   ShowTopMostFoldoutHeaderGroup: 1
   monsterSpeed: 5
-  detectingRange: 15
-  attackingRange: 2
+  detectingRange: 20
+  attackingRange: 7.5
   resurrectTime: 2
-  reloadingTime: 1.5
-  monsterAnim: {fileID: 0}
+  reloadingTime: 2
+  monsterAnim: {fileID: 543014415915387233}
   navMeshAgent: {fileID: 8899636180581584447}
-  attackHitBox: {fileID: 8126435391721245161}
+  posionBallPrefab: {fileID: -6213117496300626058, guid: 72ac9e614afb8f44999e0f00aa866187, type: 3}
+  attackPoint: {fileID: 4450529112301771861}
+  facingEnemySpeed: 180
 --- !u!195 &8899636180581584447
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1742,15 +1752,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4450529112301771861}
-  - component: {fileID: 1650140487776588659}
-  - component: {fileID: 5019813635733775283}
   m_Layer: 0
-  m_Name: AttackCollider
+  m_Name: AttackPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4450529112301771861
 Transform:
   m_ObjectHideFlags: 0
@@ -1760,45 +1768,12 @@ Transform:
   m_GameObject: {fileID: 8126435391721245161}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.06799984, z: 0.965}
+  m_LocalPosition: {x: 0, y: 1.08, z: 0.655}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3845682633366508913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1650140487776588659
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8126435391721245161}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5019813635733775283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8126435391721245161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4cf3025270929a47b75b143f1e0a8ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
 --- !u!1 &8159094112930691780
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1880,7 @@ GameObject:
   - component: {fileID: 6199926046168450669}
   - component: {fileID: 543014415915387233}
   m_Layer: 0
-  m_Name: Skeleton_Mage
+  m_Name: Mage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

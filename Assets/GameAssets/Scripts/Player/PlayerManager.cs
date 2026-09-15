@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using TMPro;
+using Unity.Cinemachine;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>Synchronizes the player's display name and skin.</summary>
 public class PlayerManager : NetworkBehaviour
@@ -14,7 +17,14 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] private PlayerSkinManager playerSkinManager;
     [SerializeField] private PlayerAnimationManager playerAnimationManager;
     [SerializeField] private Rigidbody playerRigidBody;
+    [SerializeField] private Collider playerCollider;
     [SerializeField] private PlayerReviver playerReviver;
+    [SerializeField] private GameObject footCircleEffect;
+    [SerializeField] private CinemachineBasicMultiChannelPerlin cameraNoise;
+
+    [SerializeField] private float cameraShakeValueAttack = 5;
+    [SerializeField] private Color ownerFootColor = new Color32(0,0,0,25);
+    [SerializeField] private Color otherFootColor = new Color32(0,0,0,25);
 
     public NetworkVariable<bool> IsAlive = new(
         true,
@@ -30,7 +40,10 @@ public class PlayerManager : NetworkBehaviour
         PlayerName.OnValueChanged += PlayerNameChanged;
         IsAlive.OnValueChanged += PlayerStateChanged;
         
-        if(IsOwner) IsAlive.Value = true;
+        if(IsOwner)
+        {
+            IsAlive.Value = true;
+        }
 
         if(IsServer)
         {
@@ -47,12 +60,14 @@ public class PlayerManager : NetworkBehaviour
     public override void OnNetworkDespawn()
     {
         PlayerName.OnValueChanged -= PlayerNameChanged;
+        IsAlive.OnValueChanged -= PlayerStateChanged;
     }
 
     private void Start()
     {
         playerNameText.gameObject.SetActive(IsAlive.Value);
         playerReviver.InteractStateChange(!IsAlive.Value);
+        footCircleEffect.GetComponent<Image>().color = IsOwner ? ownerFootColor : otherFootColor;
     }
 
     [Rpc(SendTo.SpecifiedInParams)]
@@ -61,6 +76,7 @@ public class PlayerManager : NetworkBehaviour
         if(!IsAlive.Value) return;
 
         Debug.Log("[Cleint] Player got killed");
+        StartCoroutine(CameraAttackShakeEffect());
         playerNameText.gameObject.SetActive(false);
         IsAlive.Value = false;
         playerAnimationManager.PlayerStateChange(PlayerState.Dead);
@@ -84,7 +100,15 @@ public class PlayerManager : NetworkBehaviour
     {
         playerNameText.gameObject.SetActive(IsAlive.Value);
         playerReviver.InteractStateChange(!IsAlive.Value);
-        //playerRigidBody.isKinematic = IsAlive.Value;
+        playerCollider.isTrigger = !IsAlive.Value;
+        footCircleEffect.SetActive(IsAlive.Value);
+        
+        if(!IsOwner) return;
+        
+        playerRigidBody.linearVelocity = new Vector3(0, 0, 0);
+        playerRigidBody.isKinematic = !IsAlive.Value;
+
+        if(IsOwner && UIManager.Instance!=null) UIManager.Instance?.PlayerStateChange(IsAlive.Value);
     }
 
     public void PlayerGotRevived()
@@ -97,5 +121,12 @@ public class PlayerManager : NetworkBehaviour
     private void PlayerNameChanged(FixedString32Bytes a, FixedString32Bytes b)
     {
         playerNameText.text = PlayerName.Value.ToString();
+    }
+
+    private IEnumerator CameraAttackShakeEffect()
+    {
+        cameraNoise.AmplitudeGain = cameraShakeValueAttack;
+        yield return new WaitForSeconds(0.25f);
+        cameraNoise.AmplitudeGain = 0;
     }
 }

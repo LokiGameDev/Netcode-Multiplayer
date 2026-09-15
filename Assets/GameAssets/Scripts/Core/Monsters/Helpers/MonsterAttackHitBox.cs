@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class MonsterAttackHitBox : MonoBehaviour
 {
     private bool isAttacked = false;
 

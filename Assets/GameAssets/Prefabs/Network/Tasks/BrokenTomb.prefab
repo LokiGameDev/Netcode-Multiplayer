@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5203916241976171566}
   m_Layer: 0
   m_Name: BrokenTomb
-  m_TagString: Untagged
+  m_TagString: Tasks
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

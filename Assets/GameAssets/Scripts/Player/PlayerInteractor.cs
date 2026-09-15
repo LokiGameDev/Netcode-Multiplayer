@@ -15,6 +15,7 @@ public class PlayerInteractor : NetworkBehaviour
     [SerializeField] private InteractionUI interactionUI;
     [Tooltip("Tracks tasks assigned to this player.")]
     [SerializeField] PlayerTaskManager playerTaskManager;
+    [SerializeField] PlayerManager playerManager;
 
     private IInteractable currentInteractable;
 
@@ -26,7 +27,9 @@ public class PlayerInteractor : NetworkBehaviour
         if(!IsOwner) return;
 
         playerTaskManager = GetComponent<PlayerTaskManager>();
+        playerManager = GetComponent<PlayerManager>();
         inputReader.PlayerInteractEvent += PlayerInteract;
+        playerManager.IsAlive.OnValueChanged += PlayerStateChanged;
     }
 
     /// <summary>Unsubscribes the local player from interaction input.</summary>
@@ -35,6 +38,7 @@ public class PlayerInteractor : NetworkBehaviour
         if(!IsOwner) return;
 
         inputReader.PlayerInteractEvent -= PlayerInteract;
+        playerManager.IsAlive.OnValueChanged -= PlayerStateChanged;
     }
 
     /// <summary>Activates the current interactable or assigned task.</summary>
@@ -54,6 +58,8 @@ public class PlayerInteractor : NetworkBehaviour
     private void Update()
     {
         if(!IsOwner) return;
+
+        if(!playerManager.IsAlive.Value) return;
 
         FindInteractable();
         FindTask();
@@ -89,8 +95,6 @@ public class PlayerInteractor : NetworkBehaviour
             transform.position,
             interactionRange
         );
-
-        Debug.Log("Colliders: " + colliders.Count());
 
         foreach (Collider collider in colliders)
         {
@@ -132,6 +136,15 @@ public class PlayerInteractor : NetworkBehaviour
                 }
             }
         }
+    }
+
+    private void PlayerStateChanged(bool oldValue, bool newValue)
+    {
+        if(playerManager.IsAlive.Value) return;
+
+        currentInteractable = null;
+        currentTask = null;
+        interactionUI.Hide();
     }
 
     /// <summary>Draws the interaction range in the Scene view.</summary>

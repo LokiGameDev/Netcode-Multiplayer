@@ -1207,7 +1207,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1988672149}
-    PlayerPrefab: {fileID: 4799450722047137115, guid: 63d00e72836addd4c88675c996fd8d4b, type: 3}
+    PlayerPrefab: {fileID: 0}
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: 466b448596a3f1a4eb94124c749ae2bc, type: 2}

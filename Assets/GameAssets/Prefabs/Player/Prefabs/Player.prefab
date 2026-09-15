@@ -145,6 +145,7 @@ RectTransform:
   m_Children:
   - {fileID: 5838228048669051272}
   - {fileID: 1349372013999785079}
+  - {fileID: 6378853128694635742}
   m_Father: {fileID: 8469659066525827524}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -475,7 +476,12 @@ MonoBehaviour:
   playerSkinManager: {fileID: 4739565606603568392}
   playerAnimationManager: {fileID: 7584759123318726048}
   playerRigidBody: {fileID: 8033918139363268815}
+  playerCollider: {fileID: 8206826965420690887}
   playerReviver: {fileID: 1797131060481978694}
+  footCircleEffect: {fileID: 9065072486995067757}
+  cameraNoise: {fileID: 5656966129267328048}
+  ownerFootColor: {r: 0, g: 1, b: 0, a: 0.05882353}
+  otherFootColor: {r: 1, g: 1, b: 1, a: 0.019607844}
   IsAlive:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
@@ -540,11 +546,15 @@ MonoBehaviour:
   playerManager: {fileID: -7681864039773835032}
   player: {fileID: 8469659066525827524}
   cameraPivot: {fileID: 7357571002454551624}
+  cameraNoise: {fileID: 5656966129267328048}
+  footCircleEffect: {fileID: 9065072486995067757}
   playerSpeed: 10
   playerJumpForce: 10
   playerHeight: 1.1
   rotationSpeed: 15
   fallMultiplier: 3.5
+  movingAmplitude: 0.45
+  shakeSmoothSpeed: 1
   lookSensitivity: 10
   minPitch: -30
   maxPitch: 10
@@ -594,6 +604,7 @@ MonoBehaviour:
   interactionRange: 2
   interactionUI: {fileID: 6162657162493609497}
   playerTaskManager: {fileID: 4199922947359653503}
+  playerManager: {fileID: 0}
 --- !u!114 &4199922947359653503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -887,6 +898,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f743e0906db3bcf4697a1c519c73ae48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FaceCamera
+  is3D: 0
 --- !u!1 &8205334601424410449
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +909,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8861654186253582866}
   - component: {fileID: 975604369619071230}
+  - component: {fileID: 5656966129267328048}
   m_Layer: 0
   m_Name: FollowCam
   m_TagString: Untagged
@@ -962,6 +975,23 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
+--- !u!114 &5656966129267328048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205334601424410449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0.1
+  m_NoiseOffsets: {x: -612.4387, y: -159.66043, z: 879.34424}
 --- !u!1 &8897575683984380459
 GameObject:
   m_ObjectHideFlags: 0
@@ -1051,6 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f743e0906db3bcf4697a1c519c73ae48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FaceCamera
+  is3D: 0
 --- !u!114 &4929622997681698101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1085,6 +1116,81 @@ MonoBehaviour:
   OnFadeCompleted:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &9065072486995067757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6378853128694635742}
+  - component: {fileID: 3115415960436066606}
+  - component: {fileID: 4096139171811544694}
+  m_Layer: 5
+  m_Name: FootCircle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6378853128694635742
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9065072486995067757}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5334022758507812008}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -2.99}
+  m_SizeDelta: {x: 2.25, y: 2.25}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &3115415960436066606
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9065072486995067757}
+  m_CullTransparentMesh: 1
+--- !u!114 &4096139171811544694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9065072486995067757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.09803922}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 774cfc2dbe7e0ff47ae7f05b2be07861, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1001 &2974043543569263645
 PrefabInstance:
   m_ObjectHideFlags: 0
