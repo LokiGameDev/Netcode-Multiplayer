@@ -48,7 +48,7 @@ public class HostGameManager : IDisposable
         try
         {
             joinCode = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-            Debug.Log(joinCode);
+            Debug.Log($"[HOST] Join Code: {joinCode}");
         }
         catch(Exception e)
         {
@@ -91,7 +91,7 @@ public class HostGameManager : IDisposable
             
             currentLobby = lobby;
 
-            Debug.Log($"{lobby.IsPrivate}");
+            Debug.Log($"[HOST] {lobby.IsPrivate}");
 
             lobbyId = lobby.Id;
 
@@ -154,16 +154,28 @@ public class HostGameManager : IDisposable
         }
     }
 
-    /// <summary>Updates whether the lobby accepts new players.</summary>
+    /// <summary>Updates whether the lobby is private or not.</summary>
     /// <param name="state">True to lock the lobby.</param>
     public async void UpdateLobbyOptions(bool state)
     {
-        UpdateLobbyOptions updateOptions = new UpdateLobbyOptions
+        try
         {
-            IsLocked = state
-        };
+            var options = new UpdateLobbyOptions
+            {
+                IsLocked = true
+            };
 
-        await LobbyService.Instance.UpdateLobbyAsync(lobbyId, updateOptions);
+            currentLobby = await LobbyService.Instance.UpdateLobbyAsync(
+                currentLobby.Id,
+                options
+            );
+
+            Debug.Log("[HOST] Lobby locked!");
+        }
+        catch (LobbyServiceException e)
+        {
+            Debug.LogError(e);
+        }
     }
 
     /// <summary>Shuts down the host and releases its resources.</summary>

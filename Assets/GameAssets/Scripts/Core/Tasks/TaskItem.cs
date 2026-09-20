@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +9,7 @@ public class TaskItem : MonoBehaviour
     [Header("Task Display")]
     [Tooltip("Text displaying the task name.")]
     [SerializeField] private TMP_Text taskNameText;
+    [SerializeField] private RectTransform strikeLine;
     [Tooltip("Text color used after the task is completed.")]
     [SerializeField] private Color completedColor;
     [Tooltip("Icon showing the task selection state.")]
@@ -16,6 +18,7 @@ public class TaskItem : MonoBehaviour
     [SerializeField] private GameObject currentTaskBorder;
     [Tooltip("Whether this item is currently selected.")]
     [SerializeField] private bool isCurrentTask = false;
+    [SerializeField] private float strikeDuration = 1f;
 
     private UITaskManager uITaskManager;
     private string TaskName = "";
@@ -45,10 +48,48 @@ public class TaskItem : MonoBehaviour
     /// <summary>Marks the task as completed in the UI.</summary>
     public void CompleteTask()
     {
+        if(isCompleted) return;
+
         taskNameText.color = completedColor;
-        taskNameText.text = $"<s>{TaskName}<s>";
+        //taskNameText.text = $"<s>{TaskName}<s>";
+        PlayCompleteEffect();
         currentTaskBorder.SetActive(false);
         isCompleted = true;
+    }
+    
+    private void PlayCompleteEffect()
+    {
+        strikeLine.gameObject.SetActive(true);
+
+        float textWidth = taskNameText.preferredWidth;
+
+        strikeLine.sizeDelta = new Vector2(
+            textWidth,
+            strikeLine.sizeDelta.y
+        );
+
+        StartCoroutine(AnimateStrike());
+    }
+
+    private IEnumerator AnimateStrike()
+    {
+        float time = 0f;
+
+        strikeLine.localScale = new Vector3(0f, 1f, 1f);
+
+        while (time < strikeDuration)
+        {
+            time += Time.deltaTime;
+
+            float t = Mathf.Clamp01(time / strikeDuration);
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            strikeLine.localScale = new Vector3(t, 1f, 1f);
+
+            yield return null;
+        }
+
+        strikeLine.localScale = Vector3.one;
     }
 
     /// <summary>Sets whether this task is the current task.</summary>

@@ -19,6 +19,8 @@ public class GameHUD : NetworkBehaviour
     [Tooltip("Object containing the join code display.")]
     [SerializeField] private GameObject joinCodeObject;
 
+    [SerializeField] private ShowNotification playerLeftNotification;
+
     /// <summary>Applies the configured HUD object visibility.</summary>
     private void OnEnable()
     {
@@ -52,5 +54,10 @@ public class GameHUD : NetworkBehaviour
     public void PlayerStateChanged(bool state)
     {
         foreach(GameObject gameObject in playerStateObjects) gameObject.SetActive(state);
+    }
+
+    public void PlayeLeft(string username)
+    {
+        playerLeftNotification.ShowText($"{username} left the game");
     }
 }

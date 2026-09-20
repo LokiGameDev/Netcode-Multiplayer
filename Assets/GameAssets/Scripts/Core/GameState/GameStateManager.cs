@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
@@ -28,7 +29,7 @@ public class GameStateManager : NetworkBehaviour
         if(instance==null) instance = this;
     }
 
-    NetworkVariable<int> playerCount = new NetworkVariable<int>(
+    public NetworkVariable<int> playerCount = new NetworkVariable<int>(
         0,
         NetworkVariableReadPermission.Everyone,
         NetworkVariableWritePermission.Server
@@ -58,6 +59,8 @@ public class GameStateManager : NetworkBehaviour
             NetworkVariableReadPermission.Everyone,
             NetworkVariableWritePermission.Server
         );
+
+    private Dictionary<ulong, string> InGamePlayersList = new();
 
     public UnityEvent playercountChanged;
 
@@ -92,6 +95,15 @@ public class GameStateManager : NetworkBehaviour
     public void Start()
     {
         OnGameStateChanged(currentGameState.Value, currentGameState.Value);
+
+        if(!IsServer) return;
+
+        foreach(var client in NetworkManager.Singleton.ConnectedClientsIds)
+        {
+            UserData user = HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(client);
+
+            InGamePlayersList[client] = user.userName;
+        }
     }
 
     /// <summary>Adds a connected player and starts the game when the lobby is full.</summary>
@@ -99,15 +111,21 @@ public class GameStateManager : NetworkBehaviour
     {
         playerCount.Value += 1;
         currentAlivePlayers.Value += 1;
-        PlayerJoined(HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(obj).userName);
+        UserData user = HostSingleton.Instance.GameManager.NetworkServer.GetUserDataByClientId(obj);
+        InGamePlayersList[obj] = user.userName;
+        PlayerJoined(user.userName);
         if(playerCount.Value >= maxPlayerCount.Value) StartTheGame();
     }
 
     /// <summary>Removes a disconnected player from the count.</summary>
     private void PlayerDisconnected(ulong obj)
     {
+        UIManager.Instance.PlayerLeftNotificationRpc(InGamePlayersList[obj]);
+        PlayerLeft(InGamePlayersList[obj]);
+        InGamePlayersList.Remove(obj);
         playerCount.Value -= 1;
         currentAlivePlayers.Value -= 1;
+        Debug.Log($"[GAME STATE MANAGER] Plyers: {playerCount.Value}, Alive: {currentAlivePlayers.Value}");
     }
 
     /// <summary>Updates the UI when the networked game state changes.</summary>
@@ -147,6 +165,8 @@ public class GameStateManager : NetworkBehaviour
     private void StartGame()
     {
         UIManager.Instance.ShowCurrentPanel(GameState.Playing);
+        if(!IsHost) return;
+        HostSingleton.Instance.GameManager.UpdateLobbyOptions(true);
     }
 
     /// <summary>Shows the game-won panel.</summary>
@@ -185,6 +205,11 @@ public class GameStateManager : NetworkBehaviour
         return maxPlayerCount.Value;
     }
 
+    public GameState GetCurrentGameState()
+    {
+        return currentGameState.Value;
+    }
+
     /// <summary>Begins the short loading phase before gameplay.</summary>
     public void StartTheGame()
     {
@@ -214,6 +239,12 @@ public class GameStateManager : NetworkBehaviour
         playerWaitingList.Add(name);
     }
 
+    public void PlayerLeft(string name)
+    {
+        Debug.Log($"[GAME STATE MANAGER]: Removing player {name}");
+        playerWaitingList.Remove(name);
+    }
+
     /// <summary>Stops the active host or client session.</summary>
     public void FinishTheGame()
     {
@@ -222,6 +253,11 @@ public class GameStateManager : NetworkBehaviour
             HostSingleton.Instance.GameManager.Dispose();
         }
         ClientSingleton.Instance.GameManager.Disconnect();
+    }
+
+    private void GameOverByPlayersDeath()
+    {
+        GameFinished(GameState.GameLost);
     }
 
     [Rpc(SendTo.Server)]
@@ -239,6 +275,8 @@ public class GameStateManager : NetworkBehaviour
         );
 
         currentAlivePlayers.Value -= 1;
+
+        if(currentAlivePlayers.Value <= 0) GameOverByPlayersDeath();
         
         Debug.Log($"[SERVER] Player got attacked: {player.PlayerName.Value}");
     }

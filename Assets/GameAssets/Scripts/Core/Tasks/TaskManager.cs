@@ -17,6 +17,8 @@ public class TaskManager : NetworkBehaviour
 
     private Dictionary<ulong, List<PlayerTask>> assignedTasks = new Dictionary<ulong, List<PlayerTask>>();
 
+    private Dictionary<ulong, int> completedTasksPlayerWise = new();
+
     private Dictionary<int, ITask> assignedTasksObjects = new Dictionary<int, ITask>();
 
     private Dictionary<TaskType, List<ITask>> availableTasks = new();
@@ -72,7 +74,7 @@ public class TaskManager : NetworkBehaviour
         if(!IsHost) return;
 
         // NetworkManager.Singleton.OnClientConnectedCallback += PlayerConnected;
-        // NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback += PlayerDisconnected;
     }
 
     /// <summary>Unregisters host callbacks when the manager despawns.</summary>
@@ -81,7 +83,7 @@ public class TaskManager : NetworkBehaviour
         if(!IsHost) return;
 
         // NetworkManager.Singleton.OnClientConnectedCallback -= PlayerConnected;
-        // NetworkManager.Singleton.OnClientDisconnectCallback -= PlayerDisconnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback -= PlayerDisconnected;
     }
 
     /// <summary>Collects available task objects and assigns the host's tasks.</summary>
@@ -146,14 +148,28 @@ public class TaskManager : NetworkBehaviour
         // IMPORTANT:
         // Validation that the player is actually allowed to complete this task.
 
-        task.Completed = true;
+        int index = tasks.FindIndex(t => t.TaskId == taskId);
+
+        if (index != -1)
+        {
+            PlayerTask taskTP = tasks[index];
+            taskTP.Completed = true;
+            tasks[index] = taskTP;
+        }
+
+        assignedTasks[playerId] = tasks;
 
         assignedTasksObjects[taskId].CompleteTask();
 
         taskCompletionEffect.transform.position = assignedTasksObjects[taskId].GetInteractionPoint().position;
         taskCompletionEffect.PlayEffect(taskCompletionEffect.transform.position);
 
-        Debug.Log($"Player {playerId} completed task {taskId}");
+        Debug.Log($"[TASK MANAGER] Player {playerId} completed task {taskId}");
+
+        if(!completedTasksPlayerWise.ContainsKey(playerId)) completedTasksPlayerWise.Add(playerId, 1);
+        else completedTasksPlayerWise[playerId] += 1;
+
+        Debug.Log($"[TASK MANAGER] Added 1 completion to player {playerId}, Total completion: {completedTasksPlayerWise[playerId]}");
 
         completedTaskCount.Value++;
 
@@ -187,7 +203,7 @@ public class TaskManager : NetworkBehaviour
     /// <summary>Checks whether all assigned tasks are complete.</summary>
     private void CheckAllTasksCompleted()
     {
-        if(completedTaskCount.Value >= assignedTasksObjects.Count)
+        if(completedTaskCount.Value >= currentTaskCount.Value)
         {
             GameStateManager.Instance.GameFinished(GameState.GameWon);
         }
@@ -213,7 +229,7 @@ public class TaskManager : NetworkBehaviour
     /// <summary>Handles a player leaving the session.</summary>
     public void PlayerDisconnected(ulong playerId)
     {
-        
+        RemovePlayerTasks(playerId);
     }
 
     /// <summary>Sends the assigned task list to a client.</summary>
@@ -287,7 +303,28 @@ public class TaskManager : NetworkBehaviour
 
         SendTasksToPlayer(playerId);
 
+        if(!completedTasksPlayerWise.ContainsKey(playerId)) completedTasksPlayerWise.Add(playerId, 0);
+
         isAssigning.Value = false;
+    }
+
+    public void RemovePlayerTasks(ulong playerId)
+    {
+        Debug.Log("[TASK MANAGER] Removing player tasks");
+
+        int playerCompletedTaskCount = completedTasksPlayerWise[playerId];
+
+        completedTasksPlayerWise.Remove(playerId);
+
+        Debug.Log($"[TASK MANAGER] Removing {playerCompletedTaskCount} completed tasks");
+
+        completedTaskCount.Value -= playerCompletedTaskCount;
+
+        currentTaskCount.Value -= assignedTasks[playerId].Count();
+
+        Debug.Log("[TASK MANAGER] Current total tasks: " + currentTaskCount.Value);
+
+        assignedTasks.Remove(playerId);
     }
 }
 

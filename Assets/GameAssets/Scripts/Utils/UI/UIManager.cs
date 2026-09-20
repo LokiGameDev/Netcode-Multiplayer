@@ -160,4 +160,14 @@ public class UIManager : MonoBehaviour
         gameHUD.PlayerStateChanged(state);
         if(!state) taskPanelUIManager.CloseCurrentTaskPanel();
     }
+
+    [Rpc(SendTo.Everyone)]
+    public void PlayerLeftNotificationRpc(string name)
+    {
+        Debug.Log("[UI MANAGER] Player left: " + name);
+        if(GameStateManager.Instance.GetCurrentGameState() == GameState.Playing)
+        {
+            gameHUD.PlayeLeft(name);
+        }
+    }
 }

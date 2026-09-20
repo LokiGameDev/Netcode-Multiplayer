@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class UITaskManager : NetworkBehaviour
     [Tooltip("Prefab used for each task progress bar.")]
     [SerializeField] private GameObject taskBarPrefab;
 
+    [Tooltip("Color applied to task bars.")]
+    [SerializeField] private Color normalColor;
     [Tooltip("Color applied to completed task bars.")]
     [SerializeField] private Color completedColor;
 
@@ -61,7 +64,7 @@ public class UITaskManager : NetworkBehaviour
             PlayerTask completedTask = currentPlayerTasks[taskID];
             completedTask.Completed = true;
             currentPlayerTasks[taskID] = completedTask;
-            CompleteTaskRpc(taskID);
+            CompleteTaskRpc(taskID, NetworkManager.Singleton.LocalClientId);
             taskMarker.SetCurrentTarget(null);
         }
     }
@@ -70,20 +73,42 @@ public class UITaskManager : NetworkBehaviour
     /// <param name="count">Total number of tasks.</param>
     public void GameTotalTasks(int count)
     {
-        for(int i=taskCompletionContainer.childCount;i<count;i++)
+        Debug.Log("Game total tasks: " + count);
+
+        int difference = count - taskCompletionContainer.childCount;
+
+        if(difference < 0)
         {
-            GameObject taskBar = Instantiate(taskBarPrefab, taskCompletionContainer);
-            taskBars.Add(taskBar);
+            for(int i = 0; i < Math.Abs(difference); i++)
+            {
+                var obj = taskBars[0];
+                taskBars.RemoveAt(0);
+                Debug.Log($"Deleting task bar {obj.name}");
+                Destroy(obj);
+            }
         }
+        else
+        {
+            for(int i = taskCompletionContainer.childCount; i < count; i++)
+            {
+                var taskBar = Instantiate(taskBarPrefab, taskCompletionContainer);
+                taskBars.Add(taskBar);
+            }
+        }
+
+        CompletedTaskCount(TaskManager.Instance.completedTaskCount.Value);
     }
 
     /// <summary>Colors the progress bars for completed tasks.</summary>
     /// <param name="count">Number of completed tasks.</param>
     public void CompletedTaskCount(int count)
     {
-        for(int i=0;i<count;i++)
+        Debug.Log($"Comparing task bars: {taskBars.Count} : {taskCompletionContainer.childCount}");
+
+        for(int i = 0; i < Math.Min(taskBars.Count, taskCompletionContainer.childCount); i++)
         {
-            taskBars[i].GetComponent<Image>().color = completedColor;
+            if(i<count) taskBars[i].GetComponent<Image>().color = completedColor;
+            else taskBars[i].GetComponent<Image>().color = normalColor;
         }
     }
 
@@ -141,10 +166,10 @@ public class UITaskManager : NetworkBehaviour
     [Rpc(SendTo.Server)]
     /// <summary>Requests that the server complete a task for this player.</summary>
     /// <param name="taskId">Task identifier to complete.</param>
-    private void CompleteTaskRpc(int taskId)
+    private void CompleteTaskRpc(int taskId, ulong clientId)
     {
         TaskManager.Instance.CompleteTask(
-            OwnerClientId,
+            clientId,
             taskId
         );
     }

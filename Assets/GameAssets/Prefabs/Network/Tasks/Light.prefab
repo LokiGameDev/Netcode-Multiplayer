@@ -179,6 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: lantern-glass
       objectReference: {fileID: 0}
+    - target: {fileID: 4255974954924361944, guid: 7034062f9f5ae5d4f85021571b12b897, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -14,6 +14,9 @@ public class ShowNotification : MonoBehaviour
     [SerializeField] private CanvasGroup canvasGroup;
     [Tooltip("Total notification display duration.")]
     [SerializeField] private float fadeDuration = 1;
+
+    [SerializeField] private NotificationType notificationType = NotificationType.ScalePop;
+
     [Tooltip("Duration of the pop-in animation.")]
     [SerializeField] private float popDuration = 0.5f;
 
@@ -41,11 +44,38 @@ public class ShowNotification : MonoBehaviour
     /// <summary>Animates the notification in and fades it out.</summary>
     private IEnumerator DisplayMessageFade()
     {
-        float time = 0f;
-
         displayBox.localScale = Vector3.zero;
 
         AudioManager.Instance.Play(AudioID.Notification);
+
+        switch(notificationType)
+        {
+            case NotificationType.ScalePop:
+                yield return StartCoroutine(ScalePop());
+                break;
+            case NotificationType.PopFromBottom:
+                yield return StartCoroutine(BottomPop());
+                break;
+        }
+
+        displayBox.localScale = Vector3.one;
+
+        yield return new WaitForSeconds(fadeDuration/2);
+
+        float elapsed = 0;
+        while(elapsed < fadeDuration/2)
+        {
+            elapsed += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(1,0,elapsed/(fadeDuration/2));
+            yield return null;
+        }
+        canvasGroup.alpha = 0;
+        coroutine = null;
+    }
+
+    private IEnumerator ScalePop()
+    {
+        float time = 0f;
 
         while (time < popDuration)
         {
@@ -63,19 +93,34 @@ public class ShowNotification : MonoBehaviour
 
             yield return null;
         }
+    }
 
-        displayBox.localScale = Vector3.one;
+    private IEnumerator BottomPop()
+    {
+        float time = 0f;
 
-        yield return new WaitForSeconds(fadeDuration/2);
+        Vector2 startPos = displayBox.anchoredPosition + new Vector2(0, -50);
+        Vector2 endPos = displayBox.anchoredPosition;
 
-        float elapsed = 0;
-        while(elapsed < fadeDuration/2)
+        while (time < popDuration)
         {
-            elapsed += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(1,0,elapsed/(fadeDuration/2));
+            time += Time.deltaTime;
+
+            float t = Mathf.Clamp01(time / popDuration);
+
+            t = Mathf.SmoothStep(0f, 1f, t);
+
+            displayBox.anchoredPosition = Vector2.Lerp(startPos, endPos, t);
+
             yield return null;
         }
-        canvasGroup.alpha = 0;
-        coroutine = null;
+
+        displayBox.anchoredPosition = endPos;
     }
+}
+
+public enum NotificationType
+{
+    ScalePop,
+    PopFromBottom
 }

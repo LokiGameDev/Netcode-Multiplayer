@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.Collections;
 using Unity.Netcode;
@@ -23,6 +24,7 @@ public class WaitingPanel : NetworkBehaviour
     [SerializeField] private GameObject invitePlayersButton;
 
     private List<string> playerWaitingList = new List<string>();
+    private Dictionary<string, GameObject> playerWaitingItems = new();
 
     [Tooltip("Minimum number of players required to start.")]
     [SerializeField] private int requiredPlayers = 2;
@@ -31,7 +33,7 @@ public class WaitingPanel : NetworkBehaviour
     public void OnEnable()
     {
         playersCountText.text = GameStateManager.Instance.CurrentPlayerCount() + "/" + GameStateManager.Instance.MaxPlayerInLobby() + " Players Joined";
-        GameStateManager.Instance.playercountChanged.AddListener(PlayerCountChanged);
+        GameStateManager.Instance.playerCount.OnValueChanged += PlayerCountChanged;
         GameStateManager.Instance.playerWaitingList.OnListChanged += ChangePlayerList;
 
         invitePlayersButton.SetActive(IsServer);
@@ -42,22 +44,22 @@ public class WaitingPanel : NetworkBehaviour
     /// <summary>Unsubscribes from player-count and waiting-list updates.</summary>
     public void OnDisable()
     {
-        GameStateManager.Instance.playercountChanged.RemoveListener(PlayerCountChanged);
+        GameStateManager.Instance.playerCount.OnValueChanged -= PlayerCountChanged;
         GameStateManager.Instance.playerWaitingList.OnListChanged -= ChangePlayerList;
     }
 
     /// <summary>Initializes the waiting panel for the current network role.</summary>
     public void Start()
     {
-        AddPlayer();
-        PlayerCountChanged();
+        ChangePlayerWaitingList();
+        PlayerCountChanged(0,1);
         invitePlayersButton.SetActive(IsHost);
     }
 
     /// <summary>Refreshes the player count and host start controls.</summary>
-    public void PlayerCountChanged()
+    public void PlayerCountChanged(int previousValue, int newValue)
     {
-        playersCountText.text = GameStateManager.Instance.CurrentPlayerCount() + "/" + GameStateManager.Instance.MaxPlayerInLobby() + " Players Joined";
+        playersCountText.text = GameStateManager.Instance.playerCount.Value + "/" + GameStateManager.Instance.MaxPlayerInLobby() + " Players Joined";
 
         invitePlayersButton.SetActive(IsHost);
 
@@ -80,21 +82,21 @@ public class WaitingPanel : NetworkBehaviour
     /// <summary>Refreshes the waiting-player display after a list change.</summary>
     private void ChangePlayerList(NetworkListEvent<FixedString64Bytes> changeEvent)
     {
-        AddPlayer();
+        ChangePlayerWaitingList();
     }
 
     /// <summary>Adds newly joined players to the waiting list UI.</summary>
-    public void AddPlayer()
+    public void ChangePlayerWaitingList()
     {
         var names = GameStateManager.Instance.playerWaitingList;
 
-        Debug.Log("Player Count: " + names.Count);
+        Debug.Log("[WAITING LIST] Player Count: " + names.Count);
 
         foreach(var name in names)
         {
             string playerName = name.ToString();
 
-            Debug.Log("Checking " + playerName);
+            Debug.Log("[WAITING LIST] Checking " + playerName);
 
             if(playerWaitingList.Contains(playerName)) continue;
 
@@ -102,9 +104,36 @@ public class WaitingPanel : NetworkBehaviour
             
             var item = Instantiate(playerWaitingPrefab, playerJoinedListContainer);
 
-            Debug.Log("Adding: " + name +" to the list");
+            playerWaitingItems[playerName] = item;
+
+            Debug.Log("[WAITING LIST] Adding: " + name +" to the list");
 
             item.GetComponent<PlayerWaitingItem>().SetPlayerName(playerName);
+        }
+
+        // foreach(var kvp in playerWaitingItems)
+        // {
+        //     if(!names.Contains(kvp.Key))
+        //     {
+        //         if (playerWaitingItems.TryGetValue(kvp.Key, out GameObject obj))
+        //         {
+        //             Destroy(obj);
+        //             playerWaitingList.Remove(kvp.Key);
+        //             playerWaitingItems.Remove(kvp.Key);
+
+        //             Debug.Log("[WAITING LIST] Removing: " + kvp.Key +" from the list");
+        //         }
+        //     }
+        // }
+
+        foreach (var kvp in playerWaitingItems.ToList())
+        {
+            if (!names.Contains(kvp.Key))
+            {
+                Destroy(kvp.Value);
+                playerWaitingList.Remove(kvp.Key);
+                playerWaitingItems.Remove(kvp.Key);
+            }
         }
     }
 }
