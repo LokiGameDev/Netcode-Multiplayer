@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 /// <summary>Coordinates player gem purchases and balance-change notifications.</summary>
 public class GameManager : MonoBehaviour
@@ -58,5 +59,10 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("PlayerGems", PlayerPrefs.GetInt("PlayerGems") - amount);
         PlayerGemsAmountChanged?.Invoke();
+    }
+
+    public void LoadControlsChangeScene()
+    {
+        SceneManager.LoadScene("Checker");
     }
 }

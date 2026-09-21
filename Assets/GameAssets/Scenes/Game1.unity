@@ -15539,6 +15539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MobileControlEnabler
   mobileControls: {fileID: 1154456505}
+  moveRectTransform: {fileID: 1211696210}
+  jumpRectTransform: {fileID: 580129044}
+  interactTransform: {fileID: 1649670682}
 --- !u!114 &1016691071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22464,6 +22467,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
   ShowTopMostFoldoutHeaderGroup: 1
+  playerCount:
+    UpdateTraits:
+      MinSecondsBetweenUpdates: 0
+      MaxSecondsBetweenUpdates: 0
+    m_InternalValue: 0
   playerWaitingList:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0

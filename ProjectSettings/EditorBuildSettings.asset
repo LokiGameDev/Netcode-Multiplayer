@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/GameAssets/Scenes/Game1.unity
     guid: 77fcea077b3a9ce42b759561fe33ac18
+  - enabled: 1
+    path: Assets/GameAssets/Scenes/Checker.unity
+    guid: ee5307eb17605a54f82493c84735a49f
   m_configObjects:
     com.unity.adaptivePerformance.basic.provider_settings: {fileID: 11400000, guid: c5cd74774e4e0214ca1f965438e63475, type: 2}
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: e6b8344fddb10f946b1192653f404074, type: 2}
