@@ -14,7 +14,7 @@ public class UpdateManager : MonoBehaviour
     }
 
     [Header("Version")]
-    [SerializeField] private string currentVersion = "1.0.2";
+    [SerializeField] private string currentVersion = "1.0.1";
 
     [SerializeField]
     private string versionJsonUrl =
@@ -177,7 +177,7 @@ public class UpdateManager : MonoBehaviour
                 new AndroidJavaObject(
                     "android.app.DownloadManager$Query");
 
-            query.Call(
+            query.Call<AndroidJavaObject>(
                 "setFilterById",
                 downloadId);
 
@@ -187,13 +187,17 @@ public class UpdateManager : MonoBehaviour
                     query);
 
             if (cursor == null)
+            {
+                Debug.Log("DownloadManager returned null cursor.");
                 continue;
+            }
 
             bool hasRow =
                 cursor.Call<bool>("moveToFirst");
 
             if (!hasRow)
             {
+                Debug.Log("No download row found.");
                 cursor.Call("close");
                 continue;
             }
@@ -230,6 +234,8 @@ public class UpdateManager : MonoBehaviour
 
             cursor.Call("close");
 
+            Debug.Log("DownloadManager status = " + status);
+
             if (total > 0)
             {
                 float progress =
@@ -241,6 +247,8 @@ public class UpdateManager : MonoBehaviour
 
             const int STATUS_SUCCESSFUL = 8;
             const int STATUS_FAILED = 16;
+
+            Debug.Log("DownloadManager status = " + status);
 
             if (status == STATUS_SUCCESSFUL)
             {
