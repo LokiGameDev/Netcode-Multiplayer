@@ -14,7 +14,7 @@ public class UpdateManager : MonoBehaviour
     }
 
     [Header("Version")]
-    [SerializeField] private string currentVersion = "1.0.0";
+    [SerializeField] private string currentVersion = "1.0.1";
 
     [SerializeField]
     private string versionJsonUrl =

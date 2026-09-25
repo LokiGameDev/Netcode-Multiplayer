@@ -18,6 +18,7 @@ public class MenuPlayerDetailFiller : MonoBehaviour
     [SerializeField] private Sprite defaultProfilePhoto;
     [Tooltip("Optional player profile photo.")]
     [SerializeField] private Sprite playerProfilePhoto;
+    [SerializeField] private TMP_Text versionText;
 
     [Tooltip("Panel hidden after player details load.")]
     [SerializeField] private GameObject loadingPanel;
@@ -27,6 +28,7 @@ public class MenuPlayerDetailFiller : MonoBehaviour
     {
         string playerName = AuthenticationService.Instance.PlayerName;
         playerGems_Text.text = PlayerPrefs.GetInt("PlayerGems").ToString();
+        versionText.text = "v1.0.1";
         Array.ForEach(playerNameText, name => name.text = playerName);
         profilePhoto.sprite = defaultProfilePhoto;
         GameManager.Instance.PlayerGemsAmountChanged.AddListener(PlayerGemsChanged);
