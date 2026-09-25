@@ -14,7 +14,7 @@ public class UpdateManager : MonoBehaviour
     }
 
     [Header("Version")]
-    [SerializeField] private string currentVersion = "1.0.2";
+    [SerializeField] private string currentVersion = "1.0.1";
 
     [SerializeField]
     private string versionJsonUrl =
@@ -67,10 +67,12 @@ public class UpdateManager : MonoBehaviour
             yield break;
         }
 
-        Debug.Log("Installed: " + currentVersion);
+        string installedVersion = Application.version;
+
+        Debug.Log("Installed: " + installedVersion);
         Debug.Log("Latest: " + data.version);
 
-        if (IsNewerVersion(data.version, currentVersion))
+        if (IsNewerVersion(data.version, installedVersion))
         {
             apkUrl = data.apkUrl;
 
