@@ -67,5 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Netcode Multiplayer.slnx"
+    "dotnet.defaultSolution": "Netcode Multiplayer.slnx",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

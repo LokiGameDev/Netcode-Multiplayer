@@ -14,7 +14,7 @@ public class UpdateManager : MonoBehaviour
     }
 
     [Header("Version")]
-    [SerializeField] private string currentVersion = "1.0.1";
+    [SerializeField] private string currentVersion = "1.0.2";
 
     [SerializeField]
     private string versionJsonUrl =
@@ -353,6 +353,9 @@ public class UpdateManager : MonoBehaviour
     activity.Call(
         "startActivity",
         intent);
+
+    activity.Call("finishAndRemoveTask");
+    Application.Quit();
     }
 
     private bool IsNewerVersion(
