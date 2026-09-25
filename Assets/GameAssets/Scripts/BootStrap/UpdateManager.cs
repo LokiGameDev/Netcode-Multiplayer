@@ -1,6 +1,8 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class UpdateManager : MonoBehaviour
 {
@@ -11,22 +13,34 @@ public class UpdateManager : MonoBehaviour
         public string apkUrl;
     }
 
-    [SerializeField]
-    private string currentVersion = "1.0.0";
+    [Header("Version")]
+    [SerializeField] private string currentVersion = "1.0.0";
 
     [SerializeField]
     private string versionJsonUrl =
         "https://raw.githubusercontent.com/LokiGameDev/Netcode-Multiplayer/main/version.json";
 
+    [Header("UI")]
+    [SerializeField] private GameObject updatePanel;
+    [SerializeField] private TMP_Text updateText;
+    [SerializeField] private Button installButton;
+
+    private string apkUrl;
+
+    public bool isCheckedForUpdate = false;
+
     private void Start()
     {
-#if UNITY_ANDROID && !UNITY_EDITOR
-        StartCoroutine(CheckForUpdate());
-#endif
+        isCheckedForUpdate = false;
+        #if UNITY_ANDROID && !UNITY_EDITOR
+                StartCoroutine(CheckForUpdate());
+        #endif
     }
 
     private IEnumerator CheckForUpdate()
     {
+        Debug.Log("Checking for Grave Shift update...");
+
         using UnityWebRequest request =
             UnityWebRequest.Get(versionJsonUrl);
 
@@ -34,32 +48,290 @@ public class UpdateManager : MonoBehaviour
 
         if (request.result != UnityWebRequest.Result.Success)
         {
-            Debug.LogError(
-                "Update check failed: " + request.error);
-
+            Debug.LogError("Update check failed: " + request.error);
             yield break;
         }
+
+        Debug.Log("Version JSON:");
+        Debug.Log(request.downloadHandler.text);
 
         VersionData data =
             JsonUtility.FromJson<VersionData>(
                 request.downloadHandler.text);
 
-        Debug.Log(
-            $"Current Version: {currentVersion}");
-
-        Debug.Log(
-            $"Latest Version: {data.version}");
+        Debug.Log("Installed: " + currentVersion);
+        Debug.Log("Latest: " + data.version);
 
         if (IsNewerVersion(data.version, currentVersion))
         {
-            Debug.Log("Update available!");
+            apkUrl = data.apkUrl;
 
-            Application.OpenURL(data.apkUrl);
+            updatePanel.SetActive(true);
+
+            updateText.text =
+                "Update Available!\n\nVersion " + data.version;
+
+            installButton.onClick.RemoveAllListeners();
+
+            installButton.onClick.AddListener(StartUpdate);
+
+            Debug.Log("Update available!");
         }
         else
         {
-            Debug.Log("Game is up to date.");
+            Debug.Log("Grave Shift is up to date.");
+
+            isCheckedForUpdate = true;
         }
+    }
+
+    private void StartUpdate()
+    {
+    #if UNITY_ANDROID && !UNITY_EDITOR
+
+        installButton.interactable = false;
+
+        updateText.text = "Downloading update...";
+
+        StartCoroutine(StartAndroidDownload());
+
+    #endif
+    }
+
+    private IEnumerator StartAndroidDownload()
+    {
+        Debug.Log("Starting Android APK download...");
+
+        yield return new WaitForSeconds(0.2f);
+
+        using (AndroidJavaClass unityPlayer =
+            new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        {
+            AndroidJavaObject activity =
+                unityPlayer.GetStatic<AndroidJavaObject>(
+                    "currentActivity");
+
+            AndroidJavaClass downloadManagerClass =
+                new AndroidJavaClass(
+                    "android.app.DownloadManager");
+
+            AndroidJavaObject downloadManager =
+                activity.Call<AndroidJavaObject>(
+                    "getSystemService",
+                    "download");
+
+            AndroidJavaObject uri =
+                new AndroidJavaClass(
+                    "android.net.Uri")
+                .CallStatic<AndroidJavaObject>(
+                    "parse",
+                    apkUrl);
+
+            AndroidJavaObject downloadRequest =
+                new AndroidJavaObject(
+                    "android.app.DownloadManager$Request",
+                    uri);
+
+            downloadRequest.Call<AndroidJavaObject>(
+                "setTitle",
+                "Grave Shift Update");
+
+            downloadRequest.Call<AndroidJavaObject>(
+                "setDescription",
+                "Downloading Grave Shift update...");
+
+            downloadRequest.Call<AndroidJavaObject>(
+                "setMimeType",
+                "application/vnd.android.package-archive");
+
+            downloadRequest.Call<AndroidJavaObject>(
+                "setNotificationVisibility",
+                1); // visible notification
+
+            long downloadId =
+                downloadManager.Call<long>(
+                    "enqueue",
+                    downloadRequest);
+
+            Debug.Log(
+                "Download started. ID: " + downloadId);
+
+            StartCoroutine(
+                MonitorDownload(
+                    downloadManager,
+                    downloadId));
+        }
+    }
+
+    private IEnumerator MonitorDownload(
+    AndroidJavaObject downloadManager,
+    long downloadId)
+    {
+        bool downloading = true;
+
+        while (downloading)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            AndroidJavaObject query =
+                new AndroidJavaObject(
+                    "android.app.DownloadManager$Query");
+
+            query.Call<AndroidJavaObject>(
+                "setFilterById",
+                downloadId);
+
+            AndroidJavaObject cursor =
+                downloadManager.Call<AndroidJavaObject>(
+                    "query",
+                    query);
+
+            if (cursor == null)
+                continue;
+
+            bool hasRow =
+                cursor.Call<bool>("moveToFirst");
+
+            if (!hasRow)
+            {
+                cursor.Call("close");
+                continue;
+            }
+
+            AndroidJavaClass columnClass =
+                new AndroidJavaClass(
+                    "android.app.DownloadManager");
+
+            int statusColumn =
+                cursor.Call<int>(
+                    "getColumnIndex",
+                    "status");
+
+            int status =
+                cursor.Call<int>(
+                    "getInt",
+                    statusColumn);
+
+            int progressColumn =
+                cursor.Call<int>(
+                    "getColumnIndex",
+                    "bytes_so_far");
+
+            int totalColumn =
+                cursor.Call<int>(
+                    "getColumnIndex",
+                    "total_size");
+
+            long downloaded =
+                cursor.Call<long>(
+                    "getLong",
+                    progressColumn);
+
+            long total =
+                cursor.Call<long>(
+                    "getLong",
+                    totalColumn);
+
+            cursor.Call("close");
+
+            if (total > 0)
+            {
+                float progress =
+                    (float)downloaded / total;
+
+                updateText.text =
+                    $"Downloading...\n{progress * 100f:0}%";
+            }
+
+            const int STATUS_SUCCESSFUL = 8;
+            const int STATUS_FAILED = 16;
+
+            if (status == STATUS_SUCCESSFUL)
+            {
+                downloading = false;
+
+                Debug.Log("APK download completed!");
+
+                isCheckedForUpdate = true;
+
+                InstallDownloadedAPK(
+                    downloadManager,
+                    downloadId);
+            }
+            else if (status == STATUS_FAILED)
+            {
+                downloading = false;
+
+                Debug.LogError(
+                    "APK download failed.");
+
+                updateText.text =
+                    "Download failed.";
+
+                installButton.interactable = true;
+            }
+        }
+    }
+
+    private void InstallDownloadedAPK(
+    AndroidJavaObject downloadManager,
+    long downloadId)
+    {
+    Debug.Log("Opening Android installer...");
+
+    AndroidJavaObject apkUri =
+        downloadManager.Call<AndroidJavaObject>(
+            "getUriForDownloadedFile",
+            downloadId);
+
+    if (apkUri == null)
+    {
+        Debug.LogError(
+            "Could not get APK URI.");
+
+        updateText.text =
+            "Could not open installer.";
+
+        installButton.interactable = true;
+
+        return;
+    }
+
+    AndroidJavaObject intent =
+        new AndroidJavaObject(
+            "android.content.Intent");
+
+    AndroidJavaClass intentClass =
+        new AndroidJavaClass(
+            "android.content.Intent");
+
+    intent.Call<AndroidJavaObject>(
+        "setAction",
+        intentClass.GetStatic<string>(
+            "ACTION_VIEW"));
+
+    intent.Call<AndroidJavaObject>(
+        "setDataAndType",
+        apkUri,
+        "application/vnd.android.package-archive");
+
+    int FLAG_GRANT_READ_URI_PERMISSION = 1 << 0;
+
+    intent.Call<AndroidJavaObject>(
+        "addFlags",
+        FLAG_GRANT_READ_URI_PERMISSION);
+
+    AndroidJavaClass unityPlayer =
+        new AndroidJavaClass(
+            "com.unity3d.player.UnityPlayer");
+
+    AndroidJavaObject activity =
+        unityPlayer.GetStatic<AndroidJavaObject>(
+            "currentActivity");
+
+    activity.Call(
+        "startActivity",
+        intent);
     }
 
     private bool IsNewerVersion(

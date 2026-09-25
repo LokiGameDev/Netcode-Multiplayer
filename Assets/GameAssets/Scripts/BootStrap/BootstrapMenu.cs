@@ -22,6 +22,7 @@ public class BootstrapMenu : MonoBehaviour
     [SerializeField] private GameObject logoLoadingPanel;
     [Tooltip("Panel shown when the connection is unavailable.")]
     [SerializeField] private GameObject connectionLostPanel;
+    [SerializeField] private UpdateManager updateManager;
 
     [Tooltip("Minimum allowed player-name length.")]
     [SerializeField] private int minPlayerNameLength = 1;
@@ -80,6 +81,19 @@ public class BootstrapMenu : MonoBehaviour
     public void StartLoading()
     {
         Debug.Log("Loading...");
+
+        StartCoroutine(WaitForUpdateCheck());
+    }
+
+    private IEnumerator WaitForUpdateCheck()
+    {
+        Debug.Log("Checking for update status");
+        while(!updateManager.isCheckedForUpdate)
+        {
+            yield return new WaitForSeconds(1);
+        }
+        Debug.Log("Game is up-to date");
+
         if(PlayerPrefs.GetString(PlayerName).Length <= minPlayerNameLength)
         {
             newAccountPanel.SetActive(true);
