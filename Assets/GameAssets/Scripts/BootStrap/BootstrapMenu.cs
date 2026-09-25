@@ -10,31 +10,40 @@ public class BootstrapMenu : MonoBehaviour
 {
     private const string PlayerName = "PlayerName";
 
-    [Tooltip("Input field for the player's display name.")]
-    [SerializeField] private TMP_InputField playerNameInputField;
-    [Tooltip("Panel shown when a new player name is required.")]
-    [SerializeField] private GameObject newAccountPanel;
-    [Tooltip("Displays validation and connection messages.")]
-    [SerializeField] private ShowNotification displayMessage;
-    [Tooltip("Button used to enter the game.")]
-    [SerializeField] private Button enterTheGameButton;
+    [Header("Logo loading panel")]
     [Tooltip("Loading panel shown while the game starts.")]
     [SerializeField] private GameObject logoLoadingPanel;
-    [Tooltip("Panel shown when the connection is unavailable.")]
-    [SerializeField] private GameObject connectionLostPanel;
-    [SerializeField] private UpdateManager updateManager;
-
+    [Header("New player details")]
+    [Tooltip("Panel shown when a new player name is required.")]
+    [SerializeField] private GameObject newAccountPanel;
+    [Tooltip("Input field for the player's display name.")]
+    [SerializeField] private TMP_InputField playerNameInputField;
     [Tooltip("Minimum allowed player-name length.")]
     [SerializeField] private int minPlayerNameLength = 1;
     [Tooltip("Maximum allowed player-name length.")]
     [SerializeField] private int maxPlayerNameLength = 10;
 
+    [Header("Connection lost references")]
+    [Tooltip("Panel shown when the connection is unavailable.")]
+    [SerializeField] private GameObject connectionLostPanel;
+    [Header("Update manager")]
+    [SerializeField] private UpdateManager updateManager;
+    [Header("UI References")]
+    [SerializeField] private TMP_Text loadingBarText;
+    [Tooltip("Button used to enter the game.")]
+    [SerializeField] private Button enterTheGameButton;
+    [Tooltip("Displays validation and connection messages.")]
+    [SerializeField] private ShowNotification displayMessage;
+
+    [Header("Events")]
     public UnityEvent OnStartEvent;
 
     /// <summary>Initializes the menu and restores the saved player state.</summary>
     private void Start()
     {
         Debug.Log(PlayerPrefs.GetString(PlayerName));
+
+        loadingBarText.text = "Loading...";
 
         if(!PlayerPrefs.HasKey("PlayerGems"))
         {
@@ -89,11 +98,16 @@ public class BootstrapMenu : MonoBehaviour
     private IEnumerator WaitForUpdateCheck()
     {
         Debug.Log("Checking for update status");
+
+        loadingBarText.text = "Checking for updates...";
+
         while(!updateManager.isCheckedForUpdate)
         {
             yield return new WaitForSeconds(1);
         }
         Debug.Log("Game is up-to date");
+
+        loadingBarText.text = "Loading...";
 
         if(PlayerPrefs.GetString(PlayerName).Length <= minPlayerNameLength)
         {

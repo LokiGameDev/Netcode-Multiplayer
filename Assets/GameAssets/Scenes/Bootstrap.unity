@@ -655,11 +655,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14542db67273b6941a148ceb6d91637d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdateManager
-  currentVersion: 1.0.2
   versionJsonUrl: https://raw.githubusercontent.com/LokiGameDev/Netcode-Multiplayer/main/version.json
-  updatePanel: {fileID: 314398514}
-  updateText: {fileID: 472708018}
-  installButton: {fileID: 1438966164}
+  loadingBarText: {fileID: 1475319597}
+  loadingBarSlider: {fileID: 31966433}
   permissionPanel: {fileID: 1536455343}
   permissionText: {fileID: 224156941}
   allowButton: {fileID: 1273718105}
@@ -1587,6 +1585,7 @@ MonoBehaviour:
   logoLoadingPanel: {fileID: 1125967815}
   connectionLostPanel: {fileID: 921855426}
   updateManager: {fileID: 249823873}
+  loadingBarText: {fileID: 1475319597}
   minPlayerNameLength: 1
   maxPlayerNameLength: 10
   OnStartEvent:

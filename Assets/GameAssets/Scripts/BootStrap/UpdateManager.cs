@@ -13,25 +13,23 @@ public class UpdateManager : MonoBehaviour
         public string apkUrl;
     }
 
-    [Header("Version")]
-    [SerializeField] private string currentVersion = "1.0.1";
-
+    [Header("URL")]
     [SerializeField]
     private string versionJsonUrl =
         "https://raw.githubusercontent.com/LokiGameDev/Netcode-Multiplayer/main/version.json";
 
-    [Header("UI")]
-    [SerializeField] private GameObject updatePanel;
-    [SerializeField] private TMP_Text updateText;
-    [SerializeField] private Button installButton;
+    [Header("Loading UI details")]
+    [SerializeField] private TMP_Text loadingBarText;
+    [SerializeField] private Slider loadingBarSlider;
 
+    [Header("Permission Panel references")]
     [SerializeField] private GameObject permissionPanel;
     [SerializeField] private TMP_Text permissionText;
     [SerializeField] private Button allowButton;
 
-    private string apkUrl;
-
+    [Header("Public values")]
     public bool isCheckedForUpdate = false;
+    private string apkUrl;
     private bool installPermissionRequestPending;
 
     public void StartChecking()
@@ -61,7 +59,6 @@ public class UpdateManager : MonoBehaviour
 
         if (CanInstallPackages())
         {
-            updatePanel.SetActive(false);
             permissionPanel.SetActive(false);
             StartCoroutine(CheckForUpdate());
         }
@@ -87,8 +84,7 @@ public class UpdateManager : MonoBehaviour
     {
         #if UNITY_ANDROID && !UNITY_EDITOR
             installPermissionRequestPending = true;
-            installButton.interactable = false;
-            updateText.text = "Enable installation permission, then return to the game.";
+            permissionText.text = "Enable installation permission, then return to the game.";
             OpenInstallPermissionSettings();
         #endif
     }
@@ -182,16 +178,9 @@ public class UpdateManager : MonoBehaviour
         {
             apkUrl = data.apkUrl;
 
-            updatePanel.SetActive(true);
+            loadingBarText.text = "Downloading update...";
 
-            updateText.text =
-                "Update Available!\n\nVersion " + data.version;
-
-            installButton.onClick.RemoveAllListeners();
-
-            installButton.onClick.AddListener(StartUpdate);
-
-            Debug.Log("Update available!");
+            Debug.Log("Update available!" + data.version);
 
             StartUpdate();
         }
@@ -205,15 +194,9 @@ public class UpdateManager : MonoBehaviour
 
     private void StartUpdate()
     {
-    #if UNITY_ANDROID && !UNITY_EDITOR
-
-        installButton.interactable = false;
-
-        updateText.text = "Downloading update...";
-
-        StartCoroutine(StartAndroidDownload());
-
-    #endif
+        #if UNITY_ANDROID && !UNITY_EDITOR
+            StartCoroutine(StartAndroidDownload());
+        #endif
     }
 
     private IEnumerator StartAndroidDownload()
@@ -363,8 +346,7 @@ public class UpdateManager : MonoBehaviour
                 float progress =
                     (float)downloaded / total;
 
-                updateText.text =
-                    $"Downloading...\n{progress * 100f:0}%";
+                loadingBarSlider.value = progress;
             }
 
             const int STATUS_SUCCESSFUL = 8;
@@ -390,10 +372,8 @@ public class UpdateManager : MonoBehaviour
 
                 Debug.LogError("APK download failed.");
 
-                updateText.text =
+                loadingBarText.text =
                     "Download failed.";
-
-                installButton.interactable = true;
             }
         }
     }
@@ -402,70 +382,68 @@ public class UpdateManager : MonoBehaviour
     AndroidJavaObject downloadManager,
     long downloadId)
     {
-    Debug.Log("Opening Android installer...");
-    updateText.text = "Opening installer...";
+        Debug.Log("Opening Android installer...");
+        loadingBarText.text = "Opening installer...";
 
-    AndroidJavaObject apkUri =
-        downloadManager.Call<AndroidJavaObject>(
-            "getUriForDownloadedFile",
-            downloadId);
+        AndroidJavaObject apkUri =
+            downloadManager.Call<AndroidJavaObject>(
+                "getUriForDownloadedFile",
+                downloadId);
 
-    if (apkUri == null)
-    {
-        Debug.LogError(
-            "Could not get APK URI.");
+        if (apkUri == null)
+        {
+            Debug.LogError(
+                "Could not get APK URI.");
 
-        updateText.text =
-            "Could not open installer.";
+            loadingBarText.text =
+                "Could not open installer.";
 
-        installButton.interactable = true;
+            return;
+        }
 
-        return;
-    }
+        AndroidJavaObject intent =
+            new AndroidJavaObject(
+                "android.content.Intent");
 
-    AndroidJavaObject intent =
-        new AndroidJavaObject(
-            "android.content.Intent");
+        AndroidJavaClass intentClass =
+            new AndroidJavaClass(
+                "android.content.Intent");
 
-    AndroidJavaClass intentClass =
-        new AndroidJavaClass(
-            "android.content.Intent");
+        intent.Call<AndroidJavaObject>(
+            "setAction",
+            intentClass.GetStatic<string>(
+                "ACTION_INSTALL_PACKAGE"));
 
-    intent.Call<AndroidJavaObject>(
-        "setAction",
-        intentClass.GetStatic<string>(
-            "ACTION_INSTALL_PACKAGE"));
+        intent.Call<AndroidJavaObject>(
+            "setDataAndType",
+            apkUri,
+            "application/vnd.android.package-archive");
 
-    intent.Call<AndroidJavaObject>(
-        "setDataAndType",
-        apkUri,
-        "application/vnd.android.package-archive");
+        int FLAG_GRANT_READ_URI_PERMISSION = 1 << 0;
+        int FLAG_ACTIVITY_NEW_TASK = 1 << 28;
 
-    int FLAG_GRANT_READ_URI_PERMISSION = 1 << 0;
-    int FLAG_ACTIVITY_NEW_TASK = 1 << 28;
+        intent.Call<AndroidJavaObject>(
+            "addFlags",
+            FLAG_GRANT_READ_URI_PERMISSION);
 
-    intent.Call<AndroidJavaObject>(
-        "addFlags",
-        FLAG_GRANT_READ_URI_PERMISSION);
+        intent.Call<AndroidJavaObject>(
+            "addFlags",
+            FLAG_ACTIVITY_NEW_TASK);
 
-    intent.Call<AndroidJavaObject>(
-        "addFlags",
-        FLAG_ACTIVITY_NEW_TASK);
+        AndroidJavaClass unityPlayer =
+            new AndroidJavaClass(
+                "com.unity3d.player.UnityPlayer");
 
-    AndroidJavaClass unityPlayer =
-        new AndroidJavaClass(
-            "com.unity3d.player.UnityPlayer");
+        AndroidJavaObject activity =
+            unityPlayer.GetStatic<AndroidJavaObject>(
+                "currentActivity");
 
-    AndroidJavaObject activity =
-        unityPlayer.GetStatic<AndroidJavaObject>(
-            "currentActivity");
+        activity.Call(
+            "startActivity",
+            intent);
 
-    activity.Call(
-        "startActivity",
-        intent);
-
-    activity.Call("finishAndRemoveTask");
-    Application.Quit();
+        activity.Call("finishAndRemoveTask");
+        //Application.Quit();
     }
 
     private bool IsNewerVersion(
