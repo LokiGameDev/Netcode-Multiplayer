@@ -25,16 +25,122 @@ public class UpdateManager : MonoBehaviour
     [SerializeField] private TMP_Text updateText;
     [SerializeField] private Button installButton;
 
+    [SerializeField] private GameObject permissionPanel;
+    [SerializeField] private TMP_Text permissionText;
+    [SerializeField] private Button allowButton;
+
     private string apkUrl;
 
     public bool isCheckedForUpdate = false;
+    private bool installPermissionRequestPending;
 
     public void StartChecking()
     {
         isCheckedForUpdate = false;
+
         #if UNITY_ANDROID && !UNITY_EDITOR
-                StartCoroutine(CheckForUpdate());
+        if (!CanInstallPackages())
+        {
+            ShowInstallPermissionOverlay();
+            return;
+        }
+
+        StartCoroutine(CheckForUpdate());
         #endif
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        #if UNITY_ANDROID && !UNITY_EDITOR
+        if (!hasFocus || !installPermissionRequestPending)
+        {
+            return;
+        }
+
+        installPermissionRequestPending = false;
+
+        if (CanInstallPackages())
+        {
+            updatePanel.SetActive(false);
+            permissionPanel.SetActive(false);
+            StartCoroutine(CheckForUpdate());
+        }
+        else
+        {
+            ShowInstallPermissionOverlay();
+        }
+        #endif
+    }
+
+    private void ShowInstallPermissionOverlay()
+    {
+        permissionPanel.SetActive(true);
+        permissionText.text =
+            "Permission required to install updates.\n\nTap Allow to continue.";
+
+        allowButton.interactable = true;
+        allowButton.onClick.RemoveAllListeners();
+        allowButton.onClick.AddListener(RequestInstallPermission);
+    }
+
+    private void RequestInstallPermission()
+    {
+        #if UNITY_ANDROID && !UNITY_EDITOR
+            installPermissionRequestPending = true;
+            installButton.interactable = false;
+            updateText.text = "Enable installation permission, then return to the game.";
+            OpenInstallPermissionSettings();
+        #endif
+    }
+
+    private bool CanInstallPackages()
+    {
+        using (AndroidJavaClass versionClass =
+            new AndroidJavaClass("android.os.Build$VERSION"))
+        {
+            int sdkVersion = versionClass.GetStatic<int>("SDK_INT");
+
+            if (sdkVersion < 26)
+            {
+                return true;
+            }
+        }
+
+        using (AndroidJavaClass unityPlayer =
+            new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        using (AndroidJavaObject activity =
+            unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+        using (AndroidJavaObject packageManager =
+            activity.Call<AndroidJavaObject>("getPackageManager"))
+        {
+            return packageManager.Call<bool>("canRequestPackageInstalls");
+        }
+    }
+
+    private void OpenInstallPermissionSettings()
+    {
+        using (AndroidJavaClass settingsClass =
+            new AndroidJavaClass("android.provider.Settings"))
+        using (AndroidJavaObject intent =
+            new AndroidJavaObject(
+                "android.content.Intent",
+                settingsClass.GetStatic<string>(
+                    "ACTION_MANAGE_UNKNOWN_APP_SOURCES")))
+        using (AndroidJavaClass uriClass =
+            new AndroidJavaClass("android.net.Uri"))
+        using (AndroidJavaClass unityPlayer =
+            new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+        using (AndroidJavaObject activity =
+            unityPlayer.GetStatic<AndroidJavaObject>("currentActivity"))
+        {
+            AndroidJavaObject packageUri =
+                uriClass.CallStatic<AndroidJavaObject>(
+                    "parse",
+                    "package:" + Application.identifier);
+
+            intent.Call<AndroidJavaObject>("setData", packageUri);
+            activity.Call("startActivity", intent);
+        }
     }
 
     private IEnumerator CheckForUpdate()
@@ -86,6 +192,8 @@ public class UpdateManager : MonoBehaviour
             installButton.onClick.AddListener(StartUpdate);
 
             Debug.Log("Update available!");
+
+            StartUpdate();
         }
         else
         {
