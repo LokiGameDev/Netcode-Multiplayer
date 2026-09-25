@@ -14,7 +14,7 @@ public class UpdateManager : MonoBehaviour
     }
 
     [Header("Version")]
-    [SerializeField] private string currentVersion = "1.0.2";
+    [SerializeField] private string currentVersion = "1.0.1";
 
     [SerializeField]
     private string versionJsonUrl =
@@ -29,7 +29,7 @@ public class UpdateManager : MonoBehaviour
 
     public bool isCheckedForUpdate = false;
 
-    private void Start()
+    public void StartChecking()
     {
         isCheckedForUpdate = false;
         #if UNITY_ANDROID && !UNITY_EDITOR
@@ -49,6 +49,7 @@ public class UpdateManager : MonoBehaviour
         if (request.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError("Update check failed: " + request.error);
+            isCheckedForUpdate = true;
             yield break;
         }
 
@@ -58,6 +59,13 @@ public class UpdateManager : MonoBehaviour
         VersionData data =
             JsonUtility.FromJson<VersionData>(
                 request.downloadHandler.text);
+
+        if (data == null || string.IsNullOrEmpty(data.version) || string.IsNullOrEmpty(data.apkUrl))
+        {
+            Debug.LogError("Malformed version.json response.");
+            isCheckedForUpdate = true;
+            yield break;
+        }
 
         Debug.Log("Installed: " + currentVersion);
         Debug.Log("Latest: " + data.version);
@@ -236,6 +244,7 @@ public class UpdateManager : MonoBehaviour
                     totalColumn);
 
             cursor.Call("close");
+            cursor.Dispose();
 
             Debug.Log("DownloadManager status = " + status);
 
@@ -284,6 +293,7 @@ public class UpdateManager : MonoBehaviour
     long downloadId)
     {
     Debug.Log("Opening Android installer...");
+    updateText.text = "Opening installer...";
 
     AndroidJavaObject apkUri =
         downloadManager.Call<AndroidJavaObject>(
@@ -314,7 +324,7 @@ public class UpdateManager : MonoBehaviour
     intent.Call<AndroidJavaObject>(
         "setAction",
         intentClass.GetStatic<string>(
-            "ACTION_VIEW"));
+            "ACTION_INSTALL_PACKAGE"));
 
     intent.Call<AndroidJavaObject>(
         "setDataAndType",
@@ -322,10 +332,15 @@ public class UpdateManager : MonoBehaviour
         "application/vnd.android.package-archive");
 
     int FLAG_GRANT_READ_URI_PERMISSION = 1 << 0;
+    int FLAG_ACTIVITY_NEW_TASK = 1 << 28;
 
     intent.Call<AndroidJavaObject>(
         "addFlags",
         FLAG_GRANT_READ_URI_PERMISSION);
+
+    intent.Call<AndroidJavaObject>(
+        "addFlags",
+        FLAG_ACTIVITY_NEW_TASK);
 
     AndroidJavaClass unityPlayer =
         new AndroidJavaClass(

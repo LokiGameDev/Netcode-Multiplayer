@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14542db67273b6941a148ceb6d91637d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpdateManager
-  currentVersion: 1.0.2
+  currentVersion: 1.0.1
   versionJsonUrl: https://raw.githubusercontent.com/LokiGameDev/Netcode-Multiplayer/main/version.json
   updatePanel: {fileID: 314398514}
   updateText: {fileID: 472708018}

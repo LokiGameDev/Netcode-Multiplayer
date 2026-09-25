@@ -82,6 +82,7 @@ public class BootstrapMenu : MonoBehaviour
     {
         Debug.Log("Loading...");
 
+        updateManager.StartChecking();
         StartCoroutine(WaitForUpdateCheck());
     }
 
