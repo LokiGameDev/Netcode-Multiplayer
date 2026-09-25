@@ -14,7 +14,7 @@ public class UpdateManager : MonoBehaviour
     }
 
     [Header("Version")]
-    [SerializeField] private string currentVersion = "1.0.1";
+    [SerializeField] private string currentVersion = "1.0.2";
 
     [SerializeField]
     private string versionJsonUrl =
@@ -177,7 +177,7 @@ public class UpdateManager : MonoBehaviour
                 new AndroidJavaObject(
                     "android.app.DownloadManager$Query");
 
-            query.Call<AndroidJavaObject>(
+            query.Call(
                 "setFilterById",
                 downloadId);
 
@@ -197,10 +197,6 @@ public class UpdateManager : MonoBehaviour
                 cursor.Call("close");
                 continue;
             }
-
-            AndroidJavaClass columnClass =
-                new AndroidJavaClass(
-                    "android.app.DownloadManager");
 
             int statusColumn =
                 cursor.Call<int>(
@@ -252,8 +248,6 @@ public class UpdateManager : MonoBehaviour
 
                 Debug.Log("APK download completed!");
 
-                isCheckedForUpdate = true;
-
                 InstallDownloadedAPK(
                     downloadManager,
                     downloadId);
@@ -262,8 +256,7 @@ public class UpdateManager : MonoBehaviour
             {
                 downloading = false;
 
-                Debug.LogError(
-                    "APK download failed.");
+                Debug.LogError("APK download failed.");
 
                 updateText.text =
                     "Download failed.";
