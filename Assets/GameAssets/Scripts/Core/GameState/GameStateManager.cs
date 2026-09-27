@@ -214,7 +214,22 @@ public class GameStateManager : NetworkBehaviour
     public void StartTheGame()
     {
         currentGameState.Value = GameState.Loading;
+        List<FixedString64Bytes> players = new();
+
+        foreach(var pl in playerWaitingList)
+        {
+            players.Add(pl.Value);
+        }
+
+        SendPlayerListToAllClientsRpc(players.ToArray());
+
         StartCoroutine(LoadingPanelTimer());
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void SendPlayerListToAllClientsRpc(FixedString64Bytes[] players)
+    {
+        UIManager.Instance.FillTheCurrentPlayerList(players);
     }
 
     /// <summary>Waits briefly before switching to the playing state.</summary>
@@ -242,6 +257,7 @@ public class GameStateManager : NetworkBehaviour
     public void PlayerLeft(string name)
     {
         Debug.Log($"[GAME STATE MANAGER]: Removing player {name}");
+        PlayerWentOfflineRpc(name);
         playerWaitingList.Remove(name);
     }
 
@@ -258,6 +274,14 @@ public class GameStateManager : NetworkBehaviour
     private void GameOverByPlayersDeath()
     {
         GameFinished(GameState.GameLost);
+    }
+
+    public bool IsPlayerOwner(string name)
+    {
+        GameObject playerObject = NetworkManager.Singleton.LocalClient.PlayerObject.gameObject;
+
+        if(playerObject.GetComponent<PlayerManager>().PlayerName.Value == name) return true;
+        return false;
     }
 
     [Rpc(SendTo.Server)]
@@ -277,6 +301,8 @@ public class GameStateManager : NetworkBehaviour
         currentAlivePlayers.Value -= 1;
 
         if(currentAlivePlayers.Value <= 0) GameOverByPlayersDeath();
+
+        SendPlayerStateToAllClientsRpc(player.PlayerName.Value.ToString(), false);
         
         Debug.Log($"[SERVER] Player got attacked: {player.PlayerName.Value}");
     }
@@ -297,7 +323,21 @@ public class GameStateManager : NetworkBehaviour
 
         currentAlivePlayers.Value += 1;
         
+        SendPlayerStateToAllClientsRpc(player.PlayerName.Value.ToString(), true);
+
         Debug.Log($"[SERVER] Player got revived: {player.PlayerName.Value}");
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void SendPlayerStateToAllClientsRpc(string name, bool state)
+    {
+        UIManager.Instance.PlayerStateChanged(name, state);
+    }
+
+    [Rpc(SendTo.Everyone)]
+    private void PlayerWentOfflineRpc(string name)
+    {
+        UIManager.Instance.PlayerWentOffline(name);
     }
 }
 

@@ -98,7 +98,7 @@ public class Monster : NetworkBehaviour
         }
         else if(distance < detectingRange)
         {
-            Follow();
+            if(!isAttacking) Follow();
         }
         else
         {

@@ -158,6 +158,10 @@ public class BootstrapMenu : MonoBehaviour
     /// <summary>Returns whether the device reports an available network.</summary>
     private bool IsInternetAvailable()
     {
-        return Application.internetReachability != NetworkReachability.NotReachable;
+        #if UNITY_EDITOR
+            return true;
+        #else
+            return Application.internetReachability != NetworkReachability.NotReachable;
+        #endif
     }
 }

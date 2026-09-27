@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 public class DraggableButton : MonoBehaviour, IDragHandler
 {
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private Canvas Canvas;
     [SerializeField] private RectTransform dragArea;
+
+    [SerializeField] private ControlPositionSaver controlPositionSaver;
 
     private Vector2 boundariesMin = new Vector2(-820, -310);
     private Vector2 boundariesMax = new Vector2(820, 310);
@@ -35,5 +36,7 @@ public class DraggableButton : MonoBehaviour, IDragHandler
         newPosition.y = Mathf.Clamp(newPosition.y, minY, maxY);
 
         rectTransform.anchoredPosition = newPosition;
+
+        controlPositionSaver.ChangesHappened();
     }
 }

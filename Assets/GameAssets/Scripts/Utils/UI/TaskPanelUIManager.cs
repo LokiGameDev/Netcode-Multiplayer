@@ -36,6 +36,8 @@ public class TaskPanelUIManager : MonoBehaviour
         if(currentTaskPanel==null) return;
 
         currentTaskPanel.SetActive(true);
+
+        AudioManager.Instance.Play(AudioID.TaskPanelOpen);
     }
 
     /// <summary>Completes the selected task and closes its panel.</summary>
@@ -50,7 +52,11 @@ public class TaskPanelUIManager : MonoBehaviour
     /// <summary>Closes the selected task panel without completing it.</summary>
     public void CloseCurrentTaskPanel()
     {
-        if(currentTaskPanel!=null) currentTaskPanel.SetActive(false);
+        if(currentTaskPanel!=null)
+        {
+            currentTaskPanel.SetActive(false);
+            AudioManager.Instance.Play(AudioID.TaskPanelOpen);
+        }
         currentTaskId = -1;
     }
 }

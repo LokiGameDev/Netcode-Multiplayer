@@ -1578,16 +1578,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 757f04de93d45794abbde687a36c32be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BootstrapMenu
-  playerNameInputField: {fileID: 224065145}
-  newAccountPanel: {fileID: 1591901064}
-  displayMessage: {fileID: 1222019354}
-  enterTheGameButton: {fileID: 890434357}
   logoLoadingPanel: {fileID: 1125967815}
+  newAccountPanel: {fileID: 1591901064}
+  playerNameInputField: {fileID: 224065145}
+  minPlayerNameLength: 1
+  maxPlayerNameLength: 10
   connectionLostPanel: {fileID: 921855426}
   updateManager: {fileID: 249823873}
   loadingBarText: {fileID: 1475319597}
-  minPlayerNameLength: 1
-  maxPlayerNameLength: 10
+  enterTheGameButton: {fileID: 890434357}
+  displayMessage: {fileID: 1222019354}
   OnStartEvent:
     m_PersistentCalls:
       m_Calls:

@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using GameTasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,8 +14,11 @@ public class TaskLight : MonoBehaviour, ITaskFinisher
     [SerializeField] private GameObject taskCompletionButton;
     [SerializeField] private int requiredItemIndex = 0;
 
+    [SerializeField] private RectTransform spawnArea;
     [SerializeField] private GameObject[] taskItems;
     [SerializeField] private RectTransform[] taskItemPositions;
+
+    private List<RectTransform> taskItemsRect = new();
 
     [Serializable]
     public class FinshingItemsUI
@@ -21,13 +27,23 @@ public class TaskLight : MonoBehaviour, ITaskFinisher
         public Sprite completionUI;
     }
 
+    private void Awake()
+    {
+        foreach(var obj in taskItems)
+        {
+            taskItemsRect.Add(obj.GetComponent<RectTransform>());
+        }
+    }
+
     public void OnEnable()
     {
         for(int i=0; i<taskItems.Length; i++)
         {
             taskItems[i].SetActive(true);
-            taskItems[i].GetComponent<RectTransform>().position = taskItemPositions[i].position;
+            //taskItems[i].GetComponent<RectTransform>().position = taskItemPositions[i].position;
         }
+
+        TaskUIHelperFunctions.PlaceObjects(taskItemsRect, spawnArea);
         requiredItemIndex = 0;
         requiredItemText.text = "Require: " + taskCompletionThings[requiredItemIndex].requiredItem;
         taskCompletionButton.SetActive(false);

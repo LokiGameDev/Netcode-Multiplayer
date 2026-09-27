@@ -48,7 +48,7 @@ public class GameHUD : NetworkBehaviour
         }
 
         string joinCode = HostSingleton.Instance.GameManager.GetJoinCode();
-        joinCodeText.text = joinCode;
+        joinCodeText.text = "Join Code: " + joinCode;
     }
 
     public void PlayerStateChanged(bool state)

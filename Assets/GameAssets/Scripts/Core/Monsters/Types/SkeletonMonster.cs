@@ -1,16 +1,42 @@
+using System;
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 public class SkeletonMonster : Monster
 {
     [SerializeField] protected GameObject attackHitBox;
 
-    [SerializeField] private float facingEnemySpeed = 180;
+    [SerializeField] private GameObject attackEffects;
+
+    NetworkVariable<bool> isAttackTirggered = new NetworkVariable<bool>
+    (
+        false,
+        readPerm: NetworkVariableReadPermission.Everyone,
+        writePerm: NetworkVariableWritePermission.Server
+    );
 
     private Coroutine coroutine;
 
+    private void OnEnable()
+    {
+        isAttackTirggered.OnValueChanged += MonsterAttacked;
+    }
+
+    private void OnDisable()
+    {
+        isAttackTirggered.OnValueChanged -= MonsterAttacked;
+    }
+
+    private void MonsterAttacked(bool previousValue, bool newValue)
+    {   
+        attackEffects.SetActive(newValue);
+    }
+
     protected override void Start()
     {
+        attackEffects.SetActive(false);
+
         base.Start();
 
         attackHitBox.SetActive(false);
@@ -30,34 +56,15 @@ public class SkeletonMonster : Monster
     private IEnumerator AttackHitboxTimer()
     {
         yield return new WaitForSeconds(reloadingTime/2);
-        
-        while (true)
-        {
-            Vector3 direction = currentTarget.position - transform.position;
-            direction.y = 0f;
 
-            if (direction.sqrMagnitude < 0.01f)
-                break;
-
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
-                targetRotation,
-                facingEnemySpeed * Time.deltaTime
-            );
-
-            if (Quaternion.Angle(transform.rotation, targetRotation) < 1f)
-            {
-                transform.rotation = targetRotation;
-                break;
-            }
-
-            yield return null;
-        }
-
+        isAttackTirggered.Value = true;
         attackHitBox.SetActive(true);
-        yield return new WaitForSeconds(reloadingTime/2);
+        AudioManager.Instance.PlayAudioClientRpc(AudioID.SkeletonPunch, transform.position);
+
+        yield return new WaitForSeconds(0.5f);
         attackHitBox.SetActive(false);
+
+        yield return new WaitForSeconds((reloadingTime/2)-0.5f);
+        isAttackTirggered.Value = false;
     }
 }

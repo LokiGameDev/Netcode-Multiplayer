@@ -19,6 +19,7 @@ public class PlayerMovement : NetworkBehaviour
     [Tooltip("Controls movement-related player effects.")]
     [SerializeField] private PlayerEffectsManager playerEffectsManager;
     [SerializeField] private PlayerManager playerManager;
+    [SerializeField] private PlayerAudioManager playerAudioManager;
     [Tooltip("Player transform used as the camera position anchor.")]
     [SerializeField] private Transform player;
     [Tooltip("Pivot rotated by look input.")]
@@ -220,6 +221,8 @@ public class PlayerMovement : NetworkBehaviour
                 PlayerState.Moving,
                 currentSpeed
             );
+
+            playerAudioManager.PlayerMovementState(currentSpeed != 0);
 
             Vector3 velocity = playerRigidbody.linearVelocity;
             velocity.y = 0f;

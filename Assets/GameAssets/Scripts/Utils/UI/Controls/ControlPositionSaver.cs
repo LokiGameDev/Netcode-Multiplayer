@@ -13,6 +13,10 @@ public class ControlPositionSaver : MonoBehaviour
 
     [SerializeField] private MobileControlEnabler mobileControlEnabler;
 
+    [SerializeField] private GameObject confirmQuittingObject;
+
+    private bool isAnyChangeHappen = false;
+
     string filePath;
 
     void Awake()
@@ -22,6 +26,8 @@ public class ControlPositionSaver : MonoBehaviour
 
     private void Start()
     {
+        confirmQuittingObject.SetActive(false);
+        isAnyChangeHappen = false;
         CheckPositions();
     }
 
@@ -54,7 +60,8 @@ public class ControlPositionSaver : MonoBehaviour
 
     public void SaveCurrentPositions()
     {
-        SavePositions(moveRectTransform.position, jumpRectTransform.position, interactTransform.position);
+        SavePositions(moveRectTransform.localPosition, jumpRectTransform.localPosition, interactTransform.localPosition);
+        ChangeToPlayTestMode();
     }
 
     public void ResetToDefaultPositions()
@@ -68,9 +75,9 @@ public class ControlPositionSaver : MonoBehaviour
     {
         ControlSaveData controlSaveData = LoadPositions();
 
-        moveRectTransform.position = controlSaveData.movePosition.ToVector2();
-        jumpRectTransform.position = controlSaveData.jumpPosition.ToVector2();
-        interactTransform.position = controlSaveData.interactPosition.ToVector2();
+        moveRectTransform.localPosition = controlSaveData.movePosition.ToVector2();
+        jumpRectTransform.localPosition = controlSaveData.jumpPosition.ToVector2();
+        interactTransform.localPosition = controlSaveData.interactPosition.ToVector2();
     }
 
     public void ChangeToChangeMode()
@@ -84,6 +91,30 @@ public class ControlPositionSaver : MonoBehaviour
     {
         playingGamePanel.SetActive(true);
         changingGamePanel.SetActive(false);
+        isAnyChangeHappen = false;
+        CheckPositions();
+    }
+
+    public void ChangesHappened()
+    {
+        isAnyChangeHappen = true;
+    }
+
+    public void QuitChanging()
+    {
+        if(isAnyChangeHappen)
+        {
+            confirmQuittingObject.SetActive(true);
+            return;
+        }
+        QuitConfirm();
+    }
+
+    public void QuitConfirm()
+    {
+        ChangeToPlayTestMode();
+        isAnyChangeHappen = false;
+        confirmQuittingObject.SetActive(false);
     }
 
     public void QuitToMenu()

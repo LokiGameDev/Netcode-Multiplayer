@@ -27,6 +27,8 @@ public class MobileControlEnabler : MonoBehaviour
         #else
             mobileControls.SetActive(Application.isMobilePlatform);
         #endif
+
+        CheckPositions();
     }
 
     private void Start()
@@ -60,8 +62,8 @@ public class MobileControlEnabler : MonoBehaviour
     {
         ControlSaveData controlSaveData = LoadPositions();
 
-        moveRectTransform.position = controlSaveData.movePosition.ToVector2();
-        jumpRectTransform.position = controlSaveData.jumpPosition.ToVector2();
-        interactTransform.position = controlSaveData.interactPosition.ToVector2();
+        moveRectTransform.localPosition = controlSaveData.movePosition.ToVector2();
+        jumpRectTransform.localPosition = controlSaveData.jumpPosition.ToVector2();
+        interactTransform.localPosition = controlSaveData.interactPosition.ToVector2();
     }
 }

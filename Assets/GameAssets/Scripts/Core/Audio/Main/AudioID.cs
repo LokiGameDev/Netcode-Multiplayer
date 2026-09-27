@@ -20,5 +20,15 @@ public enum AudioID
     Lever,
     Springpad,
     Platform,
-    TaskCompletion
+    TaskCompletion,
+
+    //Added later
+    SkeletonPunch,
+    Footsteps,
+    TaskPanelOpen,
+    BroomSweeping,
+    GemsPurchased,
+    MageShoot,
+    PoisonBallHit,
+    PoisonBallImpact
 }

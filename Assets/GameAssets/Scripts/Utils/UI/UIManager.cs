@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -14,8 +14,13 @@ public class UIManager : MonoBehaviour
     [SerializeField] private UITaskManager uITaskManager;
     [SerializeField] private TaskPanelUIManager taskPanelUIManager;
     [SerializeField] private MobileControlEnabler mobileControls;
+    [SerializeField] private GameObject playerDeadControlPanel;
     [Tooltip("Text used for temporary debug values.")]
     [SerializeField] private TMP_Text debugText;
+
+    [SerializeField] private Transform playerListUIContainer;
+    [SerializeField] private PlayerUIListItem playerUIItem;
+    [SerializeField] private List<PlayerUIListItem> playerItems;
 
     [Header("Panels")]
     [Tooltip("Panel shown while waiting for players.")]
@@ -58,6 +63,7 @@ public class UIManager : MonoBehaviour
         TaskManager.Instance.currentTaskCount.OnValueChanged += FillTheTaskBar;
 
         debugText.gameObject.SetActive(false);
+        playerDeadControlPanel.SetActive(false);
 
         SetPanel(waitingPanel);
     }
@@ -157,8 +163,45 @@ public class UIManager : MonoBehaviour
     public void PlayerStateChange(bool state)
     {
         mobileControls.PlayerStateChanged(state);
+        playerDeadControlPanel.SetActive(!state);
         gameHUD.PlayerStateChanged(state);
         if(!state) taskPanelUIManager.CloseCurrentTaskPanel();
+    }
+
+    public void FillTheCurrentPlayerList(FixedString64Bytes[] gamePlayers)
+    {
+        Debug.Log("[UIMANAGER] Adding players to the list for current list");
+        foreach(var player in gamePlayers)
+        {
+            var item = Instantiate(playerUIItem, playerListUIContainer.transform);
+            item.Initialize(player.ToString(), GameStateManager.Instance.IsPlayerOwner(player.ToString()));
+            Debug.Log("[UIMANAGER] Added: " + player);
+            playerItems.Add(item);
+        }
+    }
+
+    public void PlayerStateChanged(string player, bool state)
+    {
+        foreach(var pl in playerItems)
+        {
+            if(pl.PlayerName == player)
+            {
+                pl.PlayerStateChanged(state, GameStateManager.Instance.IsPlayerOwner(player));
+                break;
+            }
+        }
+    }
+
+    public void PlayerWentOffline(string name)
+    {
+        foreach(var pl in playerItems)
+        {
+            if(pl.PlayerName == name)
+            {
+                pl.PlayerWentOffline();
+                break;
+            }
+        }
     }
 
     [Rpc(SendTo.Everyone)]

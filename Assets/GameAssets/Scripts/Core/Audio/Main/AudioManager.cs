@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -68,6 +69,12 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic(AudioID id)
     {
         Instance.musicManager.Play(id);
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void PlayAudioClientRpc(AudioID id, Vector3 position)
+    {
+        Instance.PlayInternal(id, position, null);
     }
 
     /// <summary>Stops the current music track.</summary>

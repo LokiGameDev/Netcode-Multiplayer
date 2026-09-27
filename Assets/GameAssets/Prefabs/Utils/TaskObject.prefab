@@ -359,6 +359,7 @@ GameObject:
   - component: {fileID: 1498868933195933451}
   - component: {fileID: 9200692583173595818}
   - component: {fileID: 5726712138297447362}
+  - component: {fileID: 2742774456107738929}
   m_Layer: 5
   m_Name: CurrentTaskSelector
   m_TagString: Untagged
@@ -479,6 +480,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+--- !u!114 &2742774456107738929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4108010259722836546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a96ca041ab531af4c91171fd488922c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIAudioPlayer
+  audioID: 1
+  button: {fileID: 5726712138297447362}
+  toggle: {fileID: 0}
 --- !u!1 &6062913193435631003
 GameObject:
   m_ObjectHideFlags: 0

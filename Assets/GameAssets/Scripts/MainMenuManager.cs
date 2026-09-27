@@ -48,6 +48,16 @@ public class MainMenuManager : MonoBehaviour
         await ClientSingleton.Instance.GameManager.StartClientAsync(joinCode);
     }
 
+    public void OpenPrivacyPolicy()
+    {
+        Application.OpenURL("https://lokeshwaran-k.vercel.app/GraveShift/privacy.html");
+    }
+
+    public void OpenTermsOfService()
+    {
+        Application.OpenURL("https://lokeshwaran-k.vercel.app/GraveShift/terms.html");
+    }
+
     /// <summary>Exits play mode in the editor or quits the application.</summary>
     public void QuitTheGame()
     {

@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PoisonBall : MonoBehaviour
 {
+    [SerializeField] private GameObject UISprites;
+    [SerializeField] private GameObject hitEffects;
     private bool isAttacked = false;
     private Monster monster;
 
@@ -11,10 +13,13 @@ public class PoisonBall : MonoBehaviour
     }
     private void Start()
     {
+        hitEffects.SetActive(false);
         Destroy(gameObject, 4);
     }
     private void Update()
     {
+        if(isAttacked) return;
+
         transform.position += transform.forward * Time.deltaTime * 10;
     }
 
@@ -24,15 +29,19 @@ public class PoisonBall : MonoBehaviour
 
         if(collider.CompareTag("Player") && !isAttacked)
         {
-            isAttacked = true;
             if(monster!=null) monster.AttackedPlayer(collider.gameObject);
+            AudioManager.Instance.Play(AudioID.PoisonBallHit);
             Debug.Log("Hit Player");
         }
         else
         {
+            AudioManager.Instance.Play(AudioID.PoisonBallImpact);
             Debug.Log("Hit Something");
         }
-
-        Destroy(gameObject);
+        
+        isAttacked = true;
+        UISprites.SetActive(false);
+        hitEffects.SetActive(true);
+        Destroy(gameObject,1);
     }
 }

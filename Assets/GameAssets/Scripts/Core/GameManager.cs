@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
     public void PlayerBoughtGems(int amount)
     {
         PlayerGemsAmountChanged?.Invoke();
+        AudioManager.Instance.Play(AudioID.GemsPurchased);
         gemsBoughtShower.PlayerBoughtGems(amount);
     }
 

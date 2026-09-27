@@ -21,6 +21,8 @@ public class PlayerManager : NetworkBehaviour
     [SerializeField] private PlayerReviver playerReviver;
     [SerializeField] private GameObject footCircleEffect;
     [SerializeField] private CinemachineBasicMultiChannelPerlin cameraNoise;
+    [SerializeField] private GameObject playerDeadEffect;
+    [SerializeField] private GameObject playerRevivedEffect;
 
     [SerializeField] private float cameraShakeValueAttack = 5;
     [SerializeField] private Color ownerFootColor = new Color32(0,0,0,25);
@@ -102,11 +104,14 @@ public class PlayerManager : NetworkBehaviour
         playerReviver.InteractStateChange(!IsAlive.Value);
         playerCollider.isTrigger = !IsAlive.Value;
         footCircleEffect.SetActive(IsAlive.Value);
+
+        playerDeadEffect.SetActive(!IsAlive.Value);
+        playerRevivedEffect.SetActive(IsAlive.Value);
         
         if(!IsOwner) return;
         
-        playerRigidBody.linearVelocity = new Vector3(0, 0, 0);
         playerRigidBody.isKinematic = !IsAlive.Value;
+        playerRigidBody.linearVelocity = new Vector3(0, 0, 0);
 
         if(IsOwner && UIManager.Instance!=null) UIManager.Instance?.PlayerStateChange(IsAlive.Value);
     }

@@ -53,6 +53,8 @@ public class MageMonster : Monster
         ball.SetUp(this);
         ball.gameObject.transform.LookAt(new Vector3(currentTarget.position.x, ball.transform.position.y, currentTarget.position.z));
 
+        AudioManager.Instance.Play(AudioID.MageShoot);
+
         NetworkObject obj = ball.GetComponent<NetworkObject>();
         obj.Spawn();
 
