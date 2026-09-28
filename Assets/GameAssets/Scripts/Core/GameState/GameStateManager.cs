@@ -60,6 +60,8 @@ public class GameStateManager : NetworkBehaviour
             NetworkVariableWritePermission.Server
         );
 
+    [SerializeField] private SpectateCamera spectateCamera;
+
     private Dictionary<ulong, string> InGamePlayersList = new();
 
     public UnityEvent playercountChanged;
@@ -230,6 +232,22 @@ public class GameStateManager : NetworkBehaviour
     private void SendPlayerListToAllClientsRpc(FixedString64Bytes[] players)
     {
         UIManager.Instance.FillTheCurrentPlayerList(players);
+        SetSpectateCameraTargets();
+    }
+
+    private void SetSpectateCameraTargets()
+    {
+        List<Transform> playerTransforms = new();
+
+        foreach (var client in NetworkManager.Singleton.ConnectedClientsList)
+        {
+            if (client.PlayerObject != null)
+            {
+                playerTransforms.Add(client.PlayerObject.transform);
+            }
+        }
+
+        spectateCamera.SetTargets(playerTransforms);
     }
 
     /// <summary>Waits briefly before switching to the playing state.</summary>
@@ -282,6 +300,17 @@ public class GameStateManager : NetworkBehaviour
 
         if(playerObject.GetComponent<PlayerManager>().PlayerName.Value == name) return true;
         return false;
+    }
+
+    public GameObject GetLocalPlayerDetails()
+    {
+        return NetworkManager.Singleton.LocalClient.PlayerObject.gameObject;
+    }
+
+    public void SpectatePlayerState(bool state)
+    {
+        if(state) spectateCamera.StartSpectating();
+        else spectateCamera.StopSpectating();
     }
 
     [Rpc(SendTo.Server)]
@@ -338,6 +367,12 @@ public class GameStateManager : NetworkBehaviour
     private void PlayerWentOfflineRpc(string name)
     {
         UIManager.Instance.PlayerWentOffline(name);
+    }
+
+    [Rpc(SendTo.Everyone)]
+    public void PlayAudioClientRpc(AudioID id, Vector3 position)
+    {
+        AudioManager.Instance.Play(id, position);
     }
 }
 

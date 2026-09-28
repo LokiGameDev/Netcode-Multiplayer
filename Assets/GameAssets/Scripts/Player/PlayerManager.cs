@@ -113,7 +113,8 @@ public class PlayerManager : NetworkBehaviour
         playerRigidBody.isKinematic = !IsAlive.Value;
         playerRigidBody.linearVelocity = new Vector3(0, 0, 0);
 
-        if(IsOwner && UIManager.Instance!=null) UIManager.Instance?.PlayerStateChange(IsAlive.Value);
+        if(UIManager.Instance!=null) UIManager.Instance?.PlayerStateChange(IsAlive.Value);
+        if(GameStateManager.Instance!=null) GameStateManager.Instance.SpectatePlayerState(!IsAlive.Value);
     }
 
     public void PlayerGotRevived()

@@ -71,12 +71,6 @@ public class AudioManager : MonoBehaviour
         Instance.musicManager.Play(id);
     }
 
-    [Rpc(SendTo.Everyone)]
-    public void PlayAudioClientRpc(AudioID id, Vector3 position)
-    {
-        Instance.PlayInternal(id, position, null);
-    }
-
     /// <summary>Stops the current music track.</summary>
     public void StopMusic()
     {

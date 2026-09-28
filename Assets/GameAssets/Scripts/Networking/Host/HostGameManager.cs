@@ -20,7 +20,7 @@ public class HostGameManager : IDisposable
     [SerializeField] private int MaxConnections = 8;
     private string joinCode;
     private string lobbyId;
-    private string GameSceneName = "Game1";
+    private string GameSceneName = "Game";
     public string hostName { get; private set; }
     public string currentLobbyName { get; private set; }
     private Allocation allocation;

@@ -8,6 +8,7 @@ public class SkeletonMonster : Monster
     [SerializeField] protected GameObject attackHitBox;
 
     [SerializeField] private GameObject attackEffects;
+    [SerializeField] private float facingEnemySpeed = 180;
 
     NetworkVariable<bool> isAttackTirggered = new NetworkVariable<bool>
     (
@@ -59,12 +60,38 @@ public class SkeletonMonster : Monster
 
         isAttackTirggered.Value = true;
         attackHitBox.SetActive(true);
-        AudioManager.Instance.PlayAudioClientRpc(AudioID.SkeletonPunch, transform.position);
+        GameStateManager.Instance.PlayAudioClientRpc(AudioID.SkeletonPunch, transform.position);
 
         yield return new WaitForSeconds(0.5f);
         attackHitBox.SetActive(false);
 
-        yield return new WaitForSeconds((reloadingTime/2)-0.5f);
+        while (true)
+        {
+            Vector3 direction = currentTarget.position - transform.position;
+            direction.y = 0f;
+
+            if (direction.sqrMagnitude < 0.01f)
+                break;
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                facingEnemySpeed * Time.deltaTime
+            );
+
+            if (Quaternion.Angle(transform.rotation, targetRotation) < 1f)
+            {
+                transform.rotation = targetRotation;
+                break;
+            }
+
+            yield return null;
+        }
+
+
+        yield return new WaitForSeconds(0.5f);
         isAttackTirggered.Value = false;
     }
 }
