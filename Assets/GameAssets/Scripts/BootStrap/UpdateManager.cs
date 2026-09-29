@@ -266,9 +266,6 @@ public class UpdateManager : MonoBehaviour
 
             long total = cursor.Call<long>("getLong", totalColumn);
 
-            cursor.Call("close");
-            cursor.Dispose();
-
             Debug.Log("[UPDATE MANAGER] DownloadManager status = " + status);
 
             if (total > 0)
@@ -294,12 +291,66 @@ public class UpdateManager : MonoBehaviour
             }
             else if (status == STATUS_FAILED)
             {
+                int reasonColumn = cursor.Call<int>(
+                    "getColumnIndex",
+                    "reason"
+                );
+
+                int reason = cursor.Call<int>(
+                    "getInt",
+                    reasonColumn
+                );  
+
                 downloading = false;
 
                 Debug.LogError("[UPDATE MANAGER] APK download failed.");
 
+                Debug.LogError(
+                    "[UPDATE MANAGER] APK download failed. Reason = " +
+                    GetDownloadFailureReason(reason)
+                );
+
                 loadingBarText.text = "Download failed.";
             }
+            
+            cursor.Call("close");
+            cursor.Dispose();
+        }
+    }
+
+    private string GetDownloadFailureReason(int reason)
+    {
+        switch (reason)
+        {
+            case 1001:
+                return "Insufficient storage";
+
+            case 1002:
+                return "File already exists";
+
+            case 1004:
+                return "HTTP data error";
+
+            case 1005:
+                return "Network error";
+
+            case 1006:
+                return "HTTP error";
+
+            case 1007:
+                return "Too many redirects";
+
+            case 1008:
+                return "Unacceptable URI";
+
+            case 1009:
+                return "Unknown HTTP error";
+
+            case 1000:
+                return "Unknown error";
+
+            default:
+                return "Unknown reason (" + reason + ")";
         }
     }
 
