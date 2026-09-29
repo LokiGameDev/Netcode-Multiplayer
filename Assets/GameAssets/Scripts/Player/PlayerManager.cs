@@ -108,17 +108,19 @@ public class PlayerManager : NetworkBehaviour
         playerReviver.InteractStateChange(!IsAlive.Value);
         playerCollider.isTrigger = !IsAlive.Value;
         footCircleEffect.SetActive(IsAlive.Value);
+        
+        if(IsOwner)
+        {
+            playerRigidBody.isKinematic = !IsAlive.Value;
+            if(!playerRigidBody.isKinematic) playerRigidBody.linearVelocity = new Vector3(0, 0, 0);
 
+            if(UIManager.Instance!=null) UIManager.Instance?.PlayerStateChange(IsAlive.Value);
+            if(GameStateManager.Instance!=null) GameStateManager.Instance.SpectatePlayerState(!IsAlive.Value);
+            
+        }
+        
         playerDeadEffect.SetActive(!IsAlive.Value);
         playerRevivedEffect.SetActive(IsAlive.Value);
-        
-        if(!IsOwner) return;
-        
-        playerRigidBody.isKinematic = !IsAlive.Value;
-        playerRigidBody.linearVelocity = new Vector3(0, 0, 0);
-
-        if(UIManager.Instance!=null) UIManager.Instance?.PlayerStateChange(IsAlive.Value);
-        if(GameStateManager.Instance!=null) GameStateManager.Instance.SpectatePlayerState(!IsAlive.Value);
     }
 
     public void PlayerGotRevived()

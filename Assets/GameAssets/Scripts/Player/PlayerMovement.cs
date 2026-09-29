@@ -50,6 +50,8 @@ public class PlayerMovement : NetworkBehaviour
     [Tooltip("Maximum vertical camera angle.")]
     [SerializeField] private float maxPitch = 10f;
 
+    [SerializeField] private LayerMask groundLayer;
+
     private bool jumpRequested;
 
     private float yaw;
@@ -148,6 +150,17 @@ public class PlayerMovement : NetworkBehaviour
 
         if(!playerManager.IsAlive.Value)
         {
+            if(!IsGrounded())
+            {
+                if (playerRigidbody.linearVelocity.y < 0)
+                {
+                    playerRigidbody.linearVelocity +=
+                        Vector3.up *
+                        Physics.gravity.y *
+                        (fallMultiplier - 1f) *
+                        Time.fixedDeltaTime;
+                }
+            }
             return;
         }
 
@@ -301,9 +314,9 @@ public class PlayerMovement : NetworkBehaviour
 
     /// <summary>Checks whether the player is touching the ground.</summary>
     /// <returns>True when the ground raycast hits a collider.</returns>
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, playerHeight);
+        return Physics.Raycast(transform.position, Vector3.down, playerHeight, groundLayer);
     }
 
     /// <summary>Waits for landing before restoring the grounded animation state.</summary>

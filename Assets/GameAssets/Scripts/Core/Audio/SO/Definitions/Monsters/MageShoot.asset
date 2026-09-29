@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 16
   clips:
   - {fileID: 8300000, guid: d66e7eeb86bc9d740a5dee1fcdedabea, type: 3}
-  Volume: 1
+  Volume: 0.5
   Pitch: 1
   RandomPitch: 0
   Loop: 0

@@ -598,6 +598,9 @@ MonoBehaviour:
   lookSensitivity: 10
   minPitch: -30
   maxPitch: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 72
 --- !u!114 &8794936511435102540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,7 +1405,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2150568436702850042, guid: f1f346d57bec52d4d86b1124b1e584c1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.05
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2150568436702850042, guid: f1f346d57bec52d4d86b1124b1e584c1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1493,7 +1496,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8525902730652359184, guid: 74d0fb7c633732b45b0fdad9129d53db, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.05
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8525902730652359184, guid: 74d0fb7c633732b45b0fdad9129d53db, type: 3}
       propertyPath: m_LocalPosition.z

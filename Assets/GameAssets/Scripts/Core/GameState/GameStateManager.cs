@@ -98,6 +98,14 @@ public class GameStateManager : NetworkBehaviour
     {
         OnGameStateChanged(currentGameState.Value, currentGameState.Value);
 
+        foreach (var prefab in NetworkManager.Singleton.NetworkConfig.Prefabs.Prefabs)
+        {
+            Debug.Log(
+                $"Registered NetworkPrefab: {prefab.Prefab.name} | " +
+                $"Hash: {prefab.SourcePrefabGlobalObjectIdHash}"
+            );
+        }
+
         if(!IsServer) return;
 
         foreach(var client in NetworkManager.Singleton.ConnectedClientsIds)

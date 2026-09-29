@@ -56,6 +56,8 @@ public class SkeletonMonster : Monster
 
     private IEnumerator AttackHitboxTimer()
     {
+        if(currentTarget == null) yield return null;
+
         yield return new WaitForSeconds(reloadingTime/2);
 
         isAttackTirggered.Value = true;
@@ -67,6 +69,8 @@ public class SkeletonMonster : Monster
 
         while (true)
         {
+            if(currentTarget == null) break;
+            
             Vector3 direction = currentTarget.position - transform.position;
             direction.y = 0f;
 

@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>Shows mobile controls only on mobile platforms.</summary>
 public class MobileControlEnabler : MonoBehaviour
@@ -60,6 +61,8 @@ public class MobileControlEnabler : MonoBehaviour
 
     private void CheckPositions()
     {
+        if(SceneManager.GetActiveScene().name != "Checker") return;
+
         ControlSaveData controlSaveData = LoadPositions();
 
         moveRectTransform.localPosition = controlSaveData.movePosition.ToVector2();

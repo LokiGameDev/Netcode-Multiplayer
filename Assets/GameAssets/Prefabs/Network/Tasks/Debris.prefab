@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8550009359077522295}
   - component: {fileID: 3897772266683024898}
   - component: {fileID: 6921919755917412653}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Debris
   m_TagString: Tasks
   m_Icon: {fileID: 0}
@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 4203240722
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 1695461827
+  InScenePlacedSourceGlobalObjectIdHash: 4203240722
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
@@ -178,6 +178,10 @@ PrefabInstance:
     - target: {fileID: 8783164581661563076, guid: 10e3f80b2c6b43a4393d84be762a4244, type: 3}
       propertyPath: m_Name
       value: debris
+      objectReference: {fileID: 0}
+    - target: {fileID: 8783164581661563076, guid: 10e3f80b2c6b43a4393d84be762a4244, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -65,6 +65,8 @@ public class TaskManager : NetworkBehaviour
     {
         taskCompletionEffect = Instantiate(taskCompletionEffectPrefab, this.transform).GetComponent<TaskCompletionEffect>();
         
+        if(!IsHost) return;
+        
         RegisterTaskObjects();
     }
 
