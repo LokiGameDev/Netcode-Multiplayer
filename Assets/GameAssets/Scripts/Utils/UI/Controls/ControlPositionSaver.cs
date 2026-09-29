@@ -51,7 +51,16 @@ public class ControlPositionSaver : MonoBehaviour
     public ControlSaveData LoadPositions()
     {
         if (!File.Exists(filePath))
-            return null;
+        {
+            ControlSaveData data = new ControlSaveData
+            {
+                movePosition = new PositionData(new Vector2(-500, -180)),
+                jumpPosition = new PositionData(new Vector2(705, 0)),
+                interactPosition = new PositionData(new Vector2(540, -200))
+            };
+            SavePositions(new Vector2(-500, -180), new Vector2(705, 0), new Vector2(540, -200));
+            return data;
+        }
 
         string json = File.ReadAllText(filePath);
 

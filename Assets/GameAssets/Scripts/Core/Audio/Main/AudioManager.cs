@@ -77,6 +77,11 @@ public class AudioManager : MonoBehaviour
         Instance.musicManager.Stop();
     }
 
+    public void ResumeMusic()
+    {
+        Instance.musicManager.Resume();
+    }
+
     /// <summary>Sets the music volume.</summary>
     public void SetMusicVolume(float value)
     {

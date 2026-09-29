@@ -175,12 +175,16 @@ public class GameStateManager : NetworkBehaviour
     private void ShowGameWonUI()
     {
         UIManager.Instance.ShowCurrentPanel(GameState.GameWon);
+
+        AchievementManager.Instance.Unlock("FIRST_WIN");
     }
 
     /// <summary>Shows the game-lost panel.</summary>
     private void ShowGameLostUI()
     {
         UIManager.Instance.ShowCurrentPanel(GameState.GameLost);
+
+        AchievementManager.Instance.Unlock("FIRST_LOSE");
     }
 
     /// <summary>Shows the loading panel.</summary>
@@ -233,6 +237,9 @@ public class GameStateManager : NetworkBehaviour
     {
         UIManager.Instance.FillTheCurrentPlayerList(players);
         SetSpectateCameraTargets();
+
+        AchievementManager.Instance.Unlock("FIRST_GAME");
+        AudioManager.Instance.StopMusic();
     }
 
     private void SetSpectateCameraTargets()
@@ -261,6 +268,8 @@ public class GameStateManager : NetworkBehaviour
     /// <param name="gameState">Winning or losing state to apply.</param>
     public void GameFinished(GameState gameState)
     {
+        AudioManager.Instance.ResumeMusic();
+
         if(gameState == GameState.GameWon) currentGameState.Value = GameState.GameWon;
         else if(gameState == GameState.GameLost) currentGameState.Value = GameState.GameLost;
     }
@@ -374,6 +383,7 @@ public class GameStateManager : NetworkBehaviour
     {
         AudioManager.Instance.Play(id, position);
     }
+
 }
 
 /// <summary>States displayed during a multiplayer match.</summary>

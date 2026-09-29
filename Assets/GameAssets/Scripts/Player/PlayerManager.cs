@@ -82,6 +82,8 @@ public class PlayerManager : NetworkBehaviour
         playerNameText.gameObject.SetActive(false);
         IsAlive.Value = false;
         playerAnimationManager.PlayerStateChange(PlayerState.Dead);
+
+        AchievementManager.Instance.Unlock("FIRST_DEATH");
     }
 
     [Rpc(SendTo.SpecifiedInParams)]
@@ -96,6 +98,8 @@ public class PlayerManager : NetworkBehaviour
         playerNameText.gameObject.SetActive(true);
         IsAlive.Value = true;
         playerAnimationManager.PlayerStateChange(PlayerState.Idle);
+
+        AchievementManager.Instance.Unlock("FIRST_RESPAWN");
     }
 
     private void PlayerStateChanged(bool previousValue, bool newValue)

@@ -161,8 +161,7 @@ public class TaskManager : NetworkBehaviour
 
         assignedTasksObjects[taskId].CompleteTask();
 
-        taskCompletionEffect.transform.position = assignedTasksObjects[taskId].GetInteractionPoint().position;
-        taskCompletionEffect.PlayEffect(taskCompletionEffect.transform.position);
+        Vector3 position = assignedTasksObjects[taskId].GetInteractionPoint().position;
 
         Debug.Log($"[TASK MANAGER] Player {playerId} completed task {taskId}");
 
@@ -175,7 +174,7 @@ public class TaskManager : NetworkBehaviour
 
         // Notify that player's client
         SendTaskCompletedRpc(
-            taskId, playerId,
+            taskId, playerId, position,
             RpcTarget.Single(playerId, RpcTargetUse.Temp)
         );
 
@@ -183,9 +182,15 @@ public class TaskManager : NetworkBehaviour
         CheckAllTasksCompleted();
     }
 
+    public void PlayTaskCompletionEffect(Vector3 position)
+    {
+        taskCompletionEffect.transform.position = position;
+        taskCompletionEffect.PlayEffect(taskCompletionEffect.transform.position);
+    }
+
     [Rpc(SendTo.SpecifiedInParams)]
     /// <summary>Notifies a client that its task was completed.</summary>
-    private void SendTaskCompletedRpc(int taskId, ulong playerId, RpcParams rpcParams = default)
+    private void SendTaskCompletedRpc(int taskId, ulong playerId, Vector3 position, RpcParams rpcParams = default)
     {
         if (!NetworkManager.Singleton.ConnectedClients.TryGetValue(
         playerId, out Unity.Netcode.NetworkClient client))
@@ -195,7 +200,7 @@ public class TaskManager : NetworkBehaviour
             client.PlayerObject.GetComponent<PlayerTaskManager>();
 
         player.PlayerTaskCompletedRpc(
-            taskId,
+            taskId, position,
             RpcTarget.Single(playerId, RpcTargetUse.Temp)
         );
     }

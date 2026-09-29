@@ -26,9 +26,12 @@ public class PlayerTaskManager : NetworkBehaviour
     [Rpc(SendTo.SpecifiedInParams, InvokePermission = RpcInvokePermission.Server)]
     /// <summary>Receives a server notification that a task was completed.</summary>
     /// <param name="taskId">Completed task identifier.</param>
-    public void PlayerTaskCompletedRpc(int taskId, RpcParams rpcParams = default)
+    public void PlayerTaskCompletedRpc(int taskId, Vector3 position, RpcParams rpcParams = default)
     {
         CompletedTask(taskId);
+        TaskManager.Instance.PlayTaskCompletionEffect(position);
+
+        AchievementManager.Instance.Unlock("FIRST_TASK");
     }
 
     /// <summary>Logs and sends the assigned tasks to the game UI.</summary>

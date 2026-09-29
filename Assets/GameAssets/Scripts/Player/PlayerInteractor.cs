@@ -50,6 +50,7 @@ public class PlayerInteractor : NetworkBehaviour
         }
         else if(currentInteractable!=null)
         {
+            if(currentInteractable.ActionName == "Revive") AchievementManager.Instance.Unlock("FIRST_REVIVE");
             currentInteractable?.Interact(OwnerClientId);
         }
     }

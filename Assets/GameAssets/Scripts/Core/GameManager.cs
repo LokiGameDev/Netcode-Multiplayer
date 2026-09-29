@@ -46,6 +46,9 @@ public class GameManager : MonoBehaviour
     {
         PlayerGemsAmountChanged?.Invoke();
         AudioManager.Instance.Play(AudioID.GemsPurchased);
+
+        AchievementManager.Instance.Unlock("FIRST_PURCHASE");
+        
         gemsBoughtShower.PlayerBoughtGems(amount);
     }
 
