@@ -17,6 +17,8 @@ namespace GameTasks
                 {
                     Vector2 position = GetRandomPosition(obj, spawnArea);
 
+                    position.x += 300;
+
                     obj.anchoredPosition = position;
 
                     bool overlaps = false;

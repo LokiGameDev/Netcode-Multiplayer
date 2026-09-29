@@ -12,6 +12,7 @@ public class TaskChair : MonoBehaviour, ITaskFinisher
     [SerializeField] private TMP_Text requiredItemText;
     [SerializeField] private GameObject taskCompletionButton;
     [SerializeField] private int requiredItemIndex = 0;
+    [SerializeField] private Sprite defaultStartingSprite;
 
     [SerializeField] private RectTransform spawnArea;
     [SerializeField] private GameObject[] taskItems;
@@ -44,6 +45,7 @@ public class TaskChair : MonoBehaviour, ITaskFinisher
 
         TaskUIHelperFunctions.PlaceObjects(taskItemsRect, spawnArea);
         requiredItemIndex = 0;
+        taskItemUI.sprite = defaultStartingSprite;
         requiredItemText.text = "Require: " + taskCompletionThings[requiredItemIndex].requiredItem;
         taskCompletionButton.SetActive(false);
     }

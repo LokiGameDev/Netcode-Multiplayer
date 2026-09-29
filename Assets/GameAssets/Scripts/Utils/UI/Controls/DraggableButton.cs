@@ -37,6 +37,6 @@ public class DraggableButton : MonoBehaviour, IDragHandler
 
         rectTransform.anchoredPosition = newPosition;
 
-        controlPositionSaver.ChangesHappened();
+        controlPositionSaver?.ChangesHappened();
     }
 }
