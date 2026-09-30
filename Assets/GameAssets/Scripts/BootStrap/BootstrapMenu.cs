@@ -52,7 +52,7 @@ public class BootstrapMenu : MonoBehaviour
 
         connectionLostPanel.SetActive(false);
         logoLoadingPanel.SetActive(true);
-        newAccountPanel.SetActive(PlayerPrefs.GetString(PlayerName).Length < minPlayerNameLength);
+        newAccountPanel.SetActive(false);
 
         OnStartEvent?.Invoke();
     }

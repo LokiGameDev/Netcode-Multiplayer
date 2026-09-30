@@ -14947,7 +14947,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.039981
+      value: 14.07
       objectReference: {fileID: 0}
     - target: {fileID: 7314544181787376258, guid: be0d47c9ed310e44291bb612d58873ca, type: 3}
       propertyPath: m_LocalPosition.y
@@ -33761,7 +33761,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 532cfb69b468ef74bac21eb106ea34db, type: 2}
+  sharedProfile: {fileID: 11400000, guid: ab09877e2e707104187f6f83e2f62510, type: 2}
 --- !u!4 &1904295071
 Transform:
   m_ObjectHideFlags: 0
