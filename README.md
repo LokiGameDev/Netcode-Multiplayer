@@ -63,9 +63,9 @@ Players work together to complete tasks around a graveyard while avoiding monste
 | Action   | Input            |
 | -------- | ---------------- |
 | Move     | Left Stick       |
-| Camera   | Right Stick      |
+| Camera   | Right area drag  |
 | Interact | On-Screen Button |
-| Tasks    | On-Screen UI     |
+| Jump     | On-Screen Button |
 
 ---
 
